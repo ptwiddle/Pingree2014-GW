@@ -1,0 +1,3 @@
+Notes from the 6 mini-courses offered during the summer school on Gromov-Witten theory at Pingree Park, June-July 2014.
+
+Potentially, these notes could be developed into a proceedings...

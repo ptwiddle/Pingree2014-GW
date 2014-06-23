@@ -1,0 +1,20 @@
+\documentclass{amsart}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+\newtheorem{question}{Question}
+\newtheorem{conjecture}{Conjecture}
+
+\newcommand{\Mbar}{\overline{\mathcal{M}}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\Aut}{Aut}
+\title{An introducion to FJRW theory}
+\author{Tyler Jarvis}
+
+\begin{document}
+\maketitle
+
+
+\end{document}
