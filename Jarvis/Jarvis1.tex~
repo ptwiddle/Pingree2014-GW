@@ -8,6 +8,11 @@
 \newcommand{\Mbar}{\overline{\mathcal{M}}}
 \newcommand{\M}{\mathcal{M}}
 \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Age}{\text{Age}}
+\newcommand{\Fix}{\text{Fix}}
+\newcommand{\one}{1}
+\newcommand{\st}{\text{st}}
 
 \newcommand{\Aut}{Aut}
 \title{An introducion to FJRW theory}
@@ -15,6 +20,209 @@
 
 \begin{document}
 \maketitle
+.Our starting point is 
+\begin{theorem}
+Intersection theory of $\psi$ classes on $\Mbar_{g,n}$ is governed by the KdV hierarchy
+\end{theorem}
+
+Immediately after this, Witten gave two generalizations of $\Mbar_{g,n}$.  The first, are the moduli space of stable maps $\Mbar_{g,n}(X,\beta)$.
+
+The second is $\Mbar^{1/r}_{g,n}$, the moduli space of $r$-spin curves, that is, curves $\mathcal{C}$ together with a line bundle $\mathcal{L}$ so that $\mathcal{L}^{\otimes r}\cong \mathcal{K}_{\log}$.
+
+FJRW is a further generalization of $r$-spin curves, parallel to Gromov-Witten theory.
+
+\begin{tabular}{rcc}
+ & $GW$-theory & FJRW \\
+\hline
+Input & $X$ & $W\in \C[x_1,\dots, x_N]$; $G$ finite \\
+State Space & $H^*(X)$ & $\mathcal{A}^{W,G}$ \\
+Moduli space & $\Mbar_{g,n}(X,\beta)\to \Mbar_{g,n}$ & $\Mbar_{g,n}^{W,G}\to\Mbar_{g,n}$ \\
+Virtual Class & X & X \\
+CohFT & \Lambda^{GW} & \Lambda^{FJRW}
+\end{tabular}
+
+Larger picture
+
+\begin{tabular}{r|c|c}
+ & A & B \\
+\hline
+CY & GW & BK, BCOV, Costello-Li, etc. \\
+\hline
+LG & FJRW & Saito-Givental, Dubrovin-Zhang
+\end{tabular}
+
+FJRW theory requires the following inputs:
+\begin{itemize}
+\item  $\C^*$ action on $\C^N$ with weights $c_1,\dots, c_n$; that is $\lambda\cdot(x_1,\dots, x_n)=(\lambda^{c_1}x_1,\dots, \lambda^{c_N}x_N)$.
+\item Polynomial $W\in\C[x_1,\dots, x_N]$ that is quasihomogenous of weight $d$ with respect to $\C^*$ action -- that is $W(\lambda\cdot x)=\lambda^d W(x)$.
+\item Quasihomogeneity forces $W$ to have a singularity at the origin, we require this singularity to be isolated; that is, $X_W=\{W=0\}\subset WP(c_1,\dots, c_N)$ is smooth.
+\item W should have no terms of form $x_ix_j$, which implies that the weights $c_i/d\leq 1/2$ and weights are uniquely determined by $W$.
+\end{itemize}
+
+\begin{example}
+$W=x^r$ is the $A_{r-1}$ singularity.
+\end{example}
+
+\begin{example}
+$W=x^5+x^y^2$ is the $D_5$ singularity; we have $d=5, c_1=1, c_2=2$.
+\end{example}
+
+
+The $\C^*$ action and $W$ together give the exponential grading element 
+$$J=(\exp(2\pi i c_1/d), \dots, \exp(2\pi i c_N/d)$$
+with $J$ fixing $W$.
+
+$G$ is a finite abelian group acting diagonally on $\C^N$ that fixes $W$ and contains $J$.
+
+
+Let $G^{max}=\{(\alpha_1,\dots,\alpha_N)|W(\alpha_1x_1,\dots,\alpha_Nx_N)=W(x_1,\dots, x_N)\}$ denote the maximal diagonal symmetry group of $W$.
+
+\begin{example}
+$$G^{max}_{D_6}=\{\zeta^{-2},\zeta)|\zeta^10=1\}$$
+and $J_{D_6}=(\exp(2\pi i /5),\exp(2pi i 2/5))$,
+so that $\langle J\rangle \subsetneq G^{max}$.
+\end{example}
+
+For all $g\in G^{max}$, we can writ(e $g=(\exp(2\pi i\theta_1),\dots,\exp(2\pi i\theta_N))$, s.t. $\theta_i\in[0,1)\cap \Q$.  We call $\theta_i$ the \emph{phases} of $g$.  
+
+$$\Age(g)=\sum\theta_i$$
+$$N_g=\dim \Fix(g)$$
+
+Note: $\Age(g)+\Age(g^{-1})=N-N_g$.
+
+
+The idea is that, given a the data described above, FJRW theory will produce a CohFT.  What is a CohFT?  It is a collection of tautological classes that behave like you would expect them to if you've been trained in Gromov-Witten theory.
+
+
+
+More specifically, we have two gluing maps $\rho_{\text{tree}},\rho_{\text{loop}}$, and the forgetting marked point map $\tau$.
+
+
+A CohFT with flat identity consists of a state space $\mathcal{A}$, that has a pairing $\langle,\rangle:\mathcal{A}\otimes\mathcal{A}\to\C$, and a family
+$\{\Lambda_{g,n}\}$, with $\Lambda_{g,n}\in H^*(\Mbar_{g,n})\otimes (\mathcal{A}^*)^n$
+and a vector $\one\in\mathcal{A}$ that behave well with respect to the gluing maps, that is:
+
+$$\rho^*_{\text{tree}}\Lambda_{g_1+g_2, k_1+k_2}(\alpha_{k_1},\dots,\alpha_{k_1+k_2})
+=\sum_{r,s} \Lambda_{g_1, k_1+1}(\alpha_1,\dots,\alpha_{k_1},r)\eta^{rs}\Lambda_{g_2, k_2+1}(s,\alpha_{k_1+1},\dots,\alpha_{k_1+k_2})$$
+here $r,s$ run over a basis of $\mathcal{A}$, and $(\eta^{rs})$ is the inverse of the metric $\langle, rangle$ in terms of a basis of $\mathcal{A}$.
+
+We have analogous requirements for $\rho^*_{\text{loop}}$:
+$$\rho^*_{\text{loop}}\Lambda_{g+1,k}(\alpha_1,\dots,\alpha_k)=\sum_{r,s}\Lambda_{g,k+2})(\alpha_1,\dots,\alpha_k,r,s)\eta^{rs}$$
+
+We want $\Lambda_{g,k}$ to be symmetric; that is, $S_k$ invariant, as an element of $H^*(\Mbar_{g,n})\otimes(\mathcal{A}^*)^k$.
+
+The flat identity condition states that y
+
+$$\tau^*(\Lambda_{g,k}(\alpha_1,\dots,\alpha_k)=\Lambda_{g,k+1}(\alpha_1,\dots,\alpha_k,\one)$$
+and $\Lambda_{0,3}(\alpha_1,\alpha_2,\one)=\langle \alpha_1,\alpha_2\rangle$.
+
+To construct the CohFT, we will use a moduli space (stack) consisting of curves with with extra structure.
+
+The moduli space will be $\Mbar_{g,k}^{W,G}$ with maps $e_i$ to $\mathcal{I
+B}G$, and a finite stabilization map $\st$ to $\Mbar_{g,k}$.
+
+The moduli space $\Mbar_{g,k}^{W,G}$  is smooth and proper.
+
+
+This will be based off 
+$$\mathcal{W}_{g,k}^{W,G}=\{\mathcal{C},p_1,\dots,p_k,\mathcal{L}_1,\dots,\mathcal{L}_N,\phi_i\}$$
+where
+\begin{itemize}
+\item $(\mathcal{C},p_1,\dots, p_k)$ is a stable pointed orbicurve.
+\item $\mathcal{L}_i$ are orbifold line bundles on $\mathcal{C}$
+\item $W=\sum{i=1}^s a_iW_i$, with $w_i$ monomials in the $x_i$
+\item $\phi_i:W_i(\mathcal{L_1},\dots,\mathcal{L}_N)\to\mathcal{K}_{\log}$
+\item The group action at each marked point and node factors through $G$.
+\end{itemize}
+
+Here $\mathcal{K}_\log=\mathcal{K}\otimes\mathcal{O}(\sum p_i)$ has sections locally given by $dz/z$ around the marked points.
+
+\begin{example}{$r$-spin curves}
+Let $W=x^r, J=\exp(2\pi i/r), G^{\text{max}}=\langle J\rangle$
+and 
+$$\Mbar_{g,k}^{x^r,G^{\text{max}}}={(\mathcal{C},p_1,\dots,p_k $$
+
+Polischchuck-Vaintrob have an alternate definition.
+
+Let $\Gamma=\C^*G\subset GL(N)$
+MORE IN NOTES
+
+\section{State Space}
+First we will give the high-brow definition; then we will give a more down-to-earth version.
+
+$W:\C^N\to\C$ is $G$-invariant, and so defines a map
+$W:[\C^N/G]\tp\C$.
+-
+$W^\infty=\text{Re}W^{-1}\left((M,\infty)\right), M>>0$;
+that is, we want to consider those points in $[\C^N/G]$ that map to something with very large real part under $W$.
+Then:
+$$\mathcal{A}=H_{CR}^{*+2\sum c_i/d} ([\C^N/G],W^\infty,\C)$$
+In another way, this is 
+$$\bigoplus_{\gamma\in G} H^*(\Fix(\gamma);W_\gamma^\infty,\C)^G$$
+
+Note that $\Fix(\gamma)=\C^{N_\gamma}$.
+
+If $\gamma=J=(\exp(2\pi i c_1/d),\dots,\exp(2\pi i c_N/d))$, then $\Fix(J)=\{0\}$, and $\mathcal{A}_J=H^*(\{0\},\C)=\C$, and $\one\in\mathcal{A}$ is defined to be $1\in\mathcal{A}_J$.
+
+Note that this is a bit surprising for those used to Chen-Ruan cohomology, as the identity lives in a twisted sector.
+
+Another, more computational description:
+
+\begin{theorem}{Wall, Orlik-Solomon, Sebastrani}
+$$H^*(\C^n, W^\infty;\C)\cong\Omega^N/(dW\wedge\Omega^{N-1}$$ as $G$-modules.
+\end{theorem}
+
+This is germs of $N$-forms on $\C^N$ at 0, modulo $dW=0$.
+
+Another way to put this is $\C[x_1,\dots,x_N]dx_1\wedge\cdots\wedge dx_N/(\frac{\partial W}{\partial x_1}dx_1+\cdots+\frac{\partial W}{\partial x_N}dx_N)\wedge dx_1\wedge\cdots\wedg dx_N$.
+
+$\cong \C[x_1,\dots,x_N]/(\frac{\partial W}{\partial x_1},\dots, \frac{\partial W}{\partial x_N})dx_1\wedge\cdots\wedge dx_N$
+THis is the Milnor ring, or local algebra, of $W$.  
+
+Fact: $\Omega^N/dW\wedge\Omega^{N-1}$ is finite dimneionsal ifa nd only if $W$ has an isolated singularty at 0.  The dimension is called the milnor number, and is denoted $\mu$.  
+
+The Milnor ring is powerful: for quasihomogenous singularities, that is a natural class of equivalence of singularities, so that two singularities are equivalent if and only if their Milnor rings are isomorphic.
+
+
+The pairing on $H^*(\C^N, W^\infty,\C)$ matches the residue pairing on $\Omega^N/dW\wedge\Omega^{N-1}$.  
+
+Residue pairing:
+
+$$\langle fdx_1\wedge\dots\wedge dx_N,gdx_1\wedge\dots\wedge dx_n\rangle=
+\frac{1}{(2\pi i)^N}\int \frac{fg dx_1\wedge\dots\wedge dx_n}{\frac{\partial W}{\partial x_1}\cdots\frac{\partial W}{\partial x_N}}$$
+
+
+Fact: in $\C[x_1,\dots,x_N]/(frac{\partial W}{\partial x_1},\dots,\frac{\partial W}{\partial x_n})$ there is an obvious gradiing.  The Hessian of W spans the part of highest degree.  If $\langle f,g\rangle=\alpha\mu$, then $fg=\alpha \text{Hess}+\text{lower order terms}$.
+
+
+Fact: $$H^{N-p,p}(\C^n,W^\infty. \C)^{\langle J\rangle}\to\{\phi dx_1\wedge\dots dx_N|\deg \phi=p\}$$
+
+Highest degree in Milnor ring is the degree of the Hessian, which is denoted $\hat{c}=\sum (1-2(c_i/d))$.
+
+Then $\langle,\rangle:\mathcal{A}^{p,q}\otimes\mathcal{A}^{\hat{c}-p,\hat{c}-q}\to\C$.
+
+So that $\mathcal{A}$ behaves like the cohomology of a manifold of dimension $\hat{c}$, which may be fractional -- $\mathcal{A}$ may have fractional grading anyway.  Bu
+ if $\hat{c}=N-2$, then $X_W=\{W=0\}$ is CY, and $\mathcal{A}$ agrees with the cohomology of $X_W$.
+
+MORE ON BIGRADING LATER
+
+We have a moduli space, and a state space, the idea is that we will construct a virtual fundamental class $[\Mbar_{g,k}^{W,G}]^\vir\in H_*(\Mbar^{W,G}_{g,l})\otimes (\mathcal{A}^*)^k$ such that the classes we get by pushing down the virtual classes to $\Mbar_{g,k}$ we get a CohFT.
+
+More specifically, define:
+
+$$\Lambda_{g,k}=\frac{PD \st_*[\Mbar_{g,k}^{W,G}]^\vir}{|G|^g\deg\st}$$
+
+$\Lambda_{g,k}$ forms a CohFT
+
+$\dim \Lambda_{g,k} (\alpha_1,\dots,\alpha_k)=(\hat{c}-3)(1-g)+k-\sum\deg\alpha_i$
+G^{\text{max}}-invariant.
+
+Deformation invariance: If $W_t$ is a 1-parameter family of polynomials, then $\Lambda_{g,k}^{W_t,G}$ is independent of $t$.
+
+Decomposition: $\Lambda^{W_1+W_2,G_1\times G_2}_{g,k}=\Lambda^{W_1,G_1}_{g,k}\otimes\Lambda^{W_2,G_2}_{g,k}$.
+
+Additional properties that facilitate computation.
+
 
 
 \end{document}

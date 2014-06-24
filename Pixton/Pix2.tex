@@ -1,0 +1,283 @@
+\documentclass{amsart}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{example}{Example}
+\newtheorem{question}{Question}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{corollary}{Corollary}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\one}{\text{one}}
+\newcommand{\End}{\text{End}}
+\newcommand{\Mbar}{\overline{\mathcal{M}}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\Aut}{Aut}
+
+
+\title{The tautological ring and cohomological field theories II}
+\author{Aaron Pixton}
+\begin{document}
+\maketitle
+
+Today, we develop some of the classification theory of Cohomological field theories.
+
+\section{Cohomological field theories}
+
+\begin{definition}
+A \emph{cohomological field theory} begins with the data of 
+\begin{itemize}
+\item $V$ a finite dimensional vector space over $\C$.
+\item $\eta$ a nondegenerate symmetric bilinear form on $V$. 
+\end{itemize}
+and gives a family
+$$\Omega_{g,n}\in H^*(\Mbar_{g,n})\otimes (V^*)^{\otimes n}$$
+satisfying
+\begin{enumerate}
+\item $\Omega_{g,n}$ is $S_n$ invariant
+\item Formulas for pullbacks of $\Omega_{g,n}$ under gluing maps
+\end{enumerate}
+
+If furthermore, there exists a $\one\in V$ such that 
+$$\tau^*(\Omega_{g,n}(v_1\otimes\cdots\otimes v_n)=\Omega_{g,n+1}(v_1\otimes\cdots\otimes v_n\otimes\one)$$
+and
+$$\eta(v_1,v_2)=\Omega_{0,3}(v_1\otimes v_2\otimes\one)$$
+then we say $\Omega$ is a \emph{CoHFT with unit}.
+\end{definition}
+
+We are mostly interested in CohFT with unit because
+
+\begin{definition}
+The quantum product $\bullet$ on $V$ is given by
+
+$$\Omega_{0,3}(v_1\otimes v_2\otimes v_3)=\eta(v_1\bullet v_2,v_3)$$
+\end{definition}
+
+If $\Omega$ is a CohFT with unit then $(V,\bullet)$ is a commutative $\C$-algebra.
+
+\begin{definition}
+We say $\Omega$ is \emph{semisimple} if $(V,\bullet)$ is semisimple, i.e. $V\cong \bigoplus\C\epsilon_i$, with $\epsilon_i\epsilon_j=\delta_{ij}\epsilon_i$
+\end{definition}
+
+The goal today is to explain a reconstruction theorem that reproduces a semisimple CohFT from a very small amount of data; this will give a classification of semisimple CohFT.  Later, we will apply this to the tautological ring.
+
+\section{Classification of semisimple CohFTs}
+
+The main idea of the classification will be to construct a group action on the set of all semisimple CohFTs; this will be Givental's R-matrix action.
+
+Let $R(z)\in\End(V)[[z]]$, i.e. $R(Z)=1+R_1z+R_2z^2+\dots$
+
+We require $R(z)$ to satisfy the \emph{symplectic condition}:
+$$
+v\eta(R(z)v, R(-z)w)=\eta(v,w)$$
+The set of all $R$ satisfying these conditions form a group, sometimes called the symplectic loop group.  Our maing goal define an action of this group on the space of semisimple CohFTs.
+
+
+\subsection{Warm-up group action}
+We begin by defining a different action on the space of all CohFTs that does not preserve the semisimple ones.
+
+Let $\Omega$ be a CohFT on $(V,\eta)$.  We define a new CohFT $R\Omega$ by
+
+$$(R\Omega)_{g,n}(v_1\otimes\cdots\otimes v_n)
+=\sum_{\Gamma \text{stable graphs for} \Mbar_{g,n}} \frac{1}{|\Aut(\Gamma)|}
+\iota_{\Gamma*}(\prod_{v\in\Gamma} \Omega_{g_v, n_v}( S_v)$$
+Where $S_v$ is defined by:
+\begin{itemize}
+\item At the $i$th leg $\ell$, we place $R^{-1}(\psi_\ell)(v_i)$.
+\item At each edge, we place $$\Delta=\frac{\eta^{-1}-R^{-1}(\psi_1)\eta^{-1}R^{-1}(\psi_2)^t}{\psi_1+\psi_2}$$
+\end{itemize}
+
+The fact that the numerator of $\Delta$ is divisible by the denominator is equivalent to the symplectic condition.
+
+This should look similar to what was happening at the end of the first lecture.
+
+DRAWING FOR INTUITION
+
+Another observation is that $R$ does not appear in this expression, but $R^{-1}$; Givental originally used $R$, we use $R^{-1}$ so that we get a left group action instead of a right group action.
+
+To see that this is a CohFT, there are essentially two things that need to be checked.
+
+First, it is clear that this result is $S_n$ invariant.
+
+Second, we must check that when we pull back to a boundary divisor, the appropriate identity holds.
+
+Here's how that works -- suppose first we pull back to a tree divisor.
+
+There are essentially two things that can happen.
+
+One is that we pick a separating edge and cut across that.
+
+When this happens, we multiply by $-(\psi_1+\psi_2)$, and so get a contribution of $-(\psi_1+\psi_2)\Delta=-(\eta^{-1}+R^{-1}(\psi_1)\eta^{-1}R^{-1}(\psi_2)^t$
+
+Another contribution is when we split a vertex in half; here, we can use the fact that we know $\Omega$ is a CohFT, and hence we know how $\Omega$ splits.  When we do this, we insert $\eta^{-1}$.  
+
+This $\eta^{-1}$ contribution cancels with that from the first type of contribution, and we are left with simply $R^{-1}(\psi_1)\eta^{-1}R^{-1}(\psi_2)^t$, which is essentially what we get from following the definitions.
+
+We must also check that this gives a group action, which is just careful bookkeeping of what happens when we apply two of these in a row.
+
+This action does not preserve having a unit even, much less semisimplicity.
+
+\subsection{Another warm-up group action}
+
+We now describe another action that does not preserve having a unit, the translation action.
+
+Let $T(z)$ be a $V$-valued power series, with
+
+$$T(z)=T_2z^2+T_3z^3+\cdots$$
+i.e., $T$ has no constant or linear terms.
+
+For $\Omega$ a CohFT, define a CohFT $T\Omega$ by
+
+$$(T\omega)_{g,n}(v_1\otimes\cdots\otimes v_n)=\sum_{m\geq 0} \frac{1}{m!} (p_m)_*\Omega_{g,n+m}\left(v_1\otimes\cdots v_n\otimes T(\psi_{n+1})\otimes\cdots\otimes T(\psi_{n+m})\right)$$
+where $p_m:\Mbar_{g,n+m}\to \Mbar_{g,n}$ is the forgetful map.
+
+This appears to be an infinite sum, but is only a finite sum because $T$ starts in degree two, because increasing $m$ increases the cohomological degree by 2 but only increases the dimension by 1.
+
+Graph theoretically, this is much easier -- we have a single vertex, and are adding some number of new legs that we will forget about, on which we add $T$.
+
+Essentially what we are doing is adding in $\kappa$ classes here.
+
+Again, we must check that $T\Omega$ is a CohFT and that this is a group action.
+
+To keep track that we are a CohFT, we restrict to a boundary divisor, which splits our first $n$ marking in some ways.  We have choices of how we're going to add the next $m$ points.  These give multinomial coefficients of how we choose to divide them, and the $\frac{1}{m!}$ terms exactly account for that.
+
+\subsection{Combining our actions}
+
+We have $\End(V)$ valued action and an $V$ valued action; we combine them into an action of affine transformations of $V$.
+
+Checking this, amounts to checking that
+
+$$RT\Omega=(RT)(R\Omega)$$
+
+\begin{theorem}
+If $\Omega$ is a CohFT with unit $\one$ and $R(z)$ satisfies the symplectic condition, then $RT\Omega$ is also a CohFT with unit $\one$ where
+$$T(z)=z(\one-R^{-1}(z)\one)$$
+\end{theorem}
+\begin{proof}
+Lengthy but simple bookkeeping, using some formulas about how to pull back $\psi$ classes.
+\end{proof}
+
+\begin{definition}
+The unit preserving $R$-matrix action is 
+$$R_\bullet(\Omega)=RT\Omega$$
+for $T$ as above.
+\end{definition}
+
+What does $R_\bullet$ look like.  First we're translating, which is really just adding these $\kappa$ classes.  
+Then the $R$ matrix action is twist what is happening at every leg and vertex by $R$.
+
+There are really three things happening, at vertex, edge, and legs.
+
+These three factors are going to correspond to the three types of local factors appearing in the previous talk.
+
+There is still the question of what this action is good for.
+\section{Reconstruction theorem}
+
+\begin{theorem}[Givental, Teleman]
+The (unit-preserving) $R$-matrix action is regular (i.e., free and transitive) on the set of CohFTs with $(V,\bullet)$ semisimple and certain data about them fixed.  Specifically, we fix $(V,\eta,\one,\bullet)$.
+\end{theorem}
+
+\begin{proof}
+First, let's check it preserves all the data.
+
+We've already seen it fixes the unit.
+
+To fix $\bullet$, we're really only looking at cohomological degree 0 pieces, and the $R$-matrix action is easy to see that $R$ preserves the degree 0 pieces.
+\end{proof}
+
+
+As stated, the reconstruction theorem is not very explicit, as it doesn't tell us how to find the $R$-matrix.  There is a more explicit one, that, given certain hypotheses, gives a differential equation that determines the $R$ matrix in terms of some small amount of data.
+
+Even with that, there is a question of what it means to determine the $R$-matrix.
+
+\begin{definition}
+A CohFT $\omega$ is called a \emph{topological field theory} if it is supported in cohomological degree 0
+\end{definition}
+
+Note that any CohFT has an underlying topological field theory.  
+\begin{lemma}
+The data $(V,\eta,\one,\bullet)$ uniquely determines a topological field theory.
+\end{lemma}
+\begin{proof} 
+Note that $\omega_{0,3}(v_1\otimes v_2\otimes v_3)=\eta(v_1\bullet v_2,v_3)$ are given.
+
+Everything else can be determined by this and the fact that we're cohomological degree o.
+
+It will be useful to be very explicit about this in the semisimple case.
+
+Assuming semisimplicity, we have $V=\bigoplus \C \epsilon_i$, with $\epsilon_i$ orthogonal idempotents.
+
+The only extra data we have is $X_i=\eta(\epsilon_i,\epsilon_i)$.
+
+Then 
+
+$$\omega_{g,n}(\epsilon_{i_1}\otimes\cdots\otimes\epsilon_{i_n})=\left\{\begin{array}{ll} \sum_{i=1}^N X_i^{1-g} & n=0 \\
+x_i^{1-g} & n>0, i_1=i_2=\cdots=i_n \\
+0 & \text{else}
+\end{array}
+\right.
+$$ 
+
+Thinking about how this works, is a boundary strata that is zero dimensional is giving a three regular graph, with genus 0 everywhere.
+
+The rule for how we restrict, is inserting the bivector $\eta^{-1}$ at each edge.  In the idempotent basis, this will give us an $X^{-1}$.  Each vertex we need to have the same three $\epsilon_i$ appearing, and so will contribute $x_i$.
+
+\end{proof}
+
+So, given any CohFT, there is one very nice CohFT (namely, the topological one described) that has the same $(V, \eta, \one,\bullet)$.  Thus, to describe a general semisimple CohFT, we can describe it by describing the $R$-matrix that takes it to our nice one.
+
+\begin{corollary}
+A semisimpe CohFT is tautological (in cohomology)
+\end{corollary}
+
+\begin{proof}
+The topological CohFT is tautological, and the $R$-matrix action preserves being tautological.
+\end{proof}
+
+We don't know if the same thing is true in Chow.
+
+One piece still owed is the addendum of how to make finding the $R$-matrix explicit; we put that on hold for now.
+
+\section{Tautolgoical relations}
+
+How does this machinery lead to tautological relations?
+
+Witten's $r$-spin class gives a CohFT $W_{g,n}(v_{a_1},\dots, v_{a_n})\in H^*(\Mbar_{g,n})$.
+
+The state space $V=\langle v_0,v_1,\dots, v_{r-2}\rangle$.
+ 
+If we feed in vectors in this special set of generators then $W_{g,n}(v_{a_1},\dots, v_{a_n})\in H^d(\Mbar_{g,n})$ for $d=((r-2)(g-1)+\sum a_i)/r$, is of \emph{pure codimension}.
+
+IDEA: apply the reconstruction theorem to get an explicit formula for $W_{g,n}$ and then all components of dimension of cohomological degree different than $d$ gives a tautological relation.
+
+PROBLEM: $W_{g,n}$ is not semisimple (at the origin)
+
+SOLUTION: Look at a shifted version of $W_{g,n}$ instead.  The shifted version will no longer be of pure degree $d$, but will have at most that cohomological degree; i.e., it will live in $H^{\leq d}(\Mbar_{g,n})$.  We can choose a shifted version that is semisimple, and then get tautological relations in degree greater than $d$.
+
+Note that Witten's $r$-spin action makes sense for any $r\geq 2$.  For $r=2$, there does not exist a shift that is semisimple.
+
+So $r=3$ is the first interesting case, here the degree looks like $g/3+\text{stuff}$, and so looks similar to the Faber-Zagier relations, and is the motivation for using $3$-spin curves.
+
+The shift we make is very similar to the translation action.
+
+Let $\gamma\in V$.
+
+We define the shifted theory by
+
+$$W^\gamma_{g,n}(v_1,\dots, v_n)=\sum_{m\geq 0}\frac{1}{m!}(p_m)_*\left(W_{g,n}(v_1,\dots, v_n,\gamma,\dots, \gamma)\right)$$
+
+On the one hand, this is simpler than the previous shift because it does not involve $\psi$ classes.  It should be thought of simply shifting the origin of the Frobenius manifold.
+
+On the other hand, we have to be careful about the infinite sum.
+
+However, since we know the precise degree of $W_{g,n}$ we can check again that this will be a finite sum, because inserting each $\gamma$ decreases the cohomological degree by at least 1.
+
+Note we have made some choices; we chose $r$; we could choose another CohFT with similar homogeneity conditions.
+
+We also chose $\gamma$, that we need to be semisimple.  It turns out for $r=3$ there is a unique shift that works, that give us exactly the tautological relations we got before.  For $r>3$, the choice is no longer unique, and so we get other families of tautological relations that are somehow related.
+
+\end{document}

@@ -1,9 +1,13 @@
 \documentclass{amsart}
-\newtheorem{theorem}{Theorem}
-\newtheorem{definition}{Definition}
-\newtheorem{example}{Example}
-\newtheorem{question}{Question}
-\newtheorem{conjecture}{Conjecture}
+
+
+\theoremstyle{definition}
+\newtheorem{dummy}{}[section]
+\newtheorem{theorem}[dummy]{Theorem}
+\newtheorem{definition}[dummy]{Definition}
+\newtheorem{example}[dummy]{Example}
+\newtheorem{question}[dummy]{Question}
+\newtheorem{conjecture}[dummy]{Conjecture}
 
 \newcommand{\Mbar}{\overline{\mathcal{M}}}
 \newcommand{\M}{\mathcal{M}}
@@ -20,29 +24,43 @@
 
 \begin{document}
 \maketitle
-.Our starting point is 
-\begin{theorem}
+
+\section{Introduction}
+Our starting point is:
+
+\begin{theorem}{Witten-Kontsevich}
 Intersection theory of $\psi$ classes on $\Mbar_{g,n}$ is governed by the KdV hierarchy
 \end{theorem}
 
-Immediately after this, Witten gave two generalizations of $\Mbar_{g,n}$.  The first, are the moduli space of stable maps $\Mbar_{g,n}(X,\beta)$.
+Immediately after making this conjecture, Witten gave two generalizations of $\Mbar_{g,n}$. 
 
-The second is $\Mbar^{1/r}_{g,n}$, the moduli space of $r$-spin curves, that is, curves $\mathcal{C}$ together with a line bundle $\mathcal{L}$ so that $\mathcal{L}^{\otimes r}\cong \mathcal{K}_{\log}$.
+First, the moduli space of stable maps $\Mbar_{g,n}(X,\beta)$, which are the main object of study for Gromov-Witten theory.
 
-FJRW is a further generalization of $r$-spin curves, parallel to Gromov-Witten theory.
+Second, the moduli space of $r$-spin curves $\Mbar^{1/r}_{g,n}$.  
+A point of  $\Mbar^{1/r}_{g,n}$ is a curvec $\mathcal{C}$ together with a line bundle $\mathcal{L}$ satisfying $\mathcal{L}^{\otimes r}\cong \mathcal{K}_{\log}$.
 
+FJRW is a further generalization of $r$-spin curves, that develops in parallel to Gromov-Witten theory.
+
+\begin{center}
 \begin{tabular}{rcc}
  & $GW$-theory & FJRW \\
 \hline
 Input & $X$ & $W\in \C[x_1,\dots, x_N]$; $G$ finite \\
 State Space & $H^*(X)$ & $\mathcal{A}^{W,G}$ \\
 Moduli space & $\Mbar_{g,n}(X,\beta)\to \Mbar_{g,n}$ & $\Mbar_{g,n}^{W,G}\to\Mbar_{g,n}$ \\
-Virtual Class & X & X \\
-CohFT & \Lambda^{GW} & \Lambda^{FJRW}
+Virtual Class & Yes & Yes \\
+CohFT & $\Lambda^{GW}$ & $\Lambda^{FJRW}$
 \end{tabular}
+\end{center}
 
-Larger picture
+Our goal in the first day is to develop the second column of this table.  
+Specifically, we describe the basic set-up of FJRW theory, and outline how to produce a CohFT from this set-up.
 
+\subsection{Larger picture}
+FJRW theory is not just parallel to GW theory, but in many cases closely related by the Landau-Ginzburg correspondence.  
+FJRW theory is the A-model for LG theory; and we have the following table:
+
+\begin{center}
 \begin{tabular}{r|c|c}
  & A & B \\
 \hline
@@ -50,13 +68,19 @@ CY & GW & BK, BCOV, Costello-Li, etc. \\
 \hline
 LG & FJRW & Saito-Givental, Dubrovin-Zhang
 \end{tabular}
+\end{center}
 
+\section{Initial set-up}
 FJRW theory requires the following inputs:
 \begin{itemize}
-\item  $\C^*$ action on $\C^N$ with weights $c_1,\dots, c_n$; that is $\lambda\cdot(x_1,\dots, x_n)=(\lambda^{c_1}x_1,\dots, \lambda^{c_N}x_N)$.
-\item Polynomial $W\in\C[x_1,\dots, x_N]$ that is quasihomogenous of weight $d$ with respect to $\C^*$ action -- that is $W(\lambda\cdot x)=\lambda^d W(x)$.
-\item Quasihomogeneity forces $W$ to have a singularity at the origin, we require this singularity to be isolated; that is, $X_W=\{W=0\}\subset WP(c_1,\dots, c_N)$ is smooth.
-\item W should have no terms of form $x_ix_j$, which implies that the weights $c_i/d\leq 1/2$ and weights are uniquely determined by $W$.
+\item A $\C^*$ action on $\C^N$ with weights $c_1,\dots, c_n$; that is:
+$$\lambda\cdot(x_1,\dots, x_n)=(\lambda^{c_1}x_1,\dots, \lambda^{c_N}x_N)$$
+\item A polynomial $W\in\C[x_1,\dots, x_N]$ that is quasihomogenous of weight $d$ with respect to $\C^*$ action -- that is: $W(\lambda\cdot x)=\lambda^d W(x)$.
+\item Quasihomogeneity forces $W$ to have a singularity at the origin.
+ We require this singularity to be isolated.  
+This is equivalent to requiring $X_W=\{W=0\}\subset WP(c_1,\dots, c_N)$ to be smooth.
+\item We require that $W$ should have no terms of the form $x_ix_j$.
+ This implies that the weights $c_i/d\leq 1/2$ and weights are uniquely determined by $W$.
 \end{itemize}
 
 \begin{example}
@@ -64,38 +88,39 @@ $W=x^r$ is the $A_{r-1}$ singularity.
 \end{example}
 
 \begin{example}
-$W=x^5+x^y^2$ is the $D_5$ singularity; we have $d=5, c_1=1, c_2=2$.
+$W=x^5+xy^2$ is the $D_5$ singularity; we have $d=5, c_1=1, c_2=2$.
 \end{example}
 
+\subsection{Orbifolding}
+It will be essential to work with a finite group $G$ of symmetries of $W$.
 
-The $\C^*$ action and $W$ together give the exponential grading element 
-$$J=(\exp(2\pi i c_1/d), \dots, \exp(2\pi i c_N/d)$$
-with $J$ fixing $W$.
+The $\C^*$ action and $W$ together give the exponential grading element $J$: 
+$$J=\left(\exp(2\pi i c_1/d), \dots, \exp(2\pi i c_N/d)\right)$$
+It is clear that $J$ fixes $W$.
 
-$G$ is a finite abelian group acting diagonally on $\C^N$ that fixes $W$ and contains $J$.
+We require $G$ to be a finite abelian group acting diagonally on $\C^N$ that fixes $W$ and contains $J$.
 
-
-Let $G^{max}=\{(\alpha_1,\dots,\alpha_N)|W(\alpha_1x_1,\dots,\alpha_Nx_N)=W(x_1,\dots, x_N)\}$ denote the maximal diagonal symmetry group of $W$.
+Let $G^{\max}=\{(\alpha_1,\dots,\alpha_N)|W(\alpha_1x_1,\dots,\alpha_Nx_N)=W(x_1,\dots, x_N)\}$ denote the maximal diagonal symmetry group of $W$.
 
 \begin{example}
-$$G^{max}_{D_6}=\{\zeta^{-2},\zeta)|\zeta^10=1\}$$
+We illustrate these concepts for $W=D_6$.
+$$G^{\max}_{D_6}=\{(\zeta^{-2},\zeta)|\zeta^10=1\}$$
 and $J_{D_6}=(\exp(2\pi i /5),\exp(2pi i 2/5))$,
-so that $\langle J\rangle \subsetneq G^{max}$.
+so that $\langle J\rangle \neq G^{max}$.
 \end{example}
 
-For all $g\in G^{max}$, we can writ(e $g=(\exp(2\pi i\theta_1),\dots,\exp(2\pi i\theta_N))$, s.t. $\theta_i\in[0,1)\cap \Q$.  We call $\theta_i$ the \emph{phases} of $g$.  
+For all $g\in G^{\max}$, we can writ(e $g=(\exp(2\pi i\theta_1),\dots,\exp(2\pi i\theta_N))$, s.t. $\theta_i\in[0,1)\cap \Q$.  We call $\theta_i$ the \emph{phases} of $g$.  
 
 $$\Age(g)=\sum\theta_i$$
 $$N_g=\dim \Fix(g)$$
 
 Note: $\Age(g)+\Age(g^{-1})=N-N_g$.
 
-
+\section{Cohomological Field Theories}
 The idea is that, given a the data described above, FJRW theory will produce a CohFT.  What is a CohFT?  It is a collection of tautological classes that behave like you would expect them to if you've been trained in Gromov-Witten theory.
 
-
-
-More specifically, we have two gluing maps $\rho_{\text{tree}},\rho_{\text{loop}}$, and the forgetting marked point map $\tau$.
+More specifically, there are three maps between moduli spaces of curves: two gluing maps $\rho_{\text{tree}},\rho_{\text{loop}}$, and the forgetting marked point map $\tau$.  
+Roughly speaking, a cohomological field theory is a family of cohomology classes in $\Mbar_{g,n}$ that behave well with respect to these three maps.
 
 
 A CohFT with flat identity consists of a state space $\mathcal{A}$, that has a pairing $\langle,\rangle:\mathcal{A}\otimes\mathcal{A}\to\C$, and a family
@@ -141,6 +166,7 @@ Here $\mathcal{K}_\log=\mathcal{K}\otimes\mathcal{O}(\sum p_i)$ has sections loc
 Let $W=x^r, J=\exp(2\pi i/r), G^{\text{max}}=\langle J\rangle$
 and 
 $$\Mbar_{g,k}^{x^r,G^{\text{max}}}={(\mathcal{C},p_1,\dots,p_k $$
+\end{example}
 
 Polischchuck-Vaintrob have an alternate definition.
 
