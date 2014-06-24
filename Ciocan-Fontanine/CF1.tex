@@ -1,0 +1,332 @@
+\documentclass{amsart}
+
+
+\linespread{1.2}
+
+\theoremstyle{definition}
+\newtheorem{dummy}{}[section]
+
+\newtheorem{theorem}[dummy]{Theorem}
+\newtheorem{definition}[dummy]{Definition}
+\newtheorem{example}[dummy]{Example}
+\newtheorem{question}[dummy]{Question}
+\newtheorem{conjecture}[dummy]{Conjecture}
+
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\Map}{\textrm{Map}}
+\newcommand{\proj}{\mathbb{P}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\sm}{\text{sm}}
+\newcommand{\Mbar}{\overline{\mathcal{M}}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Age}{\text{Age}}
+\newcommand{\Fix}{\text{Fix}}
+\newcommand{\one}{1}
+\newcommand{\st}{\text{st}}
+\newcommand{\ttt}{\mathbb{t}}
+\newcommand{\ev}{\text{ev}}
+\newcommand{\vir}{\text{vir}}
+
+\newcommand{\Aut}{Aut}
+\title{Quasimaps and mirror theorems for GIT quotients}
+\author{Ionut Ciocan-Fontanine}
+
+
+\begin{document}a
+\maketitle
+
+We begin with some of Givental's early work on mirror symmetry, from around twenty years ago; in future lectures, we discuss how this can be generalized in various ways.
+
+\subsection{Notation}
+
+Let $X$ be a smooth projective variety over $\C$, and $\beta\in NE(X)$ a class in the cone of effective curves.
+
+\begin{definition}
+The \emph{Novikov ring} $\Lambda_X$ is the completion of the group ring of $NE(X)$:
+
+$$\Lambda_X=\hat{\Q[NE(X)]}=\{\sum_\beta a_\beta q^\beta|a_\beta\in\Q\}$$
+\end{definition}
+
+We will use $H^*(X)=H^{even}(X,\Q)$ so we don't have to worry about signs.
+
+The intersection form on cohomology is $\langle, rangle$; 
+
+
+We will fix $T_q=\{\one,\dots, T_s\}$ a homogenous basis of $H^*$; and let $\{T^1,\dots, T^s\}$ the dual basis.
+
+We will use $t=\sum t_i T_i$ a general element in cohomology.
+
+\subsubsection{GW invariants}
+
+We have $\Mbar_{g,k}(X,\beta)$, with universal family $\pi:\mathcal{C}\to\Mbar_{g,k}(X,\beta)$.  And $u:\mathcal{C}\to X$ the universal map.
+
+$$\langle \psi_1^{a_1}\gamma_1\dots \psi_k^{a_k}\gamma_k\rangle_{g,k,\beta}
+=\int_{[\Mbar_{g,k}(X,\beta)]^{\vir}} \prod \psi_i^{a_i} \prod \ev_i^* \gamma_i$$
+
+
+
+Genus $g$ potential:
+
+$$\mathcal{F}_g(\ttt)=\sum_{k,\beta} \frac{q^\beta}{k!} \langle \ttt(\psi_1),\dots,\ttt(\psi_k)\rangle_{g,k,\beta}$$
+
+Also
+
+$$\langle\langle \psi_1^{a_1}\gamma_1\dots \psi_k^{a_k}\gamma_k\rangle\rangle_{g,k}=\sum_{\beta,m}\frac{q^\beta}{m!}\langle \psi_1^{a_1}\gamma_1\dots \psi_k^{a_k}\gamma_k, \ttt(\psi_{k+1}),\dots,\ttt(\psi_{k+m})\rangle_{g,k+m,\beta}$$
+
+\subsubsection{Noncompact targets}
+Let $p:X\to X_0$ be a projective map with $X_0$ affine.  Let $T=(\C^*)^r$ act on $X$ and $X_0$ so that $p$ is $T$-equivariant.
+
+Assume that $X_0^T$ is proper, and (and so a finite set).  Then $X^T$ and $\Mbar_{g,k}(X,\beta)^T$ are proper.  The evaluation maps, and the composition $\Mbar_{g,k}(X,\beta)\to X_0$ of $p$ with the evaluation maps are proper.
+
+We define $H^*(X)=H^{even}_{T, loc}(X,\Q)$ to be the localized even $T$-equivariant cohomology.
+
+Let $\iota:X^T\to X$ be the inclusion of the fixed point locus, and $N$ the equivariant normal bundle of $X^T$ in $X$; in this case we have pairing
+
+$$\langle, \rangle=\int_{X^T}\frac{\iota^*(\gamma\delta)}{e(N)}$$
+taking values in the localized equivariant cohomology of a point.
+
+Our equivariant Gromov-Witten invariants are
+
+$$\langle \psi_1^{a_1}\gamma_1\dots \psi_k^{a_k}\gamma_k\rangle_{g,k,\beta}
+=\int_{[\Mbar_{g,k}(X,\beta)]^{\vir}} \frac{\prod \psi_i^{a_i} \prod \ev_i^* \gamma_i}{e(N)}=$$
+MISSED THIS LAST LINE.
+
+
+\section{The J-function}
+
+\begin{definition}
+The \emph{$J$ function of $X$} is
+
+$$\J(q,t,z)=\one+\frac{t}{z}+\sum_{\beta,k}\frac{q^\beta}{k!}\ev_{1*}\left(\frac{[\Mbar_{0,k}(X,\beta)]^\vir}{z(z-\psi)}\cap \prod_{i=1}^k \ev^*_{i+1}(t)\right)$$
+$$=\one +\frac{t}{z}+\sum_i T_i\langle\langle \frac{T^i}{z(z-\psi)}\rangle\rangle_{0,1}(t)$$
+
+where $\psi=\psi_1$.
+\end{definition}
+
+
+The first two terms should be understood as contributions from unstble moduli spaces.
+
+Note that $\J\in H^*(X)[[\frac{1}{z}]][[1]][[t_i]]$.
+
+Givental's small $\J$ is $\J(q,t_\sm,z)$, where $t_\sm=t|_{H^{\leq 2}}$ is restricted to point or divisor insertions.
+
+By the string and divisor equations, we have
+\begin{align*}
+\J(q,t_\sm,z)&=
+e^{t_\sm/z}\sum_\beta q^\beta e^{\int_\beta t_\sm} \ev_{1*} \frac{[\Mbar_{0,1}(X,\beta)]^\vir}{z(z-\psi)} \\
+&=e^{t_\sm/z}\sum_\beta q^\beta e^{\int_\beta t_\sm} \sum_i T_i\left\langle \frac{T_i}{z(z-\psi)}\right\rangle_{0,1,\beta}
+\end{align*}
+
+The point of the $\J$ function is that it determines $\mathcal{F}_0$ by splitting and string equation and topological recursion relations.
+
+Furthermore, if $H^*$ is generated as an algebra by $H^2$, then $\J_\sm$ determines $\J$ (Lee-Pandharipande, Bertram- reconstruction functions).  So we'd really like to have an understanding on of the $\J$ function.
+
+\subsection{}
+An early insight of Givental is that it is useful to consider the $\C^*$-equivariant theory of maps from pointed \emph{parametrized} $\proj^1$ to $X$.  Comactify by allowing unparametrized ``bubbles'' to get \emph{graph space}:
+
+$$G_{k,\beta}(X)=\Mbar_{0,k}\left(X\times \proj^1,(\beta,1)\right)
+=\left\{(C,\phi)|u:C\to X, \phi:C\to\proj^1\right\}$$
+so there exists a component $C_0\subset C$ such that $\phi$ restricted to $C_0$ is an isomorphism to $\proj^1$, and stabilizes $C\setminus C_0$.
+
+Then $\C^*$ acts on $\proj^1$ in the standard way, hence on $G_{k,\beta}(X)$.
+
+The equivariant cohomology $H^*(\mathcal{B}\C^*)=\C[z]$.
+
+The fixed point set will satisfy several properties:
+
+\begin{enumerate}
+\item  $C_0\cap \overline{(C\setminus C_0)}\subseteq\{0,\infty\}$
+\item There will be no markings on $C_0\setminus \{0,\infty\}$
+\item $u(C_0)=\text{pt}\in X$
+\end{enumerate}
+
+
+Let $C_1$ be the union of components that map to $0\in\proj^1$, and $C_2$ the union of components mapping to $\infty$.  Let $\beta_1,\beta_2$ be the corresponding degrees of maps of curves ot $X$, and $k_1$ and $k_2$ the number of marked points on each components; we have
+
+\begin{align*}
+\beta_1+\beta_2&=\beta \\
+k_1+k_2&=k
+\end{align*}
+
+The points where $C_1$ and $C_2$ attach to $C_0$ give extra markings on these curves, which we will denote by $\bullet$.  
+
+Thus, the fixed point loci correspond to pairs of maps $u_1:C_1\to X$ and $u_2:C_2\to X$, so that $u_1(\bullet)=u_2(\bullet)=u(C_0)$.
+
+And so we have 
+
+$$F^{k_1,\beta_1}_{k_2,\beta_2}=\Mbar_{0,\bullet+k_1}(X,\beta_1)\times_X \Mbar_{0,\bullet+k_2}(X,\beta_2)$$
+with the following conventions for unstable spaces.
+$$\Mbar_{0,\bullet+1}(X,0)=\Mbar_{0,\bullet+0}(X,0)=X, \ev_\bullet=\text{is}$$
+
+We have
+
+$$[F^{k_1,\beta_1}_{k_2,\beta_2}]^\vir=\Delta^!\left([\Mbar_1]^\vir\otimes[\Mbar_2]^\vir\right)$$
+and the euler class of the furture normal bundle is
+
+$e(N^\vir_{F^{k_1,\beta_1}_{k_2,\beta_2}})$ 
+is the product of two contributions, depending on $k_1$ and $\beta_1$, where
+
+NORMAL BUNDLE CONTRIBUTIONS
+
+
+Let $F_0=F^{k,\beta}_{0,0}$.  
+
+Then
+
+$$\text{Res}_{F_0} \left([G_{k,\beta}(X)]^\vir\cap \prod \tilde{\ev}^*_i(t\otimes\one_{\proj^1})\right)
+=\frac{[\Mbar_{0, \bullet+k} (X,\beta)]^\vir}{z(z-\psi)}\cap\prod \ev^*_i(t)$$
+
+
+And hence:
+
+$$\J(q,t,z)=\sum_{\beta,k} \frac{q^\beta}{k!}(\ev_\bullet)_*\text{Res}_{F_0}\left([G_{k,\beta}(X)]^\vir\cap \prod \tilde{\ev}^*_i(t\otimes\one_{\proj^1})\right)$$
+
+
+It is general hard to calculate the big $\J$ function.  For small $\J$, (or $\J|_{t=0}$), only need $G_\beta(X)=G_{0,\beta}(X)$, which contains $\text{Map}_\beta(\proj^1,X)$.
+
+Let us restrict to $X=\proj^{n-1}$.  Let $H\in H^2(\proj^{n-1})$ be the hyperplane class.
+
+IN this case $t=t_1\one+t_2H+\cdots+t_nH^{n-1}$.
+
+\begin{theorem}[Givental]
+$$\J(q,0,z)=\sum_{d\geq 0} q^d \frac{1}{\prod_{j=1}^d(H+jz)^n}$$
+\end{theorem}
+
+\begin{proof} 
+There is the following cheap proof.
+
+Use $\J(q,t_\sm,z)$ and a modified right hand side, containing some exponentialfactors.
+
+Check that the right hand side satisfies the quantum differential equation and has the correct initial conditions.
+\end{proof}
+
+This proof is not particularly illuminating; we now sketch another proof, that first appears in a paper of Bertram, but perhaps was known in some way earlier:
+
+First, the right hand side doesn't come from a dream, but from the geometry of a \emph{different} compactification of $\text{Map}_d(\proj^1,\proj^{n-1})$.
+
+From basic algebraic geometry, maps to project space are given by line bundles and sections, and in particular we have
+
+$$\Map_d(\proj^1,\proj^{n-1})=\{(u_1,\dots,u_n)|u_j\in H^0(\OO_{\proj^1}(d))\text{ with no common zeroes}\}/\C^*$$
+
+There is an obvious way to compactify this space; just drop the condition that the $u_i$ have no common zeros.
+
+So, this sits inside:
+
+$$\proj^{n(d+1)-1}=\proj(H^0(\OO_{\proj^1}(d)\otimes\C^n)$$
+we define the as the ``quasimap graph space'' and denote it by $QG_{0,d}(\proj^{n-1})$.
+
+Drinfeld coined the name ``quasimaps'' earlier, there is a question about how this is related to a linear sigma model (which isn't quite the same because it should include higher genus?)
+
+So, let $[u]=[u_1,\dots,u_n]:\proj^1\to\proj^{n-1}$ a rational map, possibly with base points.
+
+It extends to a regular map $[u_\text{reg}]:\proj^1\to\proj^{n-1}$ of degree $d_{\text{reg}}\leq d$, with 
+$$d-d_{\text{reg}}=\sum_{p\in\proj^1}\text{order of the common zeroes of the $u_i$ at $p$}$$
+
+Since $\C^*$ acts on $\proj^1$, we get an induced action on $QG_{0,d}(\proj^{n-1})$.  The fixed points are rational maps $[u]$ with base locus contained in $\{0,\infty\}$ and $[u_{\text{reg}}]$ constant (i.e. $d_{\text{reg}}=0$).
+
+Since $d_1+d_2=d$, let $[u]\in \hat{F}^{d_1}_{d_2}$; then $[u]=[a_1x^{d_1}y^{d_2},\dots,a_nxd^{d_1}y^{d_2}]$, and so $\ev_\bullet$ gives an isomorphism to $\proj^{n-1}$, that takes $[u]$ to $[a_1,\dots, a_n]$.  
+
+In particular, $\hat{F}_0=\hat{F}^d_0$.
+
+There is an ``obvious'' $\C^*$-equivariant birational contraction:
+
+$$\phi:G_{0,d}(\proj^{n-1})\to QG_{0,d}(\proj^{n-1})$$
+
+$\phi$ contracts all the components other than $C_0$.
+
+DRAWING AND FURTHER DESCRIPTION
+
+Thus $\phi$ maps $F^{d_1}_{d_2}$ onto $\hat{F}^{d_1}_{d_2}$..
+
+Hence by something something ``correspondence of residues'' we have
+
+$$(\ev_\bullet)_*\left(\text{Res}_{F_0^d}(G_{0,d})\right)=\text{Res}_{\hat{F}_0^d}[QG_{0,d}]$$
+
+We know that these are the components of the $\J$ function, but on the right hand side we have one projective space inside a larger projective space, so it is easy to calculate the $\C^*$ action on the normal bundle using the euler exact sequence, giving $\prod\frac{1}{(H+kz)^n}$.
+
+
+\begin{theorem}
+Euler sequence:
+
+$$0\to\OO\to\OO(1)^n\to T_{\proj^{n-1}}\to 0$$
+\end{theorem}
+
+\begin{proof}
+\emph{Stacks}
+
+Consider $[\C^n\setminus\{0\}/\C^*]\to[\text{pt}/\C^*]=\mathcal{B}\C^*$
+and take the triangle relating relative and absoluate cotangent complexes.
+\end{proof}
+
+\begin{proof}
+\emph{Down-to-earth}
+
+Consider 
+$$0\to(\C^n\setminus\{0\}\times\mathfrak{g}\to(\C^n\setminus\{0\})\times\C^n)\to\rho^*T_{\proj^{n-1}}\to 0$$
+where the action is the adjoint action.
+
+This is $\C^*$ equivariant, and hence descends to the quotient.
+\end{proof}
+
+Whenever the quotient on a vector space we get a similar euler sequence.
+
+
+Now, to find the normal bundle, there are two euler sequences we must consider, one for the large projective space and one for the smaller projective space.
+
+We take the euler sequence for the target, pull it back to the universal curve, and push it forward, giving us this.
+
+This general process will allow us to get explicit formulas for the residues on many quasimap graph spaces; this is exactly what Givental did when he generalized this from projective space to toric varieties.  This is more complicated in general because it involves a mirror map.
+
+\section{Mirror theorem for the quintic threefold}
+
+Let $X=Z(s), s\in H^0(\proj^4,\OO(5)$, and let $\iota:X\to\proj^4$.  
+
+We will only consider Gromov-Witten invariants where the insertions are pulled back from $\proj^4$, but the intersection form is that of the quintic.
+
+So, a basis would be 
+$$\{\one,\iota^*(H),\iota^*(H^2)\iota^*(H^3)\}$$
+and the dual basis would be
+$$\{\frac{1}{5}\one,\frac{1}{5}\iota^*(H),\frac{1}{5}\iota^*(H^2),\frac{1}{5}\iota^*(H^3)\}$$
+
+Now, let $(C, [u]=[u_1,\dots,u_5])$ be a quasimap to $\proj^4$.  
+
+This is a quasimap to the quintic $X$ if and only if $s(u_1,\dots, u_5)=0$.  
+In genus 0, this is saying that the section of a certain bundle on the space of quasimaps to $\proj^4$ vanishes, and so the virtual class of the space of quasimaps to $X$ will be the euler class of that given bundle, and it doesn't matter if we calculate on the space of maps to the quintic or to $\proj^4$.
+
+We have the $\J$ function of the quintic, and another function, call it the $\I$ function, defined by using residues on quasimap spaces.
+
+You can calculate:
+
+$$\I_X(q,z)=\sum q^d \frac{\prod_{i=1}^{5d} (5H+kz)}{\prod{i=1}^d(H+kz)5}$$
+$$=\I_0(q)\one+\frac{1}{z}\I_1(q)H+O(\frac{1}{z^2}$$
+where
+$$\I_0(q)=1+\sum_{d>0} q^d\frac{(5d)!}{(d!)^5}$$
+
+\begin{theorem}
+$$e^{\frac{1}{z}\frac{\I_1(q)H}{\I_0(q)}}\J_X(qe^{\frac{\I_1(q)H}{\I_0(q)}},0,z)=\frac{\I_X(q,z)}{\I_0(q)}$$
+\end{theorem}
+
+Note: 
+$$\frac{\I_1(q)H}{\I_0(q)}\J_X(qe^{\frac{\I_1(q)H}{\I_0(q)}},0,z)=\J_X(q, \frac{\I_1(q)H}{\I_0(q)},z)$$
+
+Three ingredients in Givental's proof
+
+Localization on moduli spaces of maps to $\proj^4$.  He considers the contributions of both sides at the fixed points, and proves that these localizations satisfy two properties.
+
+The first is a recursion relations; on the $\J$ funciton side, this comes from analizying the terms; it is important that there is more than one marking (he uses two).
+
+On the other side, we have unmarked quasimap spaces, and so localization does not give us the same form.  However, we have an explicit form of the $\I$ function, and so we can just check it satisfies the same recursion.
+
+Then, he proves that both sides satisfy a polynomiality property in $z$.  This is geometric on both sides, it comes from writing some potentiual on graph spacesand factoring it using $\C^*$ localization.  It is important that the contributions at $0$ and $\infty$ except the sign of $z$ changes.
+v
+Finally, he proves a uniqueness lemma that says things that satify polynomiality and recursion agree, if they agree modulo $1/z^2$.  But this is what we can see.
+
+In the next few lectures, we will try to explain how this whole story generalizes.
+
+The point of mirror maps is that we can get a partition function that agrees with the Bmodel side without using the mirror map.  Almost everything agress but the $\Gamma$-class, which this doesn't exactly get.  The get the $\Gamma$ from solutions to the QDEs; for Fano, this is all the same.
+
+
+\end{document}
