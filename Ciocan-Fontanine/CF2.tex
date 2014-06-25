@@ -1,0 +1,337 @@
+\documentclass{amsart}
+
+
+\linespread{1.2}
+
+\theoremstyle{definition}
+\newtheorem{dummy}{}[section]
+
+\newtheorem{theorem}[dummy]{Theorem}
+\newtheorem{definition}[dummy]{Definition}
+\newtheorem{example}[dummy]{Example}
+\newtheorem{question}[dummy]{Question}
+\newtheorem{conjecture}[dummy]{Conjecture}
+
+\newcommand{\Pic}{\text{Pic}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\GIT}{//}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Stab}{\text{Stab}}
+\newcommand{\Spec}{\text{Spec}}
+\newcommand{\aff}{\text{aff}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\Map}{\textrm{Map}}
+\newcommand{\proj}{\mathbb{P}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\sm}{\text{sm}}
+\newcommand{\Mbar}{\overline{\mathcal{M}}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Age}{\text{Age}}
+\newcommand{\Fix}{\text{Fix}}
+\newcommand{\one}{1}
+\newcommand{\st}{\text{st}}
+\newcommand{\ttt}{\mathbb{t}}
+\newcommand{\ev}{\text{ev}}
+\newcommand{\vir}{\text{vir}}
+\newcommand{\Quot}{\text{Quot}}
+\newcommand{\Hom}{\text{Hom}}
+
+
+\newcommand{\Aut}{Aut}
+\title{Quasimaps and mirror theorems for GIT quotients II}
+\author{Ionut Ciocan-Fontanine}
+
+
+\begin{document}
+\maketitle
+Last time, we explained Givental's work on finding some genus zero invariants for projective space and the quintic.
+
+The same method works for any complete intersection in projective space as long as it is semipositive, i.e. Fano or Calabi-Yau.  
+
+The same general idea extends to semi-positive toric varieties and semi-positive complete intersection in toric varities, as well as to local targets over toric varieties.
+
+The proof that we saw for projective space itself does not work, however.
+There is a quasimap space with no marked points that Givental and others construted.  The problem is the contraction map from stable maps to this space no longer exists.  
+Furthermore, even if this space did exist, the moduli space is not smooth, and so we would have to compare virtual fundamental classes.
+
+The proof that does work is the one we sketched briefly at the end with the quintic, using the big torus, recursion, etc.
+
+\subsection{Further work}
+This was all around 1997.  In 2001 work of Lian, Liu, Liu, Yau, and in 2003 by Bertram, Ciocan-Fontanine, Kim, the $\J$ function of $G(r,n)$ was calculated using $\C^*$ localization on $\Quot_{n-r,d}(\OO_{\proj^1}^n)$, which should be thought of as an unpointed quasimap graph space for the Grassmannian.
+
+This produces some $\mathcal{I}$ function, that is a hyper-geometric looking thing, and the theorem is that the $\J$ function agrees with the $\mathcal{I}$ funciton.  Again, here there is no contraction map; in fact, it is known that no such map could exist.
+
+What comes out this is an expression for the $\J$ function of the Grassmannian in terms of a product of $\J$ function of projective spaces, as conjectured by Hori-Vafa.
+
+The way to understand this story is via the Abelian/non-abelian correspondence.  The Grassmannian is a GIT quotient by a general linear group; the product of projective spaces is a GIT quotient by the maximal torus.  A general conjecture along these lines was formulated and proven for flag manifolds, complete intersections in these, etc.
+
+One nice aspect of this story is that it gives a way to treat examples which are not complete intersections, but rather zero loci of sections of indecomposable bundles on a variety, because when we move from the nonabelian to abelian point of view, the resulting bundle will be a sum of line bundles as it comes from a torus.
+
+So, for example, if we start we start with the GIT quotient of a vector space, then the Abelian quotient will be a toric variety which Givental's work lets us do.
+
+\subsection{Stable quotients}
+The next main ingredient of the story came with the introduction of stable quotients by Marian-Oprea-Pandharipande in 2009.
+
+The stable quotients is a version of the $\Quot$ scheme where we have marked points, and we allow the curve to vary in moduli; they imposed the right condition so that the space has a virtual fundamental class, and proved that the resulting thing gives the invariants of the Grassmannian.
+
+Given this, it is natural to believe that the correct generalization is to look for similar theories for any GIT quotients; this is what the quasimap theory will be.
+
+For a long time, most results related to mirror symmetry were done using toric varieties.  It was a point of wonder about why toric varieties were so unreasoable effective for studying mirror symmetry.  The point of view we are advocating here is that it is because they are GIT quotients of a vector space; Quasimap theory will be an extension of the toric results to this larger context.
+
+We should also mention that there is a long, related story in the symplectic category starting 14 years ago by Solomon and others, going to Chris Woodward and others, that goes under the name Gauged Gromov-Witten theory.  It is not the same theory, as they use different stability conditions, but it is closely related.
+
+\section{Quotient Targets}
+Let $W$ be an affine variety over $\C$, with $W=\text{Spec} A$; we may write $A=\C[W]$.
+
+Let $G$ be a reductive group over $\C$.  Most often $G$ will be a product of general linear groups.
+
+We ask that $G$ that acts linearly on $W$.
+
+\subsection{Two quotients}
+The first quotient we have is the affine quotient, written $W/_\aff G=\Spec(\C[W])^G$. 
+
+The second quotient is the stack quotient $[W/G]$.  
+
+Stacks are not as scary as they may be; from Grothendieck's projective, we understand schemes by its functor of points, i.e. ``probing'' them with other schemes.  Stacks work exactly the same way.
+
+Give a scheme $Y$, then 
+$$\Hom(Y, [W/G])=\{\mathcal{P}\to Y, \tilde{u}:\mathcal{P}\to W|\mathcal{P} \text{Principal $G$ bundle}, \tilde{u} \text{$G$-equivariant}\}$$
+Which is also equivalent to a section $u$ of the $W$ bundle $\mathcal{P}\times_G W$ over $Y$.
+
+We define
+$$H^*([W/G])=H_G^*(W)$$
+and similarly for Chow, K-groups, etc.
+
+
+\subsection{GIT}
+
+To take a GIT quotient, we need a linearization, i.e., a $G$-equivariant line bundle on $W$.  
+
+For us $W$ will usually be a vector space, and hence the only equivariant line bundles are just equivariant twists of the usual line bundle.
+
+Let $\theta_0\in \chi(G)=\Hom(G,\C^*)$ be a character of $G$.
+
+Then $\C_{\theta_0}$ the associated one dimensional representation of $G$.
+
+Define $L_{\theta_0}=W\times\C_{\theta_0}$.
+
+In particular, we see that the group of characters of $G$ is contained in the picard group of the quotient stack $[W/G]$.
+
+\begin{definition}
+A function $s\in\C[W]$ is called \emph{$G$-semi-invariant of deg $n$ for $\theta_0$} if 
+$$s(g\cdot w)=\theta_0(g)^ns(w)$$
+Equivalently, $s\in H^0(W, L_{\theta_0}^n)^G$.
+\end{definition}
+
+So, for example, $\C[W]^G$ corresponds to the case $\theta_0=0$.
+
+\begin{definition}
+A point $w\in W$ is \emph{$\theta_0$ semi-stable} if there exists a semi-invariant $s\in H^0(W, L^n_{\theta_0})^G$ with $s(w)\neq 0$.
+
+We use $W^{ss}=W^{ss}(\theta_0)$ to denote the set of all semi-stable points.
+\end{definition}
+
+$W^{ss}$ is an open subset of $W$; in fact the complement, which we denote $W^{us}$ for unstable, is naturally an affine subset $\Spec \C[W]/I_{\theta_0}$, where $I_{\theta_0}$ is the ideal generated by all semi-invariant functions.
+
+Note that $W^{us}$ comes with a natural scheme structure.
+
+On the other hand, changing $\theta_0$ only changes the scheme structure, not the underlying reduced scheme: $W^{ss}(m\theta_0)=W^{ss}(\theta_0)$.
+
+
+We will assume that for all $w\in W^{ss}, |\Stab(w)|<\infty$, and $W^{ss}$ is nonsingular.
+
+The first condition is the same as there are no strictly semi-stable points.
+
+\begin{definition}
+\emph{The GIT (stack) quotient} is $$W\GIT_{\theta_0} G=[W^{ss}(\theta_0)/G]$$
+\end{definition}
+By our assumptions, this is a smooth DM stack; it's coarse moduli space is what is usually called the GIT quotient:
+$$\underline{W\GIT_{\theta_0} G}=\text{Proj}(\bigoplus_{n\geq 0} H^0(W, L^N_{\theta_0})^G)$$
+
+We will use $\X=[W/G]$, and $X_0=W/_\aff G$.
+
+
+We have a commutative diagram of $X$ open in $\X$ and proper over $\underline{x}$, which $\X$ is projective over $X_0$, and $\X$ maps to $X_0$.
+
+\subsection{Remarks}
+An important case is when $G$ acts freely on $W^{ss}$, in which case $\X=\underline{X}$ is a smooth quasiprojective variety.
+
+The quotient $\underline{X}$ comes with a line bundle; $L_{\theta_0}$ descends to a relative polarization $\OO(\theta_0)$.
+
+It makes sense to consider $W\GIT_\theta G$ for $\theta\in \chi(G)
+^\theta\otimes\Q$, because $\X, \underline{X}$ stays constant on $\Q_{\geq 0}\theta_0$; the only thing that changes is the polarization.
+
+\subsection{Example}
+
+\begin{example}
+Let $W=\C^n, G=\C^*$ acting with weights $(1,1,\dots,1)$.
+
+Then $\chi(G)=\Z$.  Let $\theta_0=\text{id}_{\C^*}$.  Then $X=\proj^{n-1}$. 
+
+For $\theta$ negative, the quotient is empty.
+
+If we change the weights of the $\C^*$ action, we get weighted projective space.
+
+\end{example}
+
+
+\begin{example}
+Let $W=\C^{n+1}, G=\C^*$ acting with weights $(1,1,\dots,1,-\ell)$.
+
+Then for $\theta_0=\text{id}_{\C^*}$, the quotient $\X=|\OO_{proj^{n-1}}(-\ell)|$, while for $\theta_0=-\text{id}_{\C^*}$, we have $\X=[\C^n/Z_\ell]$.
+\end{example}
+Let $V=\C^n, G=\C^*$ acting with weights $(1,\cdots, 1)$, and $F$ a generic homogeneous polynomial of degree $\ell$, i.e., $F\in H^0(V, V\times \C_{\ell\text{id}_{\C^*}})^G$.
+
+Let $W=Z(F)$; this is the cone on the projective hypersurface given by $W=0$.
+
+If we take the GIT quotient for negative polarizations, we again get the empty set, whereas if we take the GIT quotient for $\theta_0=\text{id}_{\C^*}$, we get the projective hypersurface in $\proj^{n-1}$ determined by $F$.
+
+Similarly, if we change the weights, we get a a hypersurface in weighted projective space.
+\begin{example}
+
+Thus, every projective variety is a GIT quotient of an affine; we will have a good theory only for complete intersections.
+
+\end{example}
+
+
+
+\begin{example}[Typical Abelian example]
+
+Let $W=\C^N, G=(\C^*)^r$.  The action is given by a ``charge matrix'' $A\in\text{Mat}_{N\times r}(\Z)$.
+
+Then $\chi(G)_\Q=\Q^r$.
+
+Typically, there will be a bunch of chambers on which the GIT quotient stays constant even if we change $\theta_0$, while if $\theta_0$ crosses a wall, the target changes.
+
+The structure of such walls is called the \emph{secondary fan}.
+
+On the interior of these chambers, the quotient will be a toric DM stack, and any toric DM stack can be realized in this way, but in many different ways typically.
+
+Hiroshi's lectures will cover the mirror symmetry of these toric DM stacks.
+\end{example}
+
+\begin{example}[Hirzebruch surface]
+$$\mathbb{F}=\C^4\GIT_{\theta} (\C^*)^2$$
+Show that there exists other chambers where the quotient is $\proj^2$.
+\end{example}
+
+This will give a different theory of quasimaps for $\proj^2$, and it will have two Kahler parameters in this theory, and in one direction will behave as though it was of general type.
+
+\begin{example}
+Similarly, we can take sections of the line bundles involved in the typical toric example, and get complete intersections in toric varieties.
+\end{example}
+
+
+
+\begin{example}
+Let $W=\Hom(\C^r,\C^n), G=GL_r$ with obvious action.
+
+Then $\chi(G)=\Z$, generated by the determinant.
+
+If we take $\theta_0$ to be the determinant, we get the Grassmanian $G(r,n)$ as the quotient; if we take negative the determinant we get the empty set.
+\end{example}
+
+EXERCISE: Find a similar construction for the Flag variety $FL(r_1,\dots, r_s,n)$.
+
+\begin{example}[ADHM construction of the Hilbert scheme]
+
+Let $$V=\Hom(\C^n, \C^n)\oplus\Hom(\C^n, \C^n)\oplus \Hom(\C, \C^n)\oplus (\Hom(\C^n,\C)$$
+We call the components $(A,B,i,j)$, respectively.
+
+Let $G=GL_n$, acting by
+$$g(A,B,i,j)=(gAg^{-1}, gBg^{-1}, gi, ig^{-1})$$
+
+Let $$W=\{[A,b]+ij=0\}\subset V$$
+
+If we take $\theta$ to be the determinant, then 
+$$W\GIT_\theta G=\text{Hilb}_n(\C^2)$$
+and $X_0=\text{Sym}^n(\C^2)$.
+\end{example}
+
+\begin{example}[Nakajima Quiver Varieties]
+Have a similar construction
+\end{example}
+
+
+Using nonabelian quotients, we can get non-complete intersections.  Take any representaiton of $G$, then we can construct a bundle over $G$-equivariant bundle over $W$.  Taking a general section of this bundle, and take the zero section, and we can still do the GIT quotient.  This is more or less what we did in the ADHM construction.
+
+EXERCISE: look at products of grassmannians and flag manifolds and write down examples of CY $n$-folds that are complete intersections.
+
+EG, $G(2,6)$, and $\text{Sym}^{2?, 3?}$ of the quotient bundle, gives a CY 4-fold.
+
+\section{Quasimaps}
+
+The definition we give is not the original one in the paper with Kim and Maulik, but in the paper ``Big $\J$-functions'' with Kim.
+
+Fix $(W, G, \theta)$, with $\theta\in\chi(G)_\Q$.
+
+Let $(C,x_1,\dots, x_n)$ prestable orbifold curve.
+
+Recall that $[u]:C\to [W/G]$ corresponds to a principal $G$-bundle $\mathcal{P}$ and a $G$-equivariant map.
+
+\begin{definition}
+The numerical class of $[u]$ is $\beta_{[u]}:\Pic([W/G])\to\Z$ defined by
+$$\beta_{[u]}(L)=\text{deg}_C [u]^* L=\text{deg}_cu^*(\mathcal{P}\times_G L)$$
+\end{definition}
+
+\begin{definition}
+The $\theta$-base locus of $[u]$ is
+
+$$B=\{x\in C|[u](z)\in[W^{us}/G]\}=\{x\in C|u(x)\in\mathcal{P}\times_G W^{us}\}$$ 
+\end{definition}
+
+This notation is consistent with our notation about projective space from last time.
+
+\begin{definition}
+$\left((C,x),\mathcal{P},u\right)$ is a $\theta$-quasimap if $B$ is a finite set.
+\end{definition}
+
+\begin{definition}
+A $\theta$-quasimap is prestable if $B\subset C^{ns}$
+\end{definition}
+
+\begin{definition}
+Let $\theta$ be integral, let $x\in C^{ns}$, and let $[u]$ be a prestable quasimap.  Then $\ell_\theta(x)$ the \emph{$\theta$-length of $[u]$ at $x$}, is
+$$\ell_{\theta}(x)=\text{min}\left\{\frac{(u^*s)x}{n}|s\in H^0(W, L^n_{\theta})^G, n>0, u^*s\neq 0\right\}$$
+where
+$$(u^*s)=\sum_{x\in C} (u^*s)_x x$$
+is the divisor of zeroes of $u^*s$.
+
+\end{definition}
+Recall that $s$ were the unstable locus, so what we are measuring is the order of contact with the unstable locus.
+
+If we take a high enough power of $\theta$, we may dispose of the $n$ in the denominator.
+LEMMA/EXERCISE: $\ell_{m\theta}(x)=m\ell_{\theta}(x)$.
+
+(This is the length of the cokernel if you take the pullback of the ideal sheaf of the unstable locus, if things are ample enough?)
+
+
+Let $u_{\text{reg}}:C\to W\GIT_\theta G$ of class $\beta_{\text{reg}}$, then 
+$$(\beta-\beta_{\text{reg}})(L_\theta)-\sum_{x\in C^{ns}}\ell_\theta(x)$$
+
+If $\theta\in\chi(G)_\Q$, put $\ell_\theta(x)=\frac{1}{m}\ell_{m\theta}(x)$, with $m\theta$ integral.
+
+
+\begin{definition}
+A $\theta$-prestable quasimap $(C,x,\mathcal{P},u)$ is $\theta$-stable if:
+\begin{enumerate}
+\item For all $x\in C^{ns}. \ell_\theta(x)+\sum_i \delta_{x,x_i}\leq 1$
+\item $\omega_{\text{log}}\otimes L_\theta$ is ample (recall $L_\theta=u^*(\mathcal{P}\times_G L_\theta)$)
+\end{enumerate}
+
+Condition 1 implies that marked points are not contained in the base locus.
+\end{definition}
+
+Next time we will show this agrees with the $\epsilon$ stability in the original papper with Maulik and Kim.
+
+One reason for this point of view is that we see how things vary along rays; if we are ``deep in the Kahler cone'' we get Gromov-Witten theory; as we head toward the origin we get different theories, such as the $\epsilon$ theories that Toda introduces.  On the other hand, varying $\theta$ in other directions changes the target.
+
+Although we may not get there, this point of view is the one that generalizes to quasimaps with weighted markeds with essentially no work, and this turns out to be important because using quasimaps with infintesimally weighted points is how you get the big $\J$-function.
+
+
+\end{document}
+
+

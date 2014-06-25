@@ -1,0 +1,102 @@
+\documentclass{amsart}
+
+
+\linespread{1.2}
+
+\theoremstyle{definition}
+\newtheorem{dummy}{}[section]
+
+\newtheorem{theorem}[dummy]{Theorem}
+\newtheorem{definition}[dummy]{Definition}
+\newtheorem{example}[dummy]{Example}
+\newtheorem{question}[dummy]{Question}
+\newtheorem{conjecture}[dummy]{Conjecture}
+
+\newcommand{\Spec}{\text{Spec}}
+\newcommand{\aff}{\text{aff}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\Map}{\textrm{Map}}
+\newcommand{\proj}{\mathbb{P}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\sm}{\text{sm}}
+\newcommand{\Mbar}{\overline{\mathcal{M}}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Age}{\text{Age}}
+\newcommand{\Fix}{\text{Fix}}
+\newcommand{\one}{1}
+\newcommand{\st}{\text{st}}
+\newcommand{\ttt}{\mathbb{t}}
+\newcommand{\ev}{\text{ev}}
+\newcommand{\vir}{\text{vir}}
+\newcommand{\Quot}{\text{Quot}}
+\newcommand{\Hom}{\text{Hom}}
+
+
+\newcommand{\Aut}{Aut}
+\title{Quasimaps and mirror theorems for GIT quotients II}
+\author{Ionut Ciocan-Fontanine}
+
+
+\begin{document}
+\maketitle
+Last time, we explained Givental's work on finding some genus zero invariants for projective space and the quintic.
+
+The same method works for any complete intersection in projective space as long as it is semipositive, i.e. Fano or Calabi-Yau.  
+
+The same general idea extends to semi-positive toric varieties and semi-positive complete intersection in toric varities, as well as to local targets over toric varieties.
+
+The proof that we saw for projective space itself does not work, however.
+There is a quasimap space with no marked points that Givental and others construted.  The problem is the contraction map from stable maps to this space no longer exists.  
+Furthermore, even if this space did exist, the moduli space is not smooth, and so we would have to compare virtual fundamental classes.
+
+The proof that does work is the one we sketched briefly at the end with the quintic, using the big torus, recursion, etc.
+
+\subsection{Further work}
+This was all around 1997.  In 2001 work of Lian, Liu, Liu, Yau, and in 2003 by Bertram, Ciocan-Fontanine, Kim, the $\J$ function of $G(r,n)$ was calculated using $\C^*$ localization on $\Quot_{n-r,d}(\O_{\proj^1}^n)$, which should be thought of as an unpointed quasimap graph space for the Grassmannian.
+
+This produces some $\mathcal{I}$ function, that is a hyper-geometric looking thing, and the theorem is that the $\J$ function agrees with the $\mathcal{I}$ funciton.  Again, here there is no contraction map; in fact, it is known that no such map could exist.
+
+What comes out this is an expression for the $\J$ function of the Grassmannian in terms of a product of $\J$ function of projective spaces, as conjectured by Hori-Vafa.
+
+The way to understand this story is via the Abelian/non-abelian correspondence.  The Grassmannian is a GIT quotient by a general linear group; the product of projective spaces is a GIT quotient by the maximal torus.  A general conjecture along these lines was formulated and proven for flag manifolds, complete intersections in these, etc.
+
+One nice aspect of this story is that it gives a way to treat examples which are not complete intersections, but rather zero loci of sections of indecomposable bundles on a variety, because when we move from the nonabelian to abelian point of view, the resulting bundle will be a sum of line bundles as it comes from a torus.
+
+So, for example, if we start we start with the GIT quotient of a vector space, then the Abelian quotient will be a toric variety which Givental's work lets us do.
+
+\subsection{Stable quotients}
+The next main ingredient of the story came with the introduction of stable quotients by Marian-Oprea-Pandharipande in 2009.
+
+The stable quotients is a version of the $\Quot$ scheme where we have marked points, and we allow the curve to vary in moduli; they imposed the right condition so that the space has a virtual fundamental class, and proved that the resulting thing gives the invariants of the Grassmannian.
+
+Given this, it is natural to believe that the correct generalization is to look for similar theories for any GIT quotients; this is what the quasimap theory will be.
+
+For a long time, most results related to mirror symmetry were done using toric varieties.  It was a point of wonder about why toric varieties were so unreasoable effective for studying mirror symmetry.  The point of view we are advocating here is that it is because they are GIT quotients of a vector space; Quasimap theory will be an extension of the toric results to this larger context.
+
+We should also mention that there is a long, related story in the symplectic category starting 14 years ago by Solomon and others, going to Chris Woodward and others, that goes under the name Gauged Gromov-Witten theory.  It is not the same theory, as they use different stability conditions, but it is closely related.
+
+\section{Quotient Targets}
+Let $W$ be an affine variety over $\C$, with $W=\text{Spec} A$; we may write $A=\C[W]$.
+
+Let $G$ be a reductive group over $\C$.  Most often $G$ will be a product of general linear groups.
+
+We ask that $G$ that acts linearly on $W$.
+
+\subsection{Two quotients}
+The first quotient we have is the affine quotient, written $W/_\aff G=\Spec(\C[W])^G$. 
+
+The second quotient is the stack quotient $[W/G]$.  
+
+Stacks are not as scary as they may be; from Grothendieck's projective, we understand schemes by its functor of points, i.e. ``probing'' them with other schemes.  Stacks work exactly the same way.
+
+Give a scheme $Y$, then 
+$$\Hom(Y, [W/G])=\{\mathcal{P}\to Y, \tilde{u}:\mathcal{P}\to W|\mathcal{P} \text{Principal $G$ bundle}, \tilde{u} \text{$G$-equivariant}\}$$
+Which is also equivalent to a section $u$ of the $W$ bundle $\mathcal{P}\times_G W$ over $Y$.
+
+
+ 
+
+\end{document}
