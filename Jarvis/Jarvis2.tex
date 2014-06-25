@@ -1,0 +1,257 @@
+\documentclass{amsart}
+
+\linespread{1.2}
+\theoremstyle{definition}
+\newtheorem{dummy}{}[section]
+\newtheorem{theorem}[dummy]{Theorem}
+\newtheorem{definition}[dummy]{Definition}
+\newtheorem{example}[dummy]{Example}
+\newtheorem{question}[dummy]{Question}
+\newtheorem{conjecture}[dummy]{Conjecture}
+
+\newcommand{\ev}{\text{ev}}
+\newcommand{\Mbar}{\overline{\mathcal{M}}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Age}{\text{Age}}
+\newcommand{\Fix}{\text{Fix}}
+\newcommand{\one}{1}
+\newcommand{\st}{\text{st}}
+
+\newcommand{\Aut}{Aut}
+\title{An introducion to FJRW theory II}
+\author{Tyler Jarvis}
+
+\begin{document}
+\maketitle
+
+Last time, we sketched out the main pieces of FJRW -- the main pieces were a 
+\begin{itemize}
+\item a $\C^*$ action on $\C^N$ with weights $(c_1,\dots, c_N)$, 
+\item  quasihomogeneous polynomial $W$ of degree $d$, and an isolated singularity at the origin.
+\item a finite group $G$ acting diagonally on $\C^N$ preserving $W$
+\end{itemize}
+
+In physics notation, the $c_i$ are essentially the charge, and $W$ is called the superpotential, and $G$ is called the gauge.
+
+From this input, FJRW theory produces a CohFT ($\mathcal{A},\eta,\one,\Lambda^{FJRW}_{g,n})$.
+
+FJRW theory is related by the LG/CY correspondene with Gromov-Witten theory, and by mirror symmetry to Saito-Givental's work.
+
+Today, we will fill in some details.
+\section{}
+Recall, $q_i=c_i/d$
+$J=(\exp(2\pi i q_i), \dots, \exp(2\pi i q_N)$
+$\gamma\in G$ can be diagonalized, and $\theta_i$ are the logarithmic traces.
+
+The central charge, which plays the role of the virtual dimension, is
+$$\hat{c}=\sum_{i=1}^N(1-2q_i)=N-2\sum q_i$$
+
+If $\sum q_i=1$, then $\hat(c)=N-2=\dim_\C X_W$.  
+
+Furthermore, in this case our state space $\mathcal{A}$ correspondence with then Chen-Ruan cohomology of a quotient of $X_W$, depending on $G$.  More particularly, define $\tilde{G}=G/\langle J\rangle$.  Note that $J\subset G$ is contained in the $\C^*$ we quotient out by to get weighted projective space, and hence acts trivially on $X_w$, and we have:
+
+$$H_{CR}[X_W/\tilde{G}]=\mathcal{A}_{W,G}$$
+
+Let $N_\gamma=\dim_\C \Fix(\gamma)$.  
+
+Recall $$\Omega_W=\Omega^N/dW\wedge\Omega^{N-1}$$
+amd $\dim \Omega_W=\mu$ the Milnor numner.
+
+
+\section{State Space}
+
+Last time, we said that 
+
+\begin{align*}
+\mathcal{A}_{W,G}&=H_{CR}^{*+2\sum q_i}([\C^N/G],W^\infty,\C) \\
+&\bigoplus_{\gamma\in G} H(\Fix(\gamma),W_\gamma^\infty,\C)^G \\
+&=\bigoplus_{\gamma\in G} \Omega_{W_\gamma}^G
+\end{align*}
+
+If $\Fix(\gamma)=\{0\}$, we call $\mathcal{A}_\gamma=\Omega_{W_\gamma}^G$ \emph{narrow}.  Otherwise, $\mathcal{A}_\gamma$ is \emph{broad}.
+
+Similarly, $$H_{CR}[X_W/\tilde{G}]=H_{\text{amb}}([X_W/\tilde{G}])\bigoplus H_{\text{prim}}([X_W/\tilde{G}])$$
+
+Under the isomorphism between state spaces, Narrow classes correspond to ambient classes, and broad classes correspond to primitive classes.
+
+\begin{example}[$E_7$]
+
+Let $W=x^3+xy^3$.  Then $q_x=1/3, q_y=2/9, \hat{c}=8/9$.
+
+We have $\langle J\rangle=G_{\max}$, so there is no choice of group required, and we have
+
+$$\mathcal{A}=\bigoplus_{J^k}\Omega^J_{W_{J^k}}$$
+
+If $k=0$, then $J^0=1$, and so $\Fix J^k=\C^2$.
+
+We have 
+\begin{align*}
+\Omega^{\langle J\rangle}_{W_{J^0}} &= \\
+&=(\text{span}\{1,x,x^2,y,y^2,xy,x^2y\}dxdy)^{\langle J\rangle}\\
+&=y^2e_0
+\end{align*}
+
+If $3|k$, then $\Fix(J^3)=\Fix(J^6)=\C_x$.  The $W$ here is just $x^3$.  
+
+$$\Omega^J = (\C[x]/3x^2dx
+=\{0\}$$
+
+If 3 does not divide $k$, then $\Fix(J^k)=\{0\}$ Narrow, and $\Omega_W=\C e_k$.
+
+Thus our state space
+
+$$\mathcal{A}_{E_7,\langle J\rangle}=\text{span}\{y^2e_0,e_1,e_2,e_4,e_5,e_7,e_8\}$$
+
+Now, how about the pairing?
+
+Recall 
+$$\langle fdx_1\wedge\cdots\wedge dx_N,gdx_1\wedge\cdots\wedge dx_N\rangle
+\frac{fg}{hess}\mu$$
+
+So
+$$\langle y^2e_0, y^2e_0\rangle=\frac{y^4}{hess}7=\frac{y^4}{-21y^4}7=-1/3$$
+On the other sectors, we have $\mathcal{A}_\gamma$ pairing with $\mathcal{A}_{\gamma^{-1}}$, and so 
+
+$$\langle e_k, e_l\rangle=\left\{\begin{array}{ll} 1 & k+l=9 \\ 0 & k+1\neq 9 
+  \end{array}\right.$$
+
+\end{example}
+
+\subsection{Grading}
+
+Recall that 
+$$H^{N-p,p}(\C^N, W^\infty;\C)^{\langle J\rangle}=\{\phi dx_1\wedge\cdots\wedge dx_N| deg \phi+\sum q_i=p\}$$
+
+$$H^{N_\gamma-p,p}(\Fix(\gamma), W_\gamma^\infty;\C)^{\langle J\rangle}=\{\phi dx_1\wedge\cdots\wedge dx_{N_\gamma}| deg \phi+\sum_{i fixed by \gamma} q_i=p\}$$
+
+However, we will shift the gradings of this elements in a manner similar to the grading shift in Chen-Ruan cohomology.
+
+If $\alpha\in H^{N_\gamma-p,p}(\Fix(\gamma),$, we define
+
+$$\deg_\pm \alpha=\deg^{classical}_\pm (\alpha)+\Age(\gamma)-\sum q_i$$
+$$\deg_+ \alpha=N_\gamma-p+\sum\theta_i^\gamma -\sum q_i$$
+$$\deg_- \alpha=p+\sum\theta_i^\gamma -\sum q_i$$
+
+If $\alpha\in\mathcal{A}_\gamma$, and suppose $\Fix(J)=\{0\}$ 
+
+$$\deg_{\pm}\alpha=0+\Age(J)-\sum q_i =0$$
+
+Suppose $\alpha\in \mathcal{A}_\gamma$ and $\beta\in \mathcal{A}_{\gamma^{-1}}$.
+
+Then 
+\begin{align*}
+\deg_+\alpha+\deg_+\beta&=N_\gamma-p+p+\Age(\gamma)+\Age(\gamma^{-1})-2\sum q_i \\
+&=N_\gamma+\sum_{i not fixed} (\theta_i+(1-\theta_i))-2\sum q_i \\
+&=N_\gamma+(N-N_\gamma)-2\sum q_i \\
+&=N-2\sum q_i \\
+&=\hat{c}
+\end{align*}
+Thus, the pairing is between $\mathcal{A}_\gamma^{p,q}$ and $\mathcal{A}_{\gamma^{-1}}^{\hat{c}-p,\hat{c}-q}$
+ 
+Returning to $E_7$, we have $\deg_\pm e_1=0$,
+
+Now, $\deg_\pm y^2 e_0$.  The classical degree is is $(2/9)^2+(5/9)=1$.  But, the degree shift is $\Age(J^0)-\sum q_i=-5/9$, and so the total degree of $y^2 e_0$ is $4/9$.
+
+The other sectors are narrow, and hence have classical degree 0, and all the degree comes from the shift.
+
+\begin{example}[$\mathcal{A}_{A_r,\langle J\rangle}$]
+We have $W=X^r$, and so $J=\exp(2\pi i/r)$.
+
+$\Fix(J^k)$ is $\C$ if $k=0$, and $0$ otherwise.
+
+$$\mathcal{A}_{J^0}=\Omega_{X^r}=((\C[x]/x^{r-1})dx)^{J}=\text{span}\{dx, xdx,\cdots, x^{r-2}dx\}^J=\{0\}$$
+
+$$\mathcal{A}_{x^r, J}=\bigoplus_{k=1}^{r-1} \C e_k$$
+And
+\begin{align*}
+\deg_\pm e_k&=0+\Age(J^k)-1/r \\
+&=k/r-1/r=(k-1)/r
+\end{align*}
+
+And so it is natural to reindex $a_i=e_{i+1}$ so that $\deg_\pm a_i=i/r$.
+
+Then $e_i$ pairs nontrivially only with $e_l$ with $i+l=r$.
+
+
+\end{example}
+
+\section{Orbicurves}poin
+
+\begin{definition}
+A \emph{stable pointed orbicurve} (sometimes called a ``twisted curve'') is $(\mathcal{C},p_1,\dots, p_k)$, is a stable pointed curve $(C, p_1,\dots, p_k)$, with nodes $p_1^\prime,\dots,p_\ell^\prime$ and finite cyclic group $G_{p_i}$ of order $m_i$ near each marked point and node.
+
+Near each point $p_i$, choose a neighborhod $U_i=\Delta\subset C$ and a ``uniformizer'' $V_i=\Delta$ with $G_p$ acting on $V_i$ with $\pi_i:V_i\to U_i$ that realizes $U_i$ as a quotient $V_i/G_{p_i}=U_i$.
+
+If $x,z$ are the local coordinates on $U_i, V_i$, respectively, then $\pi_i:z^{m_i}=x$.
+
+We choose the generator of $G_{p_i}$ to be the element that acts as $\exp(2\pi i/m_i)$.
+
+Similarly, at the nodes, it looks like this on each branch, with group elements acting as opposite roots of unity on the two branches (the balancing condition).
+\end{definition}
+
+$C$ is called the coarse moduli of $\mathcal{C}$, and there is a natural forgetful map $\rho:\mathcal{C}\to C$.
+
+\begin{definition}
+A line bundle $\mathcal{L}$ on $\mathcal{C}$ is an honest line bundle away from the orbifold points.  At the orbifold points, $\mathcal{L}|_{v_i}=V_i\times\C$ with $G_{p_i}$; let $\zeta=\exp{2\pi i/m_i}$.  Then
+
+$$s\cdot (z,l)=(\zeta z, \zeta^{b_i}l)$$
+
+\end{definition}
+
+A few remarks: orbifold line bundles can have rational degree.
+
+Local sections of $\mathcal{L}$ around the orbifold points are invariant sections of $V_i\times\C$, and hence sections of $\rho_*\mathcal{L}$, which may no longer be a line bundle.  At just usual orbifold points it is okay, but over nodes, the fibers over the two sides may not be glued together, and we may just have a rank 1 torsion free sheaf.
+
+\begin{example}
+$K_{log, \mathcal{C}}$.  Away from nodes or marked points, this is just the usual canonnical bundle.  However, near a marked point $p$, sections are locally generated by $dz/z$, and at nodes sections are locally generated by $dz/z=-dw/w$.  
+\end{example}
+Note that since $z^m=x$, we have
+
+$$\frac{dx}{x}=\frac{mz^{m-1}dz}{z^m}=m\frac{dz}{z}$$
+which is a heuristic argument that
+
+$$\rho^* K_{log, C}=K_{log,\mathcal{C}}$$
+$$\rho_* K_{log, \mathcal{C}}=K_{log,C}$$
+However, this does not hold for the usual canonical bundle:
+
+$$\rho^*K_C=K_{\mathcal{C}}(-(m-1)p)$$ 
+near $p$.
+
+ Recall our moduli space had
+$$\mathcal{L}_1,\dots, \mathcal{L}_N$$
+so that
+$$W_i(\mathcal{L}_1,\dots, \mathcal{L}_N)=K_{log,\mathcal{C}}$$
+We know that $G_p$ acts trivially on $K_{log,\mathcal{C}}$.
+
+Suppose that $G_p=\langle s \rangle$ acts as $\zeta^{\alpha_i}$ on $\mathcal{L}_i$ at $p$.  Then our equation on the $\mathcal{L}$ means that 
+$$\zeta^{\sum a_{ij}\alpha_j}=1$$
+for all $i$.
+And so, for each $i$, we have that $$\text{diag}(\zeta^{\alpha_1},\dots, \zeta^{\alpha_N})\in G_w^{\max}$$
+And so the representaiton of each $G_p$ on $\C^N$ factors through $G_W^{\max}$.
+
+\section{Moduli space}
+
+$$\Mbar_{g,k}^{W,G}=\left\{ \mathcal{C}, p_1,\dots, p_k, \mathcal{L}_1,\dots,\mathcal{L}_N,\phi_1,\dots,\phi_s|\phi_i:W_i(\mathcal{L})\to K_{log, \mathcal{C}}\right\}$$
+
+We also ask that for each mark or node, $G_p\to G^{\max}$ is injective and factors through $G$.
+
+So these moduli spaces will in general have lots of components, and shrinking $G$ is just going to toss some of these components out.
+
+Note that we required $G$ to contain $J$; this is because as you degenerate to the boubndary, you will always potentially pick up $J$.
+
+\subsection{Evaluation maps}
+
+Note that $G_{p_i}$ has a canonical generator $s$.  The action of $G_{p_i}$ on the $\mathcal{L}_i$ gives a map from $G_{p_i}$ to $G$, the evaluation map sends $s$ to some $\gamma_i$.
+
+$$\ev_i:\Mbar_{g,k}^{W,G}\to \mathcal{IB}G=\sqcup_{\gamma\in G} \mathcal{B}G\to G$$
+Since these are discrete, we have a decomposition of our moduli space
+
+$$\Mbar_{g,k}^{W,G}=\sqcup_{\gamma_1,\dots, \gamma_k} \Mbar_{g,k}^{W,G}(\gamma_1,\dots, \gamma_k)$$
+
+Note that this is only capturing part of the evaluation maps of our CohFT; we don't yet pull back the bits of the Milnor ring.  What will happen is that to construct our virtual fundamental class, we will have to solve the Witten equation.  The logarithmic canonical bundle has poles at the marked points; we will need to have some kind of control over the singularities here because of that.  The milnor ring pieces will correspond to some kind of boundary conditions to deal with the poles. 
+
+
+
+\end{document}
