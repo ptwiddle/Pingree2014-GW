@@ -1,0 +1,261 @@
+\documentclass{amsart}
+
+\linespread{1.2}
+\theoremstyle{definition}
+\newtheorem{dummy}{}[section]
+\newtheorem{theorem}[dummy]{Theorem}
+\newtheorem{definition}[dummy]{Definition}
+\newtheorem{example}[dummy]{Example}
+\newtheorem{question}[dummy]{Question}
+\newtheorem{conjecture}[dummy]{Conjecture}
+
+\newcommand{\vir}{\text{vir}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\ev}{\text{ev}}
+\newcommand{\Mbar}{\overline{\mathcal{M}}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Age}{\text{Age}}
+\newcommand{\Fix}{\text{Fix}}
+\newcommand{\one}{1}
+\newcommand{\st}{\text{st}}
+
+\newcommand{\Aut}{Aut}
+\title{An introducion to FJRW theory III}
+\author{Tyler Jarvis}
+
+\begin{document}
+\maketitle
+Last time,we talked about the state space $\mathcal{A}^{W,G}$, with its bigrading.  We discussed the basics of orbicures and line bundles on them, so that we could define the moduli space
+
+$$\Mbar_{g,k}^{W,G}=\{\mathcal{C},p_1,\dots, p_k,\mathcal{L}_1,\dots,\mathcal{L}_N, \varphi_1,\dots, \varphi_s|conditions\}$$
+
+And discussed how the orbifold structure gave us evaluation maps at the marked points to $G$ that allowed us to decompose the moduli space.
+
+Recall we had $\rho:\mathcal{C}\to C$; today we will study what happens to $\rho_*\mathcal{L}_i$.    This will let us understand what happens when we forget marked points, and give us a selection rule.
+
+After this, we will discuss properties of the virtual fundamental class, and view some examples of using these properties to compute.
+
+\section{Forgetting the orbifold structure}
+Recall that $\rho$ consists of forgetting the orbifold structure.
+
+If $\mathcal{L}$ is a line bundle on $\mathcal{C}$, then $\rho_*(\mathcal{L})$ is a rank 1 torsion free sheaf.  This is a fancy way of saying that it is a line bundle on each of the components, that may not actually be glued at the nodes.
+
+If $\mathcal{C}$ is smooth, then $\rho_*(\mathcal{L})$ is a line bundle, and 
+$\rho_*(\mathcal{L})$ only fails to be a line bundle at nodes marked with a $\gamma\in G$ that acts nontrivial on $\mathcal{L}$,
+
+Consider the special case where $\mathcal{L}^{\otimes r}=K_{log}$, and a single marked point $p$.
+
+Recall the uniformizing neighborhood $\Delta\to \Delta$, with local coordinates $z$, and $x=z^r$ on the target disk.  Assume $G_p=\Z_r$.
+
+The condition $\mathcal{L}^{\otimes r}=K_{log}$ tells us that local generator of $\mathcal{L}$ is $\ell$ with $\ell^r=\frac{dz}{z}$, and a generator of $G_p$ acts as
+$$(z,\ell)\mapsto (\zeta z, \zeta^{-b} \ell)$$
+for $\zeta=\exp(2\pi i/r)$.
+
+Locally invariant sections are going to be of the form $f(z^r)z^b\ell=f(x)z^b\ell$, and hence a local generator of $\rho_*(\mathcal{L})$ is $z^b\ell$.
+
+Furthermore, we have $$(z^b\ell)^r=z^{rb}\ell^r=x^b\frac{dx}{x}$$
+This tells us that
+
+$$(\rho_*\mathcal{L})^{\otimes r}=K_{log C}(-bp)$$
+
+\subsection{General Situation}
+
+The same calculation leads to the following description of what happens in the general situation.
+
+The equality 
+$$W_i(\mathcal{L}_1,\dots,\mathcal{L}_N)=K_{log, \mathcal{C}}$$
+leads to:
+
+$$W_i(\rho_*\mathcal{L}_1,\dots,\rho_*\mathcal{L}_N)=K_{log, C}(-\sum_{\ell=1}^k\sum_{j=1}^N a_ij\theta_j^{\gamma_\ell}p_\ell$$
+
+
+\subsection{Forgetting points}
+
+If $\tilde{\rho}:\mathcal{C}\to\tilde{\mathcal{C}}$ forgets only one marked poitn $p$, with action $\gamma$ and its orbifold structure, we have
+
+$$W_i(\tilde{\rho}_*\mathcal{L}_1,\dots,\tilde{\rho}_*\mathcal{L}_N)=K_{log, \mathcal{C}}(-\sum_{j=1^N} a_ij\theta_j^{\gamma_\ell}p_\ell$$
+
+Note that we don't have a tilde on the right hand side, and still allow poles at that marked point.
+
+Recall that $J=(\exp(2\pi i q_1),\dots,\exp(2\pi i q_N))$, and for all $i$ we have $\sum a_{ij} q_j=1$.
+
+So if we mark $p$ with action $\gamma=J$, then
+
+\begin{align*}
+W_i(\tilde{\rho}_*\mathcal{L}_1,\dots,\tilde{\rho}_*\mathcal{L}_N)&=K_{log, \mathcal{C}}(-p_{k+1}) \\
+&=K_{log \tilde{\mathcal{C}}}
+\end{align*}
+
+Thus, we can only forget marked points that are marked with $J$, and this also explains why the identity of our CohFT lies in the $J$ sector.
+
+\subsection{Selection Rule}
+
+$$\text{deg} W_i(\rho_*\mathcal{L}_1,\dots,\rho_*\mathcal{L}_N)=2g-2+k-\sum_{j,\ell} a_{ij}\theta_j^{\gamma_\ell}$$
+This leads to a system of equations involving $\sum a_{ij}\text{deg}\rho_*\mathcal{L}_j$.
+
+Recall that we required that $W$ have no $x_ix_j$ terms.  This implies that the matrix of the $a_{ij}$ has maximal rank, and so we can solve this system for the degrees of the rows.
+
+$$\text{deg}\rho_*\mathcal{L}_j=q_j(2g-2+k)-\sum_{\ell=1}^k \theta_j^{\gamma_\ell}$$
+
+Since this degree lives on the coarse curve $C$, it must be an integer, and so we must have that this degree is an integer if and only if $$\Mbar_{g,k}^{W,G}(\gamma_1,\dots,\gamma_k)\neq \emptyset$$
+
+Moreover, if the moduli space is nonempty, then the natural forgetful map
+$$\st:\Mbar_{g,k}^{W,G}(\gamma_1,\dots,\gamma_k)\to\Mbar_{g,k}$$
+has preimage over a point $\mathcal{C}$ equal to
+
+$$\left\{\mathcal{L}_1,\dots,\mathcal{L}_N|W_i(\mathcal{L}_1,\dots,\mathcal{L}_N=K_{log \mathcal{C}}\right\}$$
+
+is an $H^1(\mathcal{C},G)$ torsor.  The generic automorphism of these is $G$, and hence we have that $\text{deg}\st_{\gamma_1,\dots,\gamma_k}=|G|^{2g-1}$.
+
+\begin{example}
+For $r$-spin, we have
+$$\Mbar_{0,3}^{W,G}(\gamma_1,\gamma_2,\gamma_3)\to\Mbar_{o,3}$$
+has degree $1/r$.
+\end{example}
+
+\begin{example}
+For the $E_7$ singularity, recall $J=(\exp(2\pi i/3), \exp(2\pi i 2/9)), q_x=1/3, q_y=2/9$
+
+And we had state space...
+
+$$\Mbar_{0,3}^{E_7,J}(J^a,J^b,J^c)$$
+
+Our selection rule gives
+
+$$q_y(2g-2+k-\sum\theta_y=\frac{2}{9}-\frac{2}{9}a+\frac{2}{9}b+\frac{2}{9}c$$
+needs to be an integer.
+
+This leads to the following possibilities for $(a,b,c)$:
+
+0, 0, 1
+0, 5, 5
+0, 2, 8
+1,4,5
+1,2,7
+1,1,8
+5,7,7
+
+The terms with 1 are responsible for the pairing: $\langle 1,\alpha, \beta\rangle=\langle\alpha,\beta\rangle$.  As a sanity check, observe that in the possibilities involving 1, the sum of the other two terms is divisible by 9.
+
+We could also do the same work with $q_x$, but in this case it gives us no new information -- checking if things are congruent mod 9 is stronger than checking if things are congruent mod 3.
+
+\end{example}
+
+
+Before we continue on, let us recall some dual graph notations:
+
+Vertices correspond to irreducible components of the dual graph, edges correspond to nodes, and tails correspond to marked point.  We will label each tail and half edge by an element $\gamma\in G$.
+
+Given a graph, we define $\Mbar_{\Gamma}^{W,G}$ to be the closure of the set of points in $\Mbar_{g,n}^{W,G}$ having the given dual graph.
+
+For $\Mbar_{\Gamma}^{W,G}$, we have a stronger selection rule.  If the $\gamma$ on the edges are nontrivial, then we can cut along that vertex and apply the selection rule to the resulting, perhaps disconnected, graph, and the selection rule most hold on each component.
+
+\section{Virtual Fundamental class}
+
+
+\subsection{History and constructions}
+Witten outlined the basic idea of the construction of the virtual fundamental class by solving the Witten equation:
+
+$$\overline{\partial} s_i+\frac{\partial\overline{W}}{\partial s}$$
+for all $i$, where $s_i\in H^0(\mathcal{L}$.  The whole definition of our moduli spaces are defined so that this equation makes sense.
+
+The virtual class was first constructed analytically by FJR, solving this equation.  There is an algebraic construction, due to Polishchuk-Vaintrob using matrix factorizations; it is not clear that these two constructions are equal everywhere.
+
+In the narrow case, there is an algebraic construction due to Chang, Li and Li, using cosection localization, and prove that their construction equals the other two in this case.
+
+There are some examples in the broad case where we know the analytic and algebraic virtual fundamental classes agree, but it is not known in general.
+
+\subsection{Properties}
+The virtual fundamental class
+
+$$[\Mbar^{W,G}_{g,k}(\gamma_1,\dots,\gamma_k)]^\vir\in H_*(\Mbar^{W,G}_{g,k})\otimes\mathcal{A}_{\gamma_1}^*\otimes\cdots\otimes\mathcal{A}_{\gamma_k}^*$$
+
+The main property is that
+
+$$\Omega^{W,G}_{g,k}(\alpha_1,\dots,\alpha_k)=\frac{PD\st_*[\Mbar^{W,G}_{g,k}(\vec{\gamma})(\vec{\gamma})]^\vir\alpha_1\cdots\alpha_k}{|G|^g\deg \st}$$
+forms a CohFT
+
+The dimension of this CohFT is $$\hat{c}(g-1)-\sum\deg\C\alpha_k$$
+where $$\text{deg}_\C \alpha=\frac{1}{2}(\text{deg}_+\alpha+\text{deg}_-\alpha)$$
+
+\subsubsection{Decomposition}
+ If $W_1, G_1$ and $W_2, G_2$ are polynomials and groups that act on separate sets of variables, we have
+
+$$\Lambda^{W_1+W_2, G_1\times G_2}=\Lambda^{W_1,G_1}\otimes\Lambda^{W_2,G_2}$$
+
+\subsubsection{$G^{max}$ invariance}
+ If $G<G^{max}$, then $G^{max}$ acts on $\mathcal{A}^{W,G}$, and
+$$\Lambda^{W,G}_{g,k}(\gamma\alpha_1,\dots,\gamma\alpha_k)=\Lambda^{W,G}_{g,k}(\alpha_1,\dots,\alpha_k)$$
+
+\subsubsection{Deformation invariance}
+
+If $W_t$ is a 1-parameter family of polynomials and $G$ fixes the family, then $\Omega^{W_t,G}$ is independent of $t$.
+
+One has to be careful, because one could deform to $W$ that are not allowed because they contain $x_ix_j$ terms or are no longer isolated singularities.
+
+\subsubsection{Concavity}
+If $\alpha_1,\dots,\alpha_k$ are all narrow (Recall narrow means $\Fix(\gamma_i)=\{0\}$), and if 
+$$\pi_*(\mathcal{L}_1\oplus\cdots\oplus\mathcal{L}_N)=0$$
+where $\pi$ is the universal curve,
+then the virtual class is poincare dual to $(-1)^D c_{\text{top}}(R^1\pi_*(\bigoplus\mathcal{L}_i))$.
+
+The concavitiy condition implies that the pushforward is a vector bubdle of the correct dimension.
+
+\subsubsection{Index 0}
+If all the $\alpha_i$ are narrow, and $\pi_*(\oplus\mathcal{L_i})$ and $R^1\pi_*(\oplus\mathcal{L_i})$ are vector bundles of the same rank, then $D=0$ and the virtual fundamental class is the $\text{deg}\mathcal{D}$, where
+$$\mathcal{D}:\frac{\overline{\partial W}}{\partial x_1}:\pi_*\bigoplus \mathcal{L_i}\to R^1\pi_*(\bigoplus\mathcal{L_i})$$
+
+\section{Example: $E_7$}
+
+We will use the axioms we have introduced to  calculate the quantum product.
+
+Recall that $\mathcal{A}$ has basis $y^2e_0,e_1,e_2,e_4,e_5,e_7,e_8$ with degrees
+$4/9,0,5/9,6/9,2/9,3/9,8/9$
+
+We have 
+
+$$\langle \alpha_1,\alpha_2,\alpha_3\rangle_0=\int_{\Mbar_{0,3}}\Lambda^{E_7}_{0,3}(\alpha_1,\alpha_2,\alpha_3)$$
+
+Since we need the dimension to be 0, we are only left with two interesting three point invariants that aren't part of the pairing:
+
+$$\langle y^2 e_0, e_5, e_5\rangle\quad quad \langle e_5, e_7, e_7\rangle $$
+
+Let's compute the 5, 7, 7:
+
+$$\pi_*\mathcal{L}_x=\pi_*\mathcal{L}_y=0$$.
+
+We compute
+\begin{align*}
+\text{deg} \mathcal{L}_x=q_x(2g-2+k)-\sum \theta_x^{\gamma_\ell}=-1
+\text{deg} \mathcal{L}_y=q_y(2g-2+k)-\sum \theta_y^{\gamma_\ell}=-1 \\
+\end{align*}
+
+$R^1\pi_*-0$, and so we're concave, and $c_{\text{top}}=1$.
+
+To compute the other case, $0,5,5$, we are not in the narrow case.  However, we can pair the 0 with another 0,5,5 graph to obtain a 4 pointed graph with all $5$s on the outside.
+
+By CohFT properties, we have
+
+$$\rho_{tree}^*(\Lambda_{0,4}^{E_7}(e_5,e_5,e_5,e_5)=\sum_{r,s} \Lambda_{0,3}(e_5,e_5,r)\eta^{rs}\Lambda_{0,3}(s,e_5,e_5)$$
+
+We can check that the only $r,s$ that give a nonzero contribution are $r=s=y^2e_0$, and so we see
+$$\rho_{tree}^*(\Lambda_{0,4}^{E_7}(e_5,e_5,e_5,e_5)=-3\langle e_5,e_5,y^2e_0\rangle^2$$
+
+We can compute $\Lambda_{0,4}(e_5^4)$ using the index $0$ axiom.
+
+We get $\text{deg}\mathcal{L}_x=-2$ and $\text{deg}\mathcal{L}_y=0$
+and so 
+
+$$\mathcal{D}=(\frac{\overline{\partial W}}{\partial x},\frac{\overline{\partial W}}{\partial y})=(\overline{3x^2+y^3},\overline{3xy^2})$$
+
+and the only one that lives in someplace that is possibly nonzer is $\overline{y}^3$, and so the degree is $-4$, and we get that our three point invariant is $\pm 1$.
+
+We wind up seeing that the quantum ring is the milnor ring
+
+$$\C[x,y]/(\partial_x W, \partial_y W)$$
+
+One might guess that the quantum ring is always isomorphic to the Milnor ring; this winds up being not true in general but almost true.  The point is that the quantum ring is the A model, and the milnor ring is the B model, and so the quantum ring should be isomorphic to the B model of the \emph{mirror}; it just happens that $E_7$ and $A_r$ are self dual.
+
+\end{document}
