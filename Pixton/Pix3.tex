@@ -1,0 +1,298 @@
+\documentclass{amsart}
+
+\linespread{1.2}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{example}{Example}
+\newtheorem{question}{Question}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{corollary}{Corollary}
+
+\newcommand{\proj}{\mathbb{P}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\one}{\text{one}}
+\newcommand{\End}{\text{End}}
+\newcommand{\Mbar}{\overline{\mathcal{M}}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\Aut}{Aut}
+
+
+\title{The tautological ring and cohomological field theories III}
+\author{Aaron Pixton}
+\begin{document}
+\maketitle
+
+Let's start with a quick review of where we left off last time.
+
+We had Givental's $R$-matrix action on CohFTs, $\Omega\to R_\bullet\Omega$.  
+
+This action was used in the statement of the Reconstruction Theorem for semisimple CohFTs: A semisimple CohFT $\Omega$ can be uniquely expressed as $\Omega=R_\bullet W$, where $W$ is a degree 0 theory.
+
+Since $R_\bullet$ does not affect the degree 0 terms, the degree 0 terms of $\Omega$ will agree with those of $W$.
+
+Our goal today is to get a more explicit version of this theorem, that in certain cases gives us an explicit form of $R_\bullet$.
+
+\section{Shifts}
+
+Let $\Omega$ be a CohFT on $(V, \eta)$, and let $\gamma\in V$.
+
+\begin{definition}
+THe \emph{shift} of $\Omega$ by $\gamma$ is 
+$$\Omega_{g,n}^\gamma=\sum_{m\geq 0} \frac{1}{m!} p_{m*}(\Omega_{g,n+m}( - , \gamma,\cdots,\gamma)$$
+where $p_n:\Mbar_{g,n+m}\to\Mbar_{g,n}$, and we have inserted $\gamma$ $m$ times.
+\end{definition}
+
+Recall that for general $\gamma$, we may have to worry about convergence of this sum, but it is valid of $\gamma$ in a formal neighborhood of $0\in V$. 
+
+We now work slightly toward the Frobenius manifolds; in what follows $U$ will be the formal neighborhood of the state space for which the shift is defined.
+
+Let $U$ be a manifold, at each point of $U$ we have the data of a CohFT, with the state space $V_x$ of the CohFT at the point $x$ identified with the tangent space $T_xU$,
+
+\begin{definition}
+A CohFT $\Omega$ is homogeneous with Euler field $E$ and conformal dimension $\delta\in\Q$ if there is a vector field $E$ on $U$ of the form
+
+$$\sum_i (\alpha_it^i+\beta_i)\frac{\partial}{\partial t_i}$$
+in some flat coordinates $t_i$ such that 
+$$\bullet, \one, \eta, \Omega^d_{g,n}$$ are eigenfunctions for $\mathcal{L}_E$ (the Lie derivative with respect to $E$ with eigenvalues 
+$$(1,-1,2-\delta, (G-1)\delta+n-d$$
+respectively.
+\end{definition}
+You should think of this definition as saying that $\Omega^\gamma_{g,n}(e_{i_1},\dots,e_{i_n})$  is of pure cohomological dimension (after some shifting).
+
+(This is true if the matrix of $\alpha$s are invertible, but not quite in general if it isn't.)
+
+\begin{theorem}[Teleman]
+Let $\Omega$ be a homogeneous semisimple CohFT with Euler field $E$ and conformal dimension $\delta$.  
+
+Then the $R$ matrix of $\Omega$ is uniquely determined by 
+$$[R,\xi]=z\left(\mu+z\frac{d}{dz}\right) R$$\
+where $\xi$ is the operator of quantum multiplication by $E$ and $\mu$ is the shifted degree operator:
+
+$$\mu(v)=[E,v]+(1-\delta/2)v$$
+\end{theorem}
+
+The plan now is to apply this theorem to find the $R$-matrix for the shifted version of Witten's 3-spin theory, to get an explicit form of this CohFT and hence expicit tautological relations.
+
+It is not always obvious how to find such an $E$ if you do not have a purity constraint on your CohFT.  If you don't have homogeneity and hence $E$, then a CohFT is not quite uniquely determined by its genus 0 part, really, there is infinitely much more information.  The $E$ is one way of giving this data; there are others: for instance, if two theories agree on the interior $\mathcal{M}_{g,n}$, then they must be equal.
+
+\section{3-spin theory}
+We will now let $W_{g,n}$ be the CohFT coming from Witten's 3-spin class.  Later we will discuss what parts of this discussion extend to the $r$-spin class and which do not.
+
+We have $V=\langle v_0, v_1\rangle$, $\one=v_0$, $\eta(v_0,v_0)=\eta(v_1,v_1)=0$, $\eta(v_0,v_1)=1$, $v_1\bullet v_1=0$.
+
+This CohFT is of pure degree:
+$$W_{g,n}(v_{i_1},\dots,v_{i_n})\in H^d(\Mbar_{g,n})$$
+for $$d=\frac{g-1+\sum i_j}{3}$$
+
+The Euler vector field $$E=t^0\frac{\partial}{\partial t_0}+\frac{2}{3}t^1\frac{\partial}{\partial t^1}$$
+
+and $\delta=\frac{1}{3}$, and $\mu(v_0)=-1/6, \mu(v_1)=1/6)$.
+
+This is not quite enough information to determine the theory, we are missing...
+
+Most of this information generalizes quite easily to $r$-spin theory.
+
+\subsection{Shifted theory}
+
+We can see that $W_{g,n}$ is not semisimple because of the nilpotentence $v_1\bullet v_1=0$.  We will now shift this CohFT to make it semisimple.
+
+Let $W^\phi_{g,n}$ be the shift by $3\phi v_1$.  It won't matter exactly what $\phi$ is, it is just some number.  We are not shifting in the $v_0$ direction because it is the unit.
+
+Let's compute some of the values of the shifted theory:
+
+$$W^\phi_{0,3}(v_1, v_1,v_0)=W_{0,3}(v_1,v_1,v_0)+p_{1*}W_{0,4}(v_1,v_1,v_0, 3\phi v_1)+\cdots$$
+and similarly
+$$W^\phi_{0,3}(v_1, v_1,v_1)=W_{0,3}(v_1,v_1,v_1)+p_{1*}W_{0,4}(v_1,v_1,v_1, 3\phi v_1)+\cdots$$
+
+We can immediately see that the most of these terms vanish because of homogeneity relations we need $d=\frac{g-1+\sum i_jj}{3}$ to be a positive integer, and moreover this can lose some degree when we pushforward by $p_{m*}$.  We wind up seeing that
+
+$$W^\phi_{0,3}(v_1,v_1,v_0)=0\quad\quad W^\phi_{0,3}(v_1,v_1,v_1)=\phi$$
+and so we have
+$$v_1\bullet v_1=\phi v_0$$
+
+We will renormalizing by setting 
+\begin{align*}
+\hat{v}_0&=\phi^{1/4}v_0 \\
+\hat{v}_1 &= \phi^{-1/4} v_1
+\end{align*}
+
+
+
+\subsection{}
+Let $\omega$ be the underlying TFT for $W^\phi$. 
+
+We have:
+\begin{align*}
+\omega_{0,3}(\hat{v}_0, \hat{v}_0, \hat{v}_0)=\omega_{0,3}(\hat{v}_0,\hat{v}_1,\hat{v}_1)&=0\\
+\omega_{0,3}(\hat{v}_0, \hat{v}_0, \hat{v}_1)=\omega_{0,3}(\hat{v}_1,\hat{v}_1,\hat{v}_1)&=\phi^{1/4}
+\end{align*}
+
+\begin{lemma}
+
+$$\omega_{g,n}(\hat{v}_0^{\otimes n_0}, \hat{v}_1^{\otimes n_1})=\left\{\begin{array}{ll} 2^g \phi^{\frac{2g-2+n}{4}} & g+n \text{ odd} \\
+0 & g+n \text{ even} 
+  \end{array} \right.$$
+
+\end{lemma}
+
+\begin{proof} 
+Previously, we discussed how to do this with an idempotent basis; our basis is not idempotent, and so that's why our answer looks slightly different.
+
+The idea is to degenerate to a trivalent graph; each vertex and edge will contribute some powers of $\phi$; there is some parity condition of assigning $v_0$ and $v_1$ to the vertices\dots
+\end{proof}
+
+Now we consider the $R$ matrix:
+
+$$R=1+R_1z+R_2z^2+\cdots$$
+
+$$[R_{m+1},\xi]=(m+\mu)R_m$$
+
+$$\xi=\begin{pmatrix} 0 & 2\phi^{3/2} \\ 2\phi^{3/2} & 0 
+\end{pmatrix}\quad\quad\quad \mu=\begin{pmatrix} -\frac{1}{6} & 0 \\ 0 & \frac{1}{6}
+\end{pmatrix}$$
+
+$$A(T)=\sum \frac{(6n)!}{(3n)!((2n)!} T^n,\quad\quad B(T)=\sum\frac{6n+1}{6n-1}\frac{(6n)!}{(3n)!((2n)!} T^n$$
+
+
+$$R=\begin{pmatrix}
+-B^{even}(\frac{z}{1728\phi^{3/2}}) & B^{odd}(\frac{z}{1728\phi^{3/2}}) \\
+-A^{odd}(\frac{z}{1728\phi^{3/2}}) & A^{even}(\frac{z}{1728\phi^{3/2}}) 
+\end{pmatrix}$$
+
+This must be a symplectic matrix; this translates into the following identity:
+
+$$A(T)B(-T)+A(-T)B(T)=-2$$
+
+Albrecht asked something about this being related to Picard-Fuchs equation of a torus, but apparently $A$ and $B$ are everywhere divergent (Andrea ), and something about taking a Laplace transform...
+
+
+\begin{theorem}
+$$W^\phi=R_\bullet\omega$$
+\end{theorem}
+
+This means that in the dimension of Witten's 3-spin class, this is giving a formula for it.  In other dimensions, this is giving a formula for zero, and hence tautological relations.
+
+Claim: The degree $d$ part of $(R_\bullet \omega)_{g,n}(\hat{v}_1,\dots, \hat{v}_1)$ is equal to the $R(g,n,d)$ of the first lecture.
+
+The degree of Witten's 3-spin class is $(g-1+n)/3$, so we get $R(g,n,d)=0$ for all $d>(g-1+n)/3$, which is nearly the first inequality we had.
+
+Here are some words to convince you that this gives us the right formula: we must remember how the $R$ matrix works and what $R(g,n,d)$ was.
+
+Both of these involve graph sums.  Fix $\Gamma$:
+
+The way the $R$ matrix action works is that at each vertex, we are going to insert $\omega$ with the appropriate genus and number of vertices.
+
+At each leg, we insert $R^{-1}$ (which, because of the symplectic condition, looks nearly like $R$), at $R^{-1}(\phi)\hat{v}_1$.
+
+At the edges we insert a more complicated form, that requires the symplectic condition:
+
+$$\frac{\eta^{-1}-R^{-1}(\psi_1)\eta^{-1}R^{-1}(\psi_2)^t}{\psi_1+\psi_2}$$
+
+What we have described is actually the non-unit preserving $R$-matrix action; we must also do the shifting.
+
+This works by adding temporary legs, at each of which we insert $T(\psi)$, which is essentially the first column of $R$.
+
+There are a few things to think about:
+
+the $R_{g,n}$ formula had these terms we described, but also the parity parameters $\zeta_V$.  This are essentially taking into account that nothing was matrix valued; but another way, it is counting how many $\hat{v}_0$ and $\hat{v}_1$ we had and making sure they satisfy the parity constraints we had in the TFT.
+
+It also handles the fact that the $A$ and $B$ series get cut in to their odd and even parts of $A$ and $B$.
+
+One can check that our edge term here looks like the edge term in the original series.
+
+One thing that requires more commment is tha tin the TFT we have $2^g\phi^{\frac{2g-2+n}{4}}$.  Note that $(2g-2+n)/4$ is nicely multiplicative due to the additivity of the euler characteristic and just factors out of everything, and we'll just have $\phi$ to some fixed power that doesn't matter.
+
+The $2^g$ term is more mysterious, and so we will get a coefficient 
+$$2^{\sum_v g_v}=\frac{2^g}{2^{h_1(\Gamma)}}$$, and we had the factor of $2^{h_1(\Gamma)}$ appearing in our original graph sum.
+
+\subsection{$r$-spin}
+What we did with $3$-spin curves reconstructs all known tautological relations; but we could play the same game with many differet CohFTs.
+
+The main property of the 3-spin Witten class were largely homogeneity, and semisimplicity of the shifted theory.
+
+These both hold for $r$-spin theories, we discuss now what changes in this case.
+
+The state space will now be
+
+$$V=\langle v_0,\dots, v_{r-2}\rangle, \one=v_0$$
+The metric is antidiagonal with respect to this basis, writing down $E$ and $\delta$ is not too hard.
+
+What becomes difficult is writing down quantum multiplication in the shifted theory.
+
+We computed the $W^{\phi}_{0,3}(v_0,v_1,v_1)$ explicitly, and there was only one nontrivial value.  In the $r$-spin theory, we are going to get many more nonzero contributions.
+
+The shifted quantum multiplication here is roughly equivalent to the complexity of the fusion algebra, or verlinde algebra.
+
+The other complexity that occurs is that we have many more choices of the shift $\gamma\in V$.  The choice of shift is essentially choosing an element in 
+$$\proj(V/\one)=\proj^{r-3}$$
+Already for 4-spin theories we have a $\proj^1$ worth of choices that give very different looking formulas, and hence we wind up with many different formulas for the $r$-spin classes and tautological relations.
+
+We don't really understand what is going on with these.  Since we get different formulas for the $r$-spin classes, we can set them equal and get a tautological relation.
+
+Most shifts do not have closed form $R$-matrices.  The only shift known to have ``nice'' $R$-matrix is by $v_{r-2}$.  For this shift, we can explicitly write down everything in terms of hypergeometric series, and get explicit tautological relations and formulas for Witten's $r$-spin class.
+
+\subsection{Applications}
+
+We end today by answering the following question: if we already get all known tautological relations using $3$-spin classes, why should we bother with these higher spin classes?
+
+We will describe a subset of the relations coming from $4$-spin, shifted by $v_2$, restricted to $\M_g$.  Recall that if we did this shifting for $3$-spin and restricting to $\M_g$, we exactly got the Faber-Zagier relation.  For this, we wil get fewer relations, but they will be interesting.
+
+To describe the FZ relations, we needed three pieces of notation: $A$-series, $B$-series, and notation for inserting $\kappa$ classes.
+
+Here, we will have
+
+$$A_4=\sum \frac{(4n)!}{(2n)!n!} T^n \quad\quad B_4\sum \frac{4n+1}{4n-1} \frac{(4n)!}{(2n)!n!} T^n $$
+
+And recall
+
+$$\left\{\sum c_i T^i\right\}=\sum c_i\kappa_i T^i$$
+
+\begin{theorem}
+
+$$
+\left[\exp\left(-\left\{\log\left(A_4(T)(1+p_2T+p_4T^2+\cdots)
++ B_4(T)(p_1+p_3T+p_5T^2+\cdots)\right)\right\}\right)\right]_{T^dp^\sigma}=0
+$$
+in $R^d(\M_g)$ for $2d\geq g+|\sigma|$
+\end{theorem}
+
+It is clear that there are fewer of these because they begin in codimension $2d/2$, but somehow they are easier to work with.
+
+We have only described a subset of the relations coming from $4$-spin theory.  In general, for the $r$-spin theory, we will have $r-1$ different hyper-geometric series.  The relations we get will start later and later as we increase $r$.
+
+
+
+
+\begin{corollary}
+$$\dim_\Q R^d(\M_g)\leq \text{number of partitions of $d$ with no part $>g-1-d$}$$
+\end{corollary}
+This is far from optimal in intermediate degrees, but gives another proof of Zagier's conjecture?
+
+\subsection{Comment}
+
+Recall that Teleman's result only holds in cohomology, but we are claiming that these results hold in Chow.  The reason we can do this is
+
+\begin{theorem}[Janda]
+The $r$-spin relations hold in Chow
+\end{theorem}
+\begin{proof}
+Equivariant GW-theory of $\proj^{r-2}$ implies $r$-spin.  
+
+By this, we mean the following: using the equivariant GW-theory of $\proj^{r-2}$, we can also derive tautological relations, and we know that these relations hold in Chow.  Janda shows that the relations coming from GW theory imply the ones coming from $r$-spin.  It is not clear exactly how the relations coming from these two theories are related.
+
+Janda's game is similar to the usual way of finding tautological relations using localization, but he uses a CohFT context  He can then compare $R$-matrices.
+
+The history here is that FZ relations were originally proven using virtual localization on stable quotients to $\proj^1$ (1=3-2).  
+
+Next, the 3-spin relations described were proven.  Then, Janda extended the proof of FZ relations to get $3$-spin relations, still using stable quotients on $\proj^1$, and most recently we have gotten the $r$-spin relations.
+
+Somewhere in here, Janda described that there's not much difference in using stable maps instead of stable quotients.  Roughly speaking, the fixed point loci get more complicated, but work of Givental can compute these for you anyway.
+\end{proof}
+
+In the final talk, we will move away from tautological relations, but talk about some work with double ramification cycles that is motivated by some of the CohFT techniques used here with $r$-spin curves.
+\end{document}
