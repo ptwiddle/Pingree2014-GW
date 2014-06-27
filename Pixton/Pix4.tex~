@@ -1,0 +1,31 @@
+\documentclass{amsart}
+
+\linespread{1.2}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{example}{Example}
+\newtheorem{question}{Question}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{corollary}{Corollary}
+
+\newcommand{\proj}{\mathbb{P}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\one}{\text{one}}
+\newcommand{\End}{\text{End}}
+\newcommand{\Mbar}{\overline{\mathcal{M}}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\Aut}{Aut}
+
+
+\title{The tautological ring and cohomological field theories IV}
+\author{Aaron Pixton}
+\begin{document}
+\maketitle
+
+
+\end{document}

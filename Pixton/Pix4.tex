@@ -1,0 +1,314 @@
+\documentclass{amsart}
+
+\linespread{1.2}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{example}{Example}
+\newtheorem{question}{Question}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{corollary}{Corollary}
+
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\proj}{\mathbb{P}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\one}{\text{one}}
+\newcommand{\End}{\text{End}}
+\newcommand{\Mbar}{\overline{\mathcal{M}}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\Aut}{Aut}
+
+
+\title{The tautological ring and cohomological field theories IV}
+\author{Aaron Pixton}
+\begin{document}
+\maketitle
+
+Today, we will talk about the double ramification cycle, and the previous lectures will appear as motivation.
+
+Let $A=(a_1,\dots,a_n)$, with $\sum a_i=0$.
+
+The cycle:
+$$\left\{[C, p_1,\dots,p_n]\in\M_{g,n}|\OO_C(\sum a_ipi_i)=\OO_C\right\}$$
+is rather interesting; and there are several possible ways one might think about extending it to $\Mbar_{g,n}$.  One way is to use relative Gromov-Witten theory.
+
+First, we need a way to rephrase the $a_i$.  We split them into positive parts, which give a partition $\mu$, and negative $a_i$, which give a partition $\nu$, and an integer $n_0\geq 0$ that counts the number of $a_i$ that are equal to zero.
+
+Then we introduce the moduli space
+
+$$\Mbar_{g,n_0}(\proj^1,\mu,\nu)=\left\{\text{stable maps to an unparametrized $\proj^1$ relative to $\mu,\nu$}\right\}$$
+
+We can then forget the map, and get a map to $\Mbar_{g,n}$.  Actually, if some of the $a_i$ are equal we really get a finite quotient of $\Mbar_{g,n}$; we will not worry about that now.
+
+\begin{definition}
+The \emph{double ramification cycle} is
+$$DR_{g,A}=\pi_*[\Mbar_{g,n_0}(\proj^1,\mu,\nu)^{Tilde}]^{\text{vir}}\in A^g(\Mbar_{g,n})$$
+\end{definition}
+
+Note: $DR_{g,A}$ is NOT the closure of the open locus described above.
+
+Today, our aim is to give a conjectural solution to:
+
+PROBLEM (Eliashberg): Give a fomula for $DR_{g,A}$.
+
+\begin{theorem}[Faber Pandharipande]
+$DR_{g,A}$ is tautological.
+\end{theorem}
+
+So, we would like a formula in terms of tautological classes.
+ 
+\section{Another viewpoint}
+
+Our conjectural formula for $DR_{g,A}$ is based on another viewpoint of the double ramification cycle.
+
+Let $\mathcal{X}_g$ be the universal family over $\mathcal{A}_g$, the family of abelian varieties.  We hav a map $\phi_A:\M_{g,n}\to \mathcal{X}_g$ defined by:
+$$\phi_A([C,p_1,\dots p_n])=[\text{Jac}(C),\OO_c(\sum a_ip_i)]$$
+Follwoing Hain, Grushevsky-Zakharov, we can extend $\phi_A$ to $\M^{ct}_{g,n}$, the set of curves with no nonseparating nodes, and hence a compact Jacobian.
+
+Then interpret
+$$DR_{g,A}^{ct}=\phi_A^*[S]$$
+where $S$ is the zero section inside $\mathcal{X}_g$.
+
+Then $[S]=\frac{1}{g!}\Theta^g$, and one can compute $\phi_A^*(\Theta)$, and hence $DR^{ct}_{g,n}$ is just the $g$th power of this divisor.
+
+They found:
+
+$$\phi_A^*(\Theta)=-\frac{1}{4}\sum_{0\leq h\leq g, S\subset\{1,\dots, n\}} (\sum_{i\in S} a_i)^2\delta_{h, S}$$
+
+Here $\delta_{h,S}$ is the boundary class where there is a separating node with genus $h$ and marked points $S$ on one side.  We also conventionally define $\delta_{0,\{i\}}=-\psi_i$, and $\delta_{0,\emptyset}=0$.
+
+This is $\psi_i$ on the moduli, and not the pulled back (or push forwarded?) $\psi_i$ that Hain originally used.
+
+In $\mathcal{A}_g$, we have $\Theta^{g+1}=0$, and so $$(\phi_A^*\Theta)^d=0$$ for $d\geq g+1$ gives a family of tautological relations.
+
+The main idea of this talk is that the pair of $DR_{g,A}$ and thetautological relations in degree $\geq g+1$ should be viewed as similar to Witten's $r$-spin class, and the $r$-spin tautological relations.
+
+To make this work, we should find some CohFT that contains $DR_{g,A}$ inside it.
+
+\section{A failed attempt at a CohFT }
+
+We will have an infinite dimensional state space (perhaps problematic):
+$$V=\langle v_i | i\in \Z\rangle$$
+with unit $\one=v_0$
+and the anti-diagonal metric
+$$\eta(v_a,v_b)=\delta_{a+b,0}$$
+And we will try to define 
+$$DR_{g,n}(v_{a_1}\otimes\cdots\otimes v_{a_n})=\left\{\begin{array}{ll} DR_{g,A}& \sum a_i=0 \\ 0 & \text{else}
+\end{array}\right.
+$$
+\begin{theorem}
+$DR_{g,n}$ satisfies all the axioms of a CohFT with unit, \emph{except} for splitting via $\rho_{\text{loop}}^*$.
+\end{theorem}
+\begin{proof}
+Exercise in understanding the relative Gromov-Witten moduli space.
+\end{proof}
+
+
+Note that this is the only axiom that doesn't make sense in Compact Type, and indeed we had a nice formula for this in compact type.
+
+
+For instance, the formula that holds for splitting by $\rho_{\text{tree}}$ is:
+$$\rho_{\text{tree}}^*(DR(v_{a_1}\otimes\cdots\otimes v_{a_n})=
+DR_{g_1,n_1}(v_{a_{i_1}}\otimes\cdots\otimes v_{a_{i_{n_1}}}\otimes v_b)\otimes DR $$
+
+
+What happens when we try to do $\rho_{\text{loop}}^*$ is
+
+$$\rho_{\text{loop}}^*DR_{g,A}(v_{a_1}\otimes\cdots\otimes v_{a_n})
+\neq \sum_{b\in\Z} DR_{g-1, n+2}(v_{a_1}\otimes\cdots\otimes v_{a_n}\otimes v_b\otimes v_{-b})$$
+
+Two problems: infinite sum, might not converge.  But more problematically, this lives in the wrong codimension.
+
+\section{Guess at an $R$-matrix}
+
+Even though do not have a CohFT; let's ignore this and try to find an $R$-matrix anyway and see what happens.
+
+To do this, let's consider what happens if we multiply out pwoers of the formula for $\phi_A^*(\Theta)$ in compact type:
+ \begin{multline*}
+\exp (2\phi_A^*(\Theta))=\sum_{\Gamma \text{ tree}, w:H(\Gamma)}\frac{1}{|\Aut(\Gamma)|}\\
+ \iota_{\Gamma*}\left( \prod_{\ell} \exp(w(\ell)^2\psi_\ell) \prod_{(h,h^\prime)} \frac{1-\exp(-w(h)w(h^\prime)(\psi+\psi^\prime))}{\psi+\psi^\prime}\right) 
+\end{multline*}
+
+Here $H(\Gamma)$ is the set of half edges and $w:H(\Gamma)\to\Z$ is a weight satisfying 
+\begin{itemize}
+\item $w(\ell_i)=a_i$ for $\ell_i$ the $i$th flag
+\item $w(h)+w(h^\prime)=0$ for $h, h^\prime$ opposite sides of an edge
+\item $\sum_{h\in H(v)} w(h)=0$, where $H(v)$ is the set of half edges incident to $v$.
+\end{itemize}
+
+For each tree, it is easy to see that given $a_i$ there is a unique weight $w$ satisfying these axioms.
+
+The $\psi+\psi^\prime$ term comes from the self-intersection formula for boundary divisors.
+
+There is an obvious guess of how to extend this formula to $\Mbar_{g,n}$, namely just change tree to graph:
+ \begin{multline*}
+\exp (2\phi_A^*(\Theta))=\sum_{\Gamma \text{graph}, w:H(\Gamma)}\frac{1}{|\Aut(\Gamma)|}\\
+ \iota_{\Gamma*}\left( \prod_{\ell} \exp(w(\ell)^2\psi_\ell) \prod_{(h,h^\prime)} \frac{1-\exp(-w(h)w(h^\prime)(\psi+\psi^\prime))}{\psi+\psi^\prime}\right) 
+\end{multline*}
+
+The problem is that the weighting function is no longer finite; we have an infinite number of choices for $w$, by changing the values around the loop.
+
+You might hope this converges, but it won't.  You could imagine what happens with a single loop, with many edges: the choice of weightings on the half edges will be $x$ and $-x$.  Tracking through where the choice of $x$ appears in our formula, we get sums of the following form appearing:
+
+$$\sum_{x\in\Z} x^2$$
+Of course, there are many ways developed to sum things like this, but for this particular sum, all the standard ways either give 0, or things that don't work for what we want.
+
+\section{Infinite Sums}
+We first claim that this formula needs a little bit more added into it when $\Gamma$ is not a tree.
+
+Recall our formulas for the FZ relations had terms depending on $h_1(\Gamma)$, coming from the topological field theory.  We have seen that the double ramification cycle does not give a CohFT, but let's look at what the underlying TFT (or degree 0 part) would be.  This is determined by the three point insertions:
+
+$$\omega_{0,3}(v_a,v_b,v_c)=\left\{\begin{array}{ll} 1 & a+b+c=0 \\ 0 & \text{else}
+\end{array}\right.$$
+If we did satisfy the axioms, we could use these to calculate
+
+$\omega_{g,n}(v_{a_1},\dots, v_{a_n})$ as a sum over graphs, with the number of ways of choosing the weights -- i.e., the coefficient of a graph $\Gamma$ would be the number of ways of choosing weights, which would be infinite.  The number of such choices forms a lattice, of dimension equal to $h_1(\Gamma)=g$.
+
+Thus, we should have
+$$\omega_{g,n}(v_{a_1}, \cdots, v_{a_n})=\left\{\begin{array}{ll} |\Z|^g & \sum a_i=0 \\ 0 & \text{else}
+\end{array}\right.
+$$
+
+Thus, we should also insert a factor of $\frac{1}{|\Z|^{h_1(\Gamma)}}$ in our sum.
+
+This would give
+\begin{align*}
+\frac{1}{|\Z|}\sum_{x\in\Z} x^2&=\frac{1}{\Z/0\Z}\sum_{x\in\Z/0\Z} x^2 \\
+&=\frac{1}{|\Z/r\Z|} \sum_{x\in \{0,1,\dots, r_1\}} x^2 |_{r=0} \\
+&=\frac{1}{r}\frac{(r-1)r(2r-1)}{6}|_{r=0} \\
+&=\frac{1}{6}
+\end{align*}
+
+So, we will replace this infinite sum by polynomial interpolation using moduli.  This gives a basic idea of how to compute these sums, but there are some questions about how to choose which representatives you sum over, what happens in higher dimensional lattices, etc.
+
+So, instead, we rephrase slightly, by defining for $r>0$::
+
+ \begin{multline*}
+C^r_{g,A}=\sum_{\Gamma \text{graph}, w:H(\Gamma)}\frac{1}{|\Aut(\Gamma)|r^{|h_1(\Gamma)}|}\\
+ \iota_{\Gamma*}\left( \prod_{\ell} \exp(w(\ell)(w_\ell-r)(\psi_\ell) \prod_{(h,h^\prime)} \frac{1-\exp(-w(h)w(h^\prime)(\psi+\psi^\prime))}{\psi+\psi^\prime}\right) 
+\end{multline*}
+where now the weight $w$ takes values in $\{0,1,\dots,r\}$, and satisfies the restraints we had before, but now only mod $r$.  Note that we have changes $w(\ell)^2$ to $w(\ell)(w(\ell-r)$ in the exponential; this is necessary to get a CohFT, and in the $r\to 0$ limit should vanish.
+
+
+\begin{theorem}
+For $r$ sufficiently large, $C_{g,A}^r$ is polynomial in $r$.
+\end{theorem}
+
+\begin{definition}
+$$C_{g,A}=C^r_{g,A}|_{r=0}$$
+\end{definition}
+
+\begin{conjecture}
+$$DR_{g,A}=2^{-g} C_{g,A}$$
+and this vanishes in degree bigger than $g$.
+\end{conjecture}
+
+Although $DR_{g,A}$ was not a CohFT, but $C^r_{g,A}$ is a CohFT on $V=\langle v_i|0\leq i\leq r-1\rangle$,, $\eta$ antidiagonal, $\one=v_0$, with  TFT
+
+$$\omega_{g,n}(v_{a_1}, \cdots, v_{a_n})=\left\{\begin{array}{ll} r^g & \sum a_i=0\mod r \\ 0 & \text{else}
+\end{array}\right.
+$$
+
+and we can find the $R$-matrix, that is diagonal with entries $\exp(a(r-1)z)$.
+
+We should understand what we're doing here as creating a family of CohFTs, and interpolating their values to a point outside the family (namely, 0).
+
+There is a question to what the geometric meaning of the $C^r_{g,A}$.  There is a variation where we have replaced $w(\ell)(w(\ell)-r)$ with some Bernoulli polynomial interpertration.
+
+This family of CohFTs has a geometric interpretation in terms of a CohFT coming from bundles over the space of $r$-spin curves.
+
+Also, we have $C_{g,A}=2^g DR_{g,A}$ on compact types.  Rather easily.  We can say something a little bit stronger -- it also agrees with a formula of Grushevsky and Zakharov on the locus of curves with at most one nonseparating node.
+
+\section{Examples }
+We intentionally pick examples that are not interesting in compact type.
+From a consideration of the definition, we have:
+$$DR_{1,(0)}=-\lambda_1=-c_1(\mathbb{E})$$
+
+Our formula has very few graphs that contribute -- we have $\Gamma$ being a genus 1 vertex with one edges of weight 1; this is easily seen to contribute 0.
+
+Another possibility is that we have a nodal elliptic curve; in this case, basically what is appearing is the sum of $x^2$ that we dealt with in the earlier example.  In our original notation, this should be
+
+$$\frac{1}{|\Z|}\sum_{x\in \Z} (-x^2)=-1/6$$
+Together with the factor of $2^{-g}$ that appears, we get that $$\lambda_1=-\frac{1}{12}[Boundary point in \Mbar_{1,1}]$$
+
+If we try to compute $DR_2$, a similar computation gives that this should be $\lambda_2$.
+
+Using our formula, two graphs contribute: a genus 0 vertex with two loops, and a genus 1 vertex with 1 loop (with a $\psi_1+\psi_2$, and automorphism factors.
+
+For the first graph, we get a contribution of $$(-\frac{1}{6})^22^{-g}=\frac{1}{144}$$
+
+For the second graph, we get a contribution of
+
+$$\frac{1}{|\Z|}\sum_{x\in\Z} 2^{-g}x^4/2 =-\frac{B_4}{8}=\frac{1}{240}$$
+
+Of course, this gets more complicated; for instance, if there is a triangle in the graph, the sum gets rather complicated.
+
+\section{An extra parameter}
+
+What we have done to this point was motivated by the compact type formula of Hain, Grushevsky-Zakharov.
+
+Recall this depended on the Abel-Jacobi map:
+\begin{align*}
+\phi_A:\M^{ct}_{g,n}&\to\mathcal{X} \\
+[C, p_1,\dots, p_n]&\mapsto [\text{Jac}(C), \OO_C(\sum a_ip_i)]
+\end{align*}
+
+An obvious thing to do is twist this by a power of the canonnical bundle.
+
+\begin{align*}
+\phi_{A,k}:\M^{ct}_{g,n}&\to\mathcal{X} \\
+[C, p_1,\dots, p_n]&\mapsto [\text{Jac}(C), K^{\otimes-k}_{\text{log} C}\OO_C(\sum a_ip_i)]
+\end{align*}
+Here, instead of wanting $\sum a_i=0$, we want $\sum a_i=k(2g-2+n)$.
+
+This yielded a class
+
+$$\frac{(\phi^*_{A,k}\Theta)^g}{g!}$$
+on $\M^{ct}_{g,n}$.
+
+This yields a very similar formula to what we had before, but with a slight modification of our weight functions $w:H(\Gamma)$.
+
+We want all the conditions to the same, except for the vertex condition, which changes to
+$$\sum_{h\in H(v)} w(h)=k(2g_v-2+n_v)$$
+
+The only other change is that we must insert a product over vertex terms:
+
+ \begin{multline*}
+C^r_{g,A,k}=\sum_{\Gamma \text{graph}, w:H(\Gamma)}\frac{1}{|\Aut(\Gamma)|r^{|h_1(\Gamma)}|}\\
+ \iota_{\Gamma*}\left( \prod_{\ell} \exp(w(\ell)(w_\ell-r)(\psi_\ell) \prod_{(h,h^\prime)} \frac{1-\exp(-w(h)w(h^\prime)(\psi+\psi^\prime))}{\psi+\psi^\prime}\right) 
+\\ \prod_v \exp(k(r-k)\kappa_1[v])
+\end{multline*}
+
+Then we have the same game of polynomial interpolation to define $C_{g,A,k}$, and wind up with
+
+\begin{theorem}
+$$C_{g,A,k}=\frac{(\phi^*_{A,k}\Theta)^g}{g!}$$ on $\M^{ct}_{g,n}$.
+\end{theorem}
+
+
+We no longer have a geometric interpretation of what the extension of this to $\Mbar_{g,n}$ is, so we don't have a $DR$ type conjecture here.  But we still have conjectural tautological relations:
+
+\begin{conjecture}
+$C_{g,A,k}$ vanishes in degree $>g$
+\end{conjecture}
+
+In fact, we can prove some subset of these, which might give some evidence for  the first set of conjectures:
+\begin{theorem}
+$C_{g,A,1}$ vanishes in degree $g+1$ when all the $a_i$ are positive.
+\end{theorem}
+
+\begin{proof}[Sketch]
+Consider the $r$-spin relations in $R^{g+1}(\Mbar_{g,n})$ given by parameters $v_{a_1-1}, v_{a_2-1},\dots, v_{a_n-1}$, and shift $v_{r-2}$.  These relations are polnomial in $r$, and the linear term in $r$ is the desired relation.
+\end{proof}
+
+The philosophy behind why $k=1$ is related to $r$-spin is, super quick, that we have the log canonnical bundle in the picture.  More specifically, we want a line bundle $L$ with $rL=K_C(\sum a_ip_i)$.  Taking $r=0$ gives the $k=1$ term in our previous thing.
+
+\end{document}
+
+
+ 
