@@ -1,0 +1,397 @@
+\documentclass{amsart}
+
+
+\linespread{1.2}
+
+\theoremstyle{definition}
+\newtheorem{dummy}{}[section]
+
+\newtheorem{theorem}[dummy]{Theorem}
+\newtheorem{definition}[dummy]{Definition}
+\newtheorem{example}[dummy]{Example}
+\newtheorem{question}[dummy]{Question}
+\newtheorem{conjecture}[dummy]{Conjecture}
+\newtheorem{lemma}[dummy]{Lemma}
+\newtheorem{proposition}[dummy]{Proposition}
+
+\newcommand{\TT}{\mathbb{T}}
+\newcommand{\Pic}{\text{Pic}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\GIT}{//}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Stab}{\text{Stab}}
+\newcommand{\Spec}{\text{Spec}}
+\newcommand{\aff}{\text{aff}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\Map}{\textrm{Map}}
+\newcommand{\proj}{\mathbb{P}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\sm}{\text{sm}}
+\newcommand{\Mbar}{\overline{\mathcal{M}}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Age}{\text{Age}}
+\newcommand{\Fix}{\text{Fix}}
+\newcommand{\one}{1}
+\newcommand{\st}{\text{st}}
+\newcommand{\ttt}{\mathbb{t}}
+\newcommand{\ev}{\text{ev}}
+\newcommand{\vir}{\text{vir}}
+\newcommand{\Quot}{\text{Quot}}
+\newcommand{\Hom}{\text{Hom}}
+
+
+\newcommand{\Aut}{Aut}
+\title{Quasimaps and mirror theorems for GIT quotients IV}
+\author{Ionut Ciocan-Fontanine}
+
+
+\begin{document}
+\maketitle
+
+Today we're going to talk about $\epsilon$-wall-crossing.
+
+Recall that $\epsilon\in\Q\cup\{0+,\infty\}$.
+
+\section{Graph spaces}
+We discussed graph spaces a little bit in the first lecture for Gromov-Witten theory ($\epsilon=\infty$), (and in the unpointed case for $\epsilon=0+$?).
+
+But now we will have markings:
+
+%$$QG^\epsilon_{0,k,\beta}=\left\{(C,\underline{x},[u],\varphi)|\begin{array}{l} \left([u],\varphi):C\to\mathcal{X}\times\proj^1 \\
+% [u] \theta-\text{prestable qmap, class $\beta, g=0} \\
+%\varphi_*[C]=[\proj^1] 
+%\end{array} 
+%\text{ and Stability} \right\}$$
+
+Here Stability means
+\begin{enumerate}
+\item $\epsilon\ell_{\theta_0}(x)+\sum_{i}\delta_{x,x_i}\leq 1$
+\item ampleness of $\omega_{log}\otimes[u]^*L_{\theta_0}^\epsilon$ only on $\overline{C\setminus C_0}$, $\varphi:C_0\to \proj^1$
+\end{enumerate}
+
+This is a nice moduli space, DM stack, separated, etc.  Virtual fundamental class works the same 
+
+Before, if $\epsilon$ was really small we needed at least two markings, but here it is well deffined for all $(k,\beta,\epsilon)$ because we have the parameterized component.
+
+$QG^{0+}_{0,0,\beta}(X)$ is a compactification of $\text{Map}_\beta(\proj^1,X)$.  
+This recaptures many other compactifications in the literature:
+
+\begin{itemize}
+
+\item for $X=\proj^N$ it reproduces our large projective space, 
+\item for toric varieties it produces Morrison-Plesser, givental
+\item For Grassmannians it reproduces the Quot schemes
+\item For type $A$ flag manifolds it reproduces Laumon spaces
+\item for Hilbert scheme of points it gives Diaconescu's moduli space of something something on $\proj^1$.
+\end{itemize}
+
+
+
+\subsection{Fixed points}
+Because we have the parametrized $\proj^1$, this space has a $\C^*$ action that scales this $\proj^1$.
+
+To be $\C^*$ fixed, all the markings, and the entire class $\beta$, must be concentrated over $0$ and $\infty$ on $C_0$.
+
+Thus we will have two curves, $C_1$ attached at $0$ with class $\beta_1$ and $k_1$ marked points, and $C_2$ attached ato $\infty$ with class $\beta_2$ and $k_2$ marked points.
+
+Thus, this fixed point loci will look like:
+
+$$F^{k_1,\beta_1}_{k_2,\beta_2} Q^\epsilon_{0,k_1+\bullet}(X,\beta_1)\times_X Q^\epsilon_{0,k_2+\bullet}(X,\beta_2)$$
+
+Plus, we need some conventions for the cases when $C_1$ and $C_2$ are unstable.
+
+In particular, $F_{0,0}^{k,\beta}$ parametrizes the case where evetything is over $0\in C_0$
+
+If $K\geq 1$ or $\beta(L_\theta)>1/\epsilon$, we have $F_{0,0}^{k,\beta}\cong Q^\epsilon_{0,k}(X,\beta)$, and the fixed point obstruction theory agress with the usual obstruction theory.
+
+Plus, we know that
+
+$$e(N^\vir)=\left\{\begin{array}{ll} \frac{1}{z} & \\ \frac{1}{z(z-\psi)} & \end{array}\right.$$
+
+Let $$F_{0,0}^{0,\beta}=``Q^\epsilon_{0,0+\bullet}(X,\beta)''=?$$
+
+
+MAps of $C_0$ with a fat point on it 
+$$=\left\{ [u]:\proj^1\to \mathcal{X} | [u]|_{C_0\setminus 0}=\text{ constant}, \ell_{\theta_0}(0)=\beta(L_{\theta_0})\right\}$$
+
+We are taking $\beta<\frac{1}{\epsilon}$, so we are looking at the $0+$ stability condition.
+
+By $\ev_\bullet:F^{0,\beta}_{0,0}\to X$ is ``evluation at the generic point''; it is easy to see that this is a proper morphism.
+
+However, this locus needs to be described separately in each example.
+
+\begin{itemize}
+\item
+If $X=\proj^{n-1}$, the fixed point locus is also $\proj^{n-1}$, and $\ev_\bullet$ is the identity
+\item If $X$ toric, then $F_{0,0}^{0,\beta}$ is the intersection of toric divisors in $X$, and $\ev_\bullet$ is the embedding into $X$.
+\item If $X$ is the Grassmannian, then $F_{0,0}^{0,\beta}=\cup_{\text{splitting types}} F_j$, with $F_j$ a flag bundle over $X$, and $\ev_{\bullet}$ is the projection map.
+
+
+By Grothendieck, every $G$-bundle has a torus filtration on $\proj^1$, and there is a Harder-Narasihim filtration that corresponds to a parabolic.
+\end{itemize}
+The point is in each case, there is work to figure out what $F_{0,0}^{0,\beta}$ is, but it can be described.
+
+We have
+$$[F_{0,0}^{0,\beta}]^\vir=[F_{0,0}^{0,\beta}]$$
+
+Put $$I_\beta(x)=(ev_\bullet)_*\left(\frac{1}{e(N^\vir)}\right)$$
+
+\begin{itemize}
+
+
+\item For $\proj^{n-1}$, we have
+$$I_\beta=\frac{1}{\prod_{k=1}^{d=\beta(L_{\theta_0})} (H+kz)^n}$$
+\item For Quintic, we have
+$$I_\beta=\frac{\prod_{i=1}^d (5H+kz)}{\prod_{1}^d (H+kz)^5}$$
+\item For $X$ toric, we have ..
+
+
+
+\end{itemize}
+
+The point is that in each case you'll  have to work to figure this out, but the technique is rather standard -- the euler sequences come in.
+
+
+\subsection{J-functions}
+
+The point is it included one point invariants in genus 0, but if the parameter $\epsilon$ is very small, 1 point invariants do not exist.  So rather than trying to use one point invariants, we will use the graph spaces.
+
+\begin{definition}
+The big $\J^\epsilon$ function of $(W,G,\theta_0)$, for $(\epsilon\geq 0+)$,is
+$$\J^\epsilon(q,t,z)=\sum_{k\beta} \frac{q^\beta}{k!} (\ev_\bullet)_* \text{Res}_{F^{k,\beta}_{0,0}} \left([QG^\epsilon_{0,k,\beta}(X)]^\vir\cap\prod \hat{\ev}_i(t\otimes\one_{\proj^1})\right)$$
+
+Here $t=\sum t_0T_i=tt(\psi)|_{t_1=\cdots=0}\in H^*(X)$ is the general primary insertion.
+
+AT $0+$, we have
+
+$$\J^{0+}(q,t,z)=\one+\frac{t}{z}+\sum_{\beta\neq 0} q^\beta \I_\beta(z)+\sum_i T_i\left\langle\left\langle\frac{T^i}{z(z-\psi)}\right\rangle\right\rangle^{0+}_{0,1} (t)$$
+
+Here the first term is the (0,0) contribution and the second is (0,1) term, and the $(t)$ at the end is saying something about us always having an insertion of $t$.
+
+More generally, we have
+
+$$\J^{\epsilon}(q,t,z)=\one+\frac{t}{z}+\sum_{\beta(L_{\theta_0})\leq 1/\epsilon} q^\beta \I_\beta(z)+\sum_i T_i\left\langle\left\langle\frac{T^i}{z(z-\psi)}\right\rangle\right\rangle^{0+}_{0,1} (t)$$
+
+
+We have
+
+$$\I_{\text{sm}}(q,z)=\J^{0+}(q,0,z)=\one+\sum q^\beta\I_\beta(z)$$
+
+and more generally
+\begin{align*}
+\J_\text{sm}^\epsilon(q,z)&=\J^\epsilon(q,0,z) \\
+&=\one+\sum_{\beta(L_\theta)\leq \frac{1}{\epsilon}} q^\beta\I_\beta(z)+\sum T_i\sum_{\beta(L_0)>1/\epsilon} q^\beta \left\langle \frac{T^i}{z(z-\psi)}\right\rangle^\epsilon_{0,1,\beta}
+\end{align*}
+
+So we are trading off higher order terms of the $\J$ function for,,,?
+
+
+\section{$S$-operators and Birkhoff Factorization}
+
+The symplectic refers to Givental's symplectic space.
+The $S$-operators will act on $\gamma\in H^*(X)$ by
+
+$$S^\epsilon_t(\gamma)=\sum_{h}T_j\left\langle\left\langle\frac{ T_j}{z-\psi},\gamma\right\rangle\right\rangle^\epsilon_{0,2}(t)$$
+
+Before, we only summed over the moduli spaces that do exist.  In this case, there is only one unstable moduli space, and we \emph{include} that invariant, with the convention
+$$\left\langle \frac{T^j}{z-\psi},\gamma\right\rangle^\epsilon_{0,2,0}=\langle T^i,\gamma\rangle$$
+\end{definition}
+
+So $S_t^\epsilon(z)(\gamma)=e^{t/z}\gamma+O(q)$.
+
+We can extend to $\gamma\in\mathcal{H}=H^*(X,\Lambda)((z^{-1}))$, with some conditions that are not so important; the point being that we can plug the $\J$-function in.
+
+Another important observation is that if we take
+
+$$z\frac{\partial}{\partial t_{0i}} \J^\epsilon=S^\epsilon_t(z)(T_i)$$
+
+\begin{proposition}
+The operator $S_t^\epsilon(z)$  is symplectic.  
+
+More precisely let 
+
+$$S_t^{\epsilon*}(z)(\gamma)=\sum_{i}T^i\left\langle\left\langle T_i,\frac{\gamma}{z-\psi}\right\rangle\right\rangle^\epsilon_{0,2}(t)$$
+Then
+$$S_t^{\epsilon*}(-z)\circ S_t^\epsilon(z)=\text{id}$$
+\end{proposition}
+\begin{proof}
+We will use localization on the graph space.
+
+Let $p_o,p_\infty\in H^*_{\C^*}(\proj^1)$ be given by:
+\begin{align*}
+P_0|_0&=z & P_0|_\infty&=0 \\
+P_\infty|_0&=0 & P_\infty|_\infty&=-z 
+\end{align*}
+
+We will take the the $\C^*$-equivariant integral of
+
+$$\left\langle\left\langle \gamma\otimes p_o,\delta\otimes p_\infty\right\rangle\right\rangle^{QG^\epsilon}_2(t)$$
+
+which will be a power series in $z$, since it is equivariant.  
+
+Virtual localization gives that this is equal to 
+
+$$\sum_{i}\left\langle\left\langle\frac{T^i}{z-\psi},\gamma\right\rangle\right\rangle^\epsilon_{0,2}
+\sum_{i}\left\langle\left\langle\delta, \frac{T_i}{-z-\psi}\right\rangle\right\rangle^\epsilon_{0,2}=\langle \gamma,\delta\rangle+O(1/z)$$
+
+However, since both sides our power series in $z$, we must see that the $O(1/z)$ term must vanish.
+\end{proof}
+
+\subsection{Comments about how this works in GW}
+In generally, we can find $S$ from teh $\J$ function by taking the derivatives.
+\begin{itemize}
+\item $S^{\infty*}_t(z)$ is the fundamental solution.
+\item $S^\infty_t(z)(\one)=\J^\infty$ by the string equation.
+\item The symplect property is usually proved by splitting and the string equation.
+\end{itemize}
+
+$$P^\epsilon(q,t,z)=\sum_i T^i\left\langle\left\langle T_i\otimes p_\infty\right\rangle\right\rangle ^{QG^\epsilon}_1(t)$$
+
+\begin{theorem}[Birkhoff Factorization]
+For all $\epsilon\geq 0+$ we have
+$$ \J^\epsilon=S^\epsilon_t(z)(P^\epsilon)$$
+\end{theorem}
+We should think of this as some kind of string equation.
+
+We call this Birkhoff factorization because $\J$ in general will depend on both positive and negative dependence on $z$, but $S$ has only negative powers of $z$ and $P$ has only positive powers in $z$ (coming from equivariant integrals).
+
+\begin{proof}
+Apply $\C^*$-localization to $P$.  
+
+We always have a marked point over $\infty$, and the fixed point loci will always be a moduli space with two markings, and the euler class of the normal bundle will always be $-z(z-\psi)$.  The insertion of $p_\infty$ will kill the $-z$, and so give us $S^\epsilon*_t(-z)$, and we get
+$$P^\epsilon=S_t^{\epsilon*}(-z)(\J^\epsilon)$$
+Apply the symplectic property, and we are done.
+\end{proof}
+
+
+\subsection{Semi-positive case}
+
+\begin{definition}
+$(W,G,\theta_0)$ is semipostive if and only if $\beta(\text{det} T_W)\geq 0$ for all $\beta\in\text{Eff}(W,G,\theta_0)$.
+\end{definition}
+
+This implies that $-K $ of the GIT quotient is Nef, but not the other way around.
+
+The index of the canonical class may be different than the index of the canonical class of the quotient stack.
+
+E.G., $[\C/\C^*]$ is Fano index one; it's quotient is a point.
+
+Also, the conic is Fano index 1, but gives $\proj^1$ of Fano index 2?
+
+But in many cases this agrees; complete intersections are semi-postive if they are semi-positive in the usual way.
+
+And if we take the standard presentations of toric varieties, the notions of semi-positivity agree.
+
+Let us special Birkhoff factorization to $t=0$, so we are looking at graph spaces with only one marking, and the virtual dimension is
+
+$$\text{vdim} QG^\epsilon_{0,1,\beta}(X)=\dim X+1+\beta(\text{det} T_W)\geq \dim X+1$$
+
+But the cohomological degree of the insertion is at most $\dim X$, and we see that
+
+$$P^\epsilon_{t=0}=\one f^\epsilon(q)$$
+and $f^\epsilon(q)$ depends only on the CY directions, those $\beta$ with $c_1(\beta)=0$.  IN particular, in teh Fano case, $f^\epsilon)(q)=1$.
+
+So
+$$\J^\epsilon|_{t=0}=f^\epsilon(q)S^\epsilon_0(z)(\one) $$
+
+In particular, in the semi-positive case, $$\J^\epsilon_{\text{sm}}=\J^\epsilon|_{t=0}\one\J_0^\epsilon(q)+\J^\epsilon_1(q)\frac{1}{z}+O(\frac{1}{z^2})$$ 
+
+$\J_0^\epsilon(q)=f^\epsilon(q)$
+The dependence on positive powers of $z$ in $\J^\epsilon$ was given just by the small $\J^\epsilon$, because if you have $t$, then you had two points, and two negative powers of $z$.  So, this says that in the semipositive case $P^\epsilon$ does not depend on negative powers of $z$ at all, and so we have, in the semipositive case, that
+
+$$\frac{\J^\epsilon(q,t,z)}{\J_0^\epsilon(q)}=S_t^\epsilon(z)(\one)$$
+
+First proven in a special case by Cooper-Zinger for projective space, using localization with respect to the big torus action.
+
+In addition $\J_0^\epsilon(q)$ and $\J_1^\epsilon(q)$ are just truncations of the small $\I$-function, and so can be easily calculated if we know the small $\I$-function.
+
+
+In particular, for semi-positive targets, we have $$\sum T_i\left\langle\left\langle T^i\one\right\rangle\right\rangle^\epsilon_{0,t}(t)-\one=\frac{t+\J_1^\epsilon(q)}{\J_0^\epsilon(q)}$$
+
+IN Gromov-Witten theory, these all vanish by the string equation, but in Quasimap theory they don't
+\section{Wall Crossing}
+
+
+\begin{conjecture}
+Let $\epsilon\geq 0+$, and put
+$$\tau^\epsilon(t)=\sum T_i\left\langle\left\langle T^i\one\right\rangle\right\rangle^\epsilon_{0,t}(t)-\one$$
+THen
+$$\J^\infty(q,\tau^\epsilon(t),z)=S^\infty_{\tau^\epsilon(t)}(\one)=S_t^\epsilon(\one)$$
+
+In particular, for semipostive $x$, we have
+$$\J^\infty(q,\frac{t+\J_1^\epsilon}{\J_0^\epsilon},z)=\frac{\J^\epsilon(q,t,z)}{\J_0^\epsilon}$$
+\end{conjecture}
+
+The conjecture is known in the cases where we have twisted theories.
+
+Let $E$ be a $G$-rep, $W\times E$ a $G$-equiariant vector bundles, and 
+$$\overline{E}=W^{ss}\times_G E$$ the induced line bundle on $X$.  Assume that $E$ is convex (i.e., $W\times E$ is generated by $G$ invariant global sections, so that $H^1$ of the pullback to any rational curve vanishes).
+
+We have $\mathcal{P}\to\mathcal{C}$, and $\mathcal{C}\to Q^\epsilon_{0,k}(X,\beta)$ being the universal curve and the universal $G$-bundle.
+
+We define the bundle
+$$E_{0,k,\beta}=\pi_*(\mathcal{P}\times_G  E)$$
+and we defined the twisted theory by
+
+$$\left\langle\cdots\right\rangle^{\epsilon, E}_0=\int_{[-]^\vir} \cdots c_{top}(E_{0,k,\beta})$$
+
+If we take $E$ and its zero locus, and take its GIT quotient we get blah, and this is the same as the twisted theory of the ambient.
+
+
+\begin{theorem}
+Assume there exists a torus $T$ acting on $W$, such that the action commutes with the $G$ action and $X^T$ is finite.  Then Conjecture one holds for $X$, and for all $E$-twisted theories with $E$-convex.
+\end{theorem}
+
+Note that almost all our examples are covered by this theorem (the exception being certain Nakajima quiver varieties).  But, in particular, some are; for instance, the Hilbert schemes of points on $A_n$ resolutions.
+
+\begin{proof}
+The main thing we are doing is comparing $S$-operators applied to $\one$, and so our invariants will always have at least two insertions.
+
+Thus, following Givental, we can localize each side, and the results will satisfy a recursion.
+
+The coefficients of the recursion are \emph{obviously} the same, since they are obtained by torus fixed quasimaps to finite sets, but since they are torus fixed they can not have any bad things happening at the base locus, and so we just have stable maps into the target lying about the fixed points.  And so we dont care if the orbit $\proj^1$ has moduli (like in Hilbert schemes of points).
+
+Polynomiality is again clear because we have graph spaces.
+
+The two sides match mod $\frac{1}{z^2}$ because they both start with 1 and there's the something something $1/z$ term.
+
+Thus, applying the uniqueness lemma, we are done.
+
+
+
+
+\end{proof}
+Note that this sketched argument takes about 20 pages in the paper, but this is the basic story of what happens there.
+
+There is no positivity requirement at all, so this applies for instance to things of general type, but harder to compare there because there's the $P$-function...
+
+
+\section{Higher Genus}
+Here we restrict to the semi-positive case only.
+
+\begin{conjecture}
+For all $\epsilon\geq 0+$, we have
+
+$$\left(\J_0^\epsilon(q)\right)^{2g-2}\mathcal{F}_g^\epsilon(tt(\psi))=\mathcal{F}_g^\infty \left(\frac{tt(\psi)+\J_1^\epsilon}{\J_0^\epsilon}\right)$$
+
+
+\end{conjecture}
+$$\left(\I_0(q)\right)^{2g-2}\mathcal{F}_g^\epsilon(tt(\psi))=\mathcal{F}_g^\infty \left(\frac{tt(\psi)+\I_1^\epsilon}{\I_0^\epsilon}\right)$$
+
+and so we have found an $A$-model theory that agrees with the $B$-model without the mirror map.
+
+HOMEWORK: Let $(W,G,\theta)=(\C,\C^*,\text{id}_{\C^*}$.  Then Conjecture 2 is true.  
+
+HINTS: $$\J^\epsilon_0(q)=1,\quad \J^\epsilon_1(q)=q\one,\quad \J^\epsilon=e^{q+t/z}$$
+
+Look at Example 4, ... in higer genus paper with Bumsig where this is worked out.
+
+By the Homework and the Bouchard principle (checking it one example), then Conjecture 2 is true.
+
+
+
+
+\end{document}
