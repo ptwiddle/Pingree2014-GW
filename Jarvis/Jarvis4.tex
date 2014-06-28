@@ -1,0 +1,297 @@
+\documentclass{amsart}
+
+\linespread{1.2}
+\theoremstyle{definition}
+\newtheorem{dummy}{}[section]
+\newtheorem{theorem}[dummy]{Theorem}
+\newtheorem{definition}[dummy]{Definition}
+\newtheorem{example}[dummy]{Example}
+\newtheorem{question}[dummy]{Question}
+\newtheorem{conjecture}[dummy]{Conjecture}
+
+\newcommand{\vir}{\text{vir}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\ev}{\text{ev}}
+\newcommand{\Mbar}{\overline{\mathcal{M}}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Age}{\text{Age}}
+\newcommand{\Fix}{\text{Fix}}
+\newcommand{\one}{1}
+\newcommand{\st}{\text{st}}
+
+\newcommand{\Aut}{Aut}
+\title{An introducion to FJRW theory IV}
+\author{Tyler Jarvis}
+
+\begin{document}
+\maketitle
+Today, Nathan Priddis is substituting in as Tyler is losing his voice.
+
+The plan today is to talk about two things: LG mirror symmetry, and the LG/CY correspondence.
+
+\section{LG mirror symmetry}
+
+First, we will review what we have done
+
+\subsection{A-model review}
+
+
+\subsubsection{Input}
+Recall we started with:
+
+
+A $W$-quasihomogeneous polynomial satisfying:
+\begin{itemize}
+\item weights $q_i=c_i/d$
+\item Isolated singularity 
+\item No terms of the form $x_ix_j$
+\end{itemize}
+
+and a group of symmetries $G^W$:
+
+
+ $$G^W=\left\{(\alpha_1,\dots,\alpha_N)\in(\C^*)^N|W(\alpha_1x_1,\dots,\alpha_Nx_n)=W(x_1,\dots, x_N)\right\}$$
+
+With the grading element $J_W$.
+
+$G^W$ is what we were calling $G^{max}$ before, but later we will have two maximal groups (one from the mirror).
+
+\subsubsection{Output}
+
+From this, we first constructed the state space
+
+\begin{align*}
+A^{W,G}&=H^*_{CR}([\C^N/G], W^\infty,\C) \\
+&=\bigoplus_{g\in G} A_g
+\end{align*}
+
+The grading was
+
+$$(p+\sum_{i=1}^N \Theta_i^g-\sum_{j=1}^N q_i, N_g-p+\sum_{i=1}^N \Theta_i^g-\sum_{j=1}^N q_i)$$
+
+Here $p$ is the internal weight, each piece was a Jacobi ring, and this was the weight coming from that.  The $\Theta$ terms are the weights, similar to the age in Chen-RUan cohomology, and the $q_i$ are an extra shifting, which is the age of $J$ -- recall, that our identity lived in $A_J$, and so the shifting of $A_J$ should be trivial.
+
+We had the moduli space of $W$ structures, with a virtual fundamental class that we could push forward to $\Mbar_{g,n}$ to obtain a CohFT:
+
+$$\Lambda_{g,n}(\phi_1,\dots,\phi_n)\in H^*(\Mbar_{g,n})$$
+
+Integrating these classes over $\Mbar_{g,n}$, we get numbers, called correlators, which are the FJRW invariants.
+
+\subsection{B-model}
+
+We now turn to the $B$-model.  The input to the $B$ model is the same as the $A$-model; a quasihomogeneous polynomial $W$ and a finite group of symmetries $G\subset G^W$.
+
+
+
+We have already seen some of the ingredients that go into the $B$-model.
+
+The main piece is $\Omega_W=\Omega^N/\partial W\wedge \Omega^{N-1}=\C[x_1,\dots, x_N]/(\partial_1 W,\dots, \partial_N W)$
+
+$\Omega_W$ is called the Jacobi ring (or Milnor ring?)
+
+The fact that $W$ had an isolated singularity at the origin means that $\Omega_W$ is finite dimensional, with dimension
+
+$$\mu=\prod_{j=1}^N (\frac{1}{q_j}-1)$$
+
+
+
+It has a top degree element called the Hessian 
+$$\text{Hess}(W)=\text{det}\left(\partial_i\partial_j W\right)$$
+
+\subsubsection{The role of $G$}
+The group $G^W$ acts on $\Omega_W$:
+
+\begin{align*}
+(\alpha_1,\dots,\alpha_n)\cdot\prod_{j=1}^N x_j^{m_j}dx_1\wedge\dots\wedge dx_N
+=\prod_{j=1}^N \alpha_j^{m_j+1}\prod_{j=1}^N x_j^{m_j}dx_1\wedge\dots\wedge dx_N
+\end{align*}
+
+\subsubsection{Pairing}
+The pairing is defined by taking the coefficient of the top dimensional part in $fg$, and normalizing by $\mu(W)$:
+
+$$fg=\frac{\langle f, g\rangle}{\mu(W)}\cdot\text{hess(W)}+ \text{ lower order}$$
+From this, it is clear that
+$$\langle fg,h\rangle=\langle f, gh\rangle$$
+and so this structure gives us a Frobenius algebra.
+
+
+\subsubsection{Groups}
+
+On the $A$ side, our group $G$ had to be ``admissible'', which means it contains $J$.  Dual to that on the $B$ side, we have that $G$ must be contained in $SL_W=SL_N\cap G^W$.
+
+Our state space will be
+
+$$\mathcal{Q}_{W,G}=\bigoplus_{g\in G} \left(\Omega_{W_g}\right)^G$$
+Our grading is given by:
+
+$$(p+\sum_{i=1}^N \Theta_i^g-\sum_{j=1}^N q_i, p+\sum_{i=1}^N \Theta_i^g-\sum_{j=1}^N q_i)$$
+which is similar to the grading on the $A$ model, but symmetric instead of antisymmetric.
+
+The pairing on the orbifolded state space is constructed similarly to before:
+
+$$\langle,\rangle:\Omega_{w_g}\otimes\Omega_{w_{g^{-1}}}\to\C$$
+which gives us a Frobenius algebra.
+
+There is an obvious isomorphism $A_{W,G}\cong \mathcal{Q}_{W,G}$, as vector spaces, but the gradings and pairings are different.
+
+\subsection{Mirror Symmetry}
+
+\begin{definition}
+A quasihomogeneous polynomial is \emph{invertible} if it has the same number of monomials and variables, (and it satisfies the properties it had before)
+\end{definition}
+
+So $W=\sum_{i=1}^N\prod_{j=1}^N x_j^{a_{ij}}$.
+
+\begin{theorem}[Kreuzer, Skarke]
+Let $W$ be an invertible polynomial satisfying our main conditions.
+
+Then $W$ is the disjoint sum of the following atomic types:
+\begin{enumerate}
+\item Fermat: $x^a, a\geq 2$
+\item Chain: $x_1^{a_1}x_2+x_x^{a_2}x_3+\cdots x_{N-1}^{a_{N-1}}x_N+x_N^{a_N}$ with $a_i\geq 2$
+\item Loop: $x_1^{a_1}x_2+x_x^{a_2}x_3+\cdots x_{N-1}^{a_{N-1}}x_N+x_N^{a_N}x_1$ with $a_i\geq 2$
+\end{enumerate}
+
+\end{theorem}
+
+The exponent matrix is $E_W=(a_{ij})$.
+
+The inverse matrix $E_w^{-1}=(a^{ij})$. 
+
+Define $\rho_j\in(\C^*)^N$
+
+$$\rho_j=\left(\exp(2\pi i a^{1j}),\dots,\exp(2\pi i a^{Nj})\right)$$
+
+FACT 1:
+Then $\{\rho_j\}$ generated $G^W$.  This is not at all a minimal generating set, but will be an important set of generators that will let us write the dual group.  
+
+We leave the proof as an exercise, but the hint it $E_W^{-1} E_W=\text{Id}$.
+
+FACT 2: $q_i=\sum_{j=1}^N a^{ij}$
+
+This implies that $J=\rho_1\cdots\rho_N$.
+
+\begin{example}[$E_7=x^3+xy^3$]
+
+We have
+
+$$E_w=\begin{pmatrix} 3 & 0 \\ 1 & 3 
+\end{pmatrix}$$
+
+$$E^{-1}_w=\begin{pmatrix} \frac{1}{3} & 0 \\ \frac{-1}{9} &\frac{1}{3} 
+\end{pmatrix} $$
+
+$$J=\left(e^{2\pi i/3}, e^{2\pi i 2/9}\right)$$
+\end{example}
+
+
+\begin{definition}[Berglund, H\"ubsch, Krawitz, Henningson]
+\begin{enumerate}
+\item The dual polynomial to $W$, written $W^T$, is given by $E_W^T$.
+\item The dual grop $G^T$, is
+\begin{align*}
+G^T&=\left\{ \overline{\rho}_1^{b_1}\cdots \overline{\rho}_N^{b_N} | \prod_{j=1}^N x_j^{b_j} \text{ is $G$-invariant}\right\} \\
+&=\left\{ \overline{\rho}_1^{b_1}\cdots \overline{\rho}_N^{b_N} | (b_1,\dots, b_n)E_w^{-1} (\ell_1,\dots,\ell_n)^T\in\Z \text{ for all } \rho_1^{\ell_1}\cdots\rho_N^{\ell_N}\in G\right\}
+\end{align*}
+\end{enumerate}
+
+\end{definition}
+
+Facts:
+\begin{enumerate}
+\item $(G^T)^T=G$
+\item \begin{align*}
+\langle J_W\rangle^T&=SL_{W^T}\\
+SL_W^T&=\langle J_{W^T}\rangle 
+\end{align*}
+\item $G_1<G_2$ if and only if $G_2^T<G_1^T$
+\item $(G^W)^T=\{ 1\}$
+\end{enumerate}
+
+\begin{example}[$E_7^T$]
+We had:
+$$E_w=\begin{pmatrix} 3 & 0 \\ 1 & 3 
+\end{pmatrix}$$
+So
+$$E_w^T=\begin{pmatrix} 3 & 1 \\ 0 & 3 
+\end{pmatrix}$$
+and hence we see
+$$E_y^T=x^3y_y^3$$
+and so $E_7$ is self-dual.
+\end{example}
+
+\begin{conjecture}
+The LG A-model for $(W,G)$ is mirror to the LG B-model for $(W^T, G^T)$.
+\end{conjecture}
+
+\begin{theorem}[Krawitz]
+There is an isomorphism 
+$$A_{w,G}\cong \mathcal{Q}_{W^T, G^T}$$
+that preserves bi-degrees and the pairing.
+\end{theorem}
+This can be viewed as a state-space isomorphism.  We do not know an isomorphism of Frobenius algebras for all $(W,G)$ yet.
+
+Furthermore, if $W$ gave a CY in weighted projective space, we could look at the hodge diamonds of $X_W/G_W$ and $X_{W^T}/G_{W^T}$, and they would be related by the familiar 90 degree rotation.
+
+\begin{proof}
+Look at the vector spaces
+$$\bigoplus_{g\in G^W} \Omega_{W_g} \quad\text{and}\quad \bigoplus_{h\in G^{WT}}\Omega_{W_h^T}$$
+this is like our state space, but we are summing over all of $G^W$, and not taking invariants.
+
+There is an isomorphism between these spaces given by $(v,g)\mapsto (w, h)$ as:
+$$\left(\prod_{j=1}^{N_g}x_{i_j}^{b_{i_j}}d\underline{x},\prod_{r=1}^{N_h} \rho_{i_r}^{s_{i_r}+1}\right)\mapsto \left(\prod_{r=1}^{N_h} y_{i_r}^{s_{i_r}}d\underline{y},\prod_{j=1}^{N_g}\overline{\rho}_{i_j}^{b_{i_j}+1}\right)$$
+\end{proof}
+
+\subsection{Frobenius algebras}
+
+Several cases of isomorphisms of Frobenius algebras have been proven, but not the general case.  We have
+\begin{itemize}
+\item Krawitz showed we could take the maximal group:
+$$A_{W,G^W}\cong\mathcal{Q}_{W^T,\one}$$
+\item Francis, Jarvis, Johnson and Webb for all $G$ if $W$ is a fermat+loops, and $W$ is a chain, for some groups.
+\end{itemize}
+
+Note: the restrictions on the groups is because even if the polynomial decomposes as a sum of basic pieces, its group of symmetries may or may not also decompose.
+
+\subsection{Frobenius Manifolds}
+In the first FJR paper, they proved an isomorphism of Frobenius manifolds for $W$ an ADE case with $\hat{c}<1$.  The $A$ case had been proven earlier by Faber-Shadrin-Zvonkine.
+
+Krawitz, Shen, Milanov proved an isomoprhism of Frobenius manifolds for simple elliptic singularities $(\hat{c}=1)$ and maximal symmetry group on the A-side.
+
+Li-Li-Saito-Shen proved the isomorphism of singularities for the 14 exceptional singularities in Arnold's classification and maximal symmetry group on the A-side.
+
+He-Webb-Shen-Li: have the isomorphism of Frobenius manifolds for all $W$ and maximal symmetry group on the A-side.
+
+One reason they use maximal symmetry group on the A-side is that there is still some work to be done to understand orbifolding the B-side.
+
+\subsection{J-functions and I-functions}
+Another flavor of result is to show an equality of small $J$ and $I$ functions.
+
+
+Chiodo-Ruan: $W=\sum_{i=1}^5 x_i^5, G=\langle J\rangle$
+
+Priddis-Shoemaker: $W=\sum_{i=1}^5, G=SL_W$
+
+Gru\'er\'e:$W$ is a chain, $G=\langle J\rangle$
+
+
+Most of these results are just in genus 0.
+
+The first series of results actually hold for higher genus, because for $G^{max}$ the B-model Frobenius manifold is generically semisimple, and so we can get the higher genus results using Teleman's result.  There is still some difficulty as there is a shift that gives an infinite sum, and work is necessary to show that this infinite sum converges.
+
+\section{LG-CY correspondence}
+Not much time, but we'll give just a little bit of the flavor.
+
+In the same Kahler moduli space that corresponds to FJRW $(W,G)$, there will be a large-radius limit point (maximal unipotent monomdromy), that corresponds to the Gromov-Witten theory of $X_W/(G/J)$.  
+
+The $J$-function is function that lives on the Kahler moduli space.
+
+Mirror to this, we have the $I$ function on the $B$-model moduli space.
+
+So, we use GW mirror symmetry, analytically continue the $I$-funciton on the B-model moduli space and apply a symplectic transformation to get the $I$-function at the orbifold point.  Another mirror map should give the J-function of the FJRW theory of $(W,G)$.
+
+One of the main motivations for FJRW theory was to help compute GW-theory.  The hope is that it is easier to compute, and then we can apply the network of mirror symmetry, analytic continuation and symplectic transformations to find the Gromov-Witten theory.
+\end{document}
+

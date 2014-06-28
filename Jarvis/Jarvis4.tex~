@@ -1,0 +1,31 @@
+\documentclass{amsart}
+
+\linespread{1.2}
+\theoremstyle{definition}
+\newtheorem{dummy}{}[section]
+\newtheorem{theorem}[dummy]{Theorem}
+\newtheorem{definition}[dummy]{Definition}
+\newtheorem{example}[dummy]{Example}
+\newtheorem{question}[dummy]{Question}
+\newtheorem{conjecture}[dummy]{Conjecture}
+
+\newcommand{\vir}{\text{vir}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\ev}{\text{ev}}
+\newcommand{\Mbar}{\overline{\mathcal{M}}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Age}{\text{Age}}
+\newcommand{\Fix}{\text{Fix}}
+\newcommand{\one}{1}
+\newcommand{\st}{\text{st}}
+
+\newcommand{\Aut}{Aut}
+\title{An introducion to FJRW theory III}
+\author{Tyler Jarvis}
+
+\begin{document}
+\maketitle
+
+\end{document}
