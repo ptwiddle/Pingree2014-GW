@@ -1,0 +1,395 @@
+\documentclass{amsart}
+\usepackage{tikz}
+\linespread{1.2}
+
+\theoremstyle{definition}
+\newtheorem{dummy}{}[section]
+
+\newtheorem{theorem}[dummy]{Theorem}
+\newtheorem{definition}[dummy]{Definition}
+\newtheorem{example}[dummy]{Example}
+\newtheorem{question}[dummy]{Question}
+\newtheorem{conjecture}[dummy]{Conjecture}
+\newtheorem{lemma}[dummy]{Lemma}
+\newtheorem{proposition}[dummy]{Proposition}
+
+\newcommand{\TT}{\mathbb{T}}
+\newcommand{\Pic}{\text{Pic}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\GIT}{//}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Stab}{\text{Stab}}
+\newcommand{\Spec}{\text{Spec}}
+\newcommand{\aff}{\text{aff}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\Map}{\textrm{Map}}
+\newcommand{\proj}{\mathbb{P}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\sm}{\text{sm}}
+\newcommand{\Mbar}{\overline{\mathcal{M}}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Age}{\text{Age}}
+\newcommand{\Fix}{\text{Fix}}
+\newcommand{\one}{1}
+\newcommand{\st}{\text{st}}
+\newcommand{\ttt}{\mathbb{t}}
+\newcommand{\ev}{\text{ev}}
+\newcommand{\vir}{\text{vir}}
+\newcommand{\Quot}{\text{Quot}}
+\newcommand{\Hom}{\text{Hom}}
+
+
+\newcommand{\Aut}{Aut}
+
+
+\author{Jonathan Wise}
+\title{Deformation theory and virtual classes I}
+
+
+\begin{document}
+\maketitle
+
+Our goal is to talk about the virtual fundamental class and the deformation theory behind it.
+
+This work will be very heavy in stacks, and so today's talk will begin with some misleading examples and continue with a crash course in stacks.
+
+The second lecture will be deformation theory, and some (sightly) higher algebra.
+
+In the third lecture we will describe obstruction theories, and construct the virtual fundamental class.
+
+In the final lecture we will do an example -- hopefully, something from logarithmic Gromov-Witten theory, but if we are running too far behind it may be something else.
+
+
+\section{Misleading examples}
+
+\subsection{The simplest virtual fundamental class}
+
+Fix $V$ a two dimensional vector space over $\C$.
+
+Define 
+\begin{align*}
+M_0&=\left\{\text{1 dimensional linear subspaces of $V$}\right\}\cong \proj^1\\
+&=\text{moduli space of linear subspaces of $V$ containing a point $p=0$}
+\end{align*}
+
+Nothing really has changed in this second example, but implicitly we are thinking about being able to deform this space, and vary $p$.
+
+This is a fiber over $0$ of a space $M$ over $V$, that is the blow-up of $V$ at 0.
+
+\begin{tikzpicture}
+
+\end{tikzpicture}
+The point of Gromov-Witten theory is to count things; we have $|M_t|=1$ if $t\neq 0$, and our claim is that $|M_0|=1$ as well; we want to justify this statement using the virtual fundamental class.
+
+
+PICTURE: Universal family over base, with $0$ and $t$, and $M=0$ and $M_t$ labelled, and included in the plane, with a given place.
+
+
+
+Consider some path going through zero, the idea is that there is one point $x\in M_0$ that can deform along this path.  The idea is that $x$ \emph{is} the virtual fundamental class.
+
+The cycle $x$ depends on the path we took; it is not the cycle itself that is defined, but the class $[x]=[M_0]^\vir$; if we took some different path we would get a different cycle in the same class.  To get a specific representative of the virtual fundamental class, we need to choose a deformation that takes us to the general situation.
+
+
+
+
+
+
+
+
+Commutative diagram: $S$ a point of $M_0$, over $S^1$ deformation of image in $V$, and with $M_0\subset M$, and we want to lift this to a map from $S^1$ to $M$.  And $\pi:M\to V$ another map.
+
+The map $S^1\to V$ gives an element of $N_{0/V}$.  
+A lift to a map $S^1\to M$ would give an element of $N_{M_0/M}\subset \pi N_{0/V}$
+So we have an element $\xi\in\pi^* N_{0/V}$, and we want to know if it is inside $N_{M_0/M}$.
+
+PICTURE:
+
+
+$M_0$ as a base, normal bundle over it, and the normal cone inside that.
+
+Over one point, we have one point in the normal bundle, and we want to know if its in the normal cone.
+
+
+$\xi$ defines a section of 
+\begin{align*}
+\pi^*(N_{0/V} / N_{M_0/M})&=\OO^2/\OO(-1) \\
+&=\OO(1)
+\end{align*}
+
+This vanishes if and only if an extension exists.  Which points in $M_0$ can survive?  Choose a generic section, take the vanish locus.  We have
+
+$$C_1(\OO(1))=[pt]=[M_0]^\vir$$
+
+\subsection{Lines a cubic surface}
+
+Jonathan's favorite cubic surface is $xyz=0$.
+
+We want to think of the moduli space of lines on a cubic surface as varying with the cubic surface.
+
+So, commutative diagram: $M_0\in M$, as fiber over $0\in V=\proj^{19}$ the moduli of cubic surfaces, with the 
+
+$$M=\left\{ (X,L)\Bigg|\begin{array}{l} X \text{ cubic surface} \\ L\subset X \text{ line} 
+\end{array}\right\}$$
+
+So, we see that $M_0$ is the union of three $\proj^2$, glued together in a three cycle, which each pair of $\proj^2$ meeting in one point.
+
+
+Given $L_0$, can it deform to a one parameter family $F_t=xyz+tF=0$?  
+
+
+
+Suppose it can.  Let $L$ be a deformation, $L\subset X$, $L\to\text{Spec} \C[[t]]$.
+
+PICTURE: $L$ meeting the three planes $x=0,y=0,z=0$.
+Define
+$$L\cap \{x=0\}=p, \quad \quad L\cap\{y=0\}=q$$
+
+If $L$ deforms, we have $0=F_t(p)=x(p)y(p)z(p)+tF(p)\mod t^2$
+But we know $x(p)=0$, and so we need
+$tF(p_0)=0\mod t^2$, and hence $F(p_0)=0$.
+
+Likewise, we have $F(q_0)=0$.
+
+DRAWING: planes $x,y,z=0, p_0\in L_0\cap \{F=0\}$.
+
+But this is three points on the line, and there are 3 points on each line that oculd be, and so we have $3\times 3\times 3=27$ lines on a cubic.
+
+
+This isn't a complete calculation: we need to check that these lines deform to all orders with multiplicity one.  We will leave this as an exercise; it's some finagling of power series.
+
+\subsection{Virtual fundamental class}
+
+What do we need to do to compute the virtual fundamental class?
+
+We look at the normal cone (it won't be a bundle in general because it won't be a complete local intersection?) $$C_{M_0/M}\subset\pi^* N_{0/V}$$
+
+We have the isomorphism of Chow groups:
+$$A_*(\pi^* N_{0/V}\cong A_*(M_0)$$
+and the virtual fundamental class is what the normal cone goes to under this map.
+
+\subsection{Another example: quintic}
+
+Consider the quintic three-fold
+$x_0x_1x_2x_3x_4=0$, and we deform to $x_0x_1x_2x_3x_4+tF=0$
+If we have a line in original thing, how many ways can it deform?
+
+Picture $\proj^3$, hyperplanes.
+
+Pick a line $L_0\cap\{x_i=0\}\subset\{F=0\}$.
+
+For each $x_i$, there is a quintic curve $\{ F=x_i=x_0=0\}$ containing $\{L=x_i=x_0=0\}$.  So we have these four quintic curves; why not degenerate them to a union of lines;  There are 5 choices of hyperplanes, and for each one there are $2\times 5^4$ lines meeting the 4 quintic curves.  
+
+But these quintics aren't generic -- if one meets the others, we'll be double counting: we have to subtract out $\binom{4}{2}\times 5\times 5^2$, but we've overcompensated by how the quintics meet the back face, and there are 5 points on each line leading to $3\times 5^2$ things we need to add back in.
+
+In the end, we get:
+$$5\left(2\times 5^4-\binom{4}{2}\times 5\times 5^2+3\times 5^2\right)=5^3(2\times 5^2-6\times 5+3)=5^3\times 23=2875$$
+of course, we need to check about these lifting to all orders, etc....
+
+\subsection{Conclusion}
+We argue that the virtual fundamental class is the natural successor to simple deformation arguments such as these.
+
+\section{Stacks}
+Stacks are really a topological idea; algebraic geometers tend to pretend that they are all naturally geometric things.  We want to emphasize in what follows that we will be focusing on the topological side, and so our stacks will not necessarily be algebraic.
+
+\begin{definition}[Grothendieck Topologies]
+A \emph{site} is a category $\mathcal{C}$, with a collection $J(X)$ of maps $U_i\to X$ for each $X\in C$, satisfying:
+
+\begin{enumerate}
+\item $J(X)$ contains all isomorphisms
+\item A cover of a cover is a cover
+\item a pullback of a cover is a cover 
+\end{enumerate}
+
+\end{definition}
+This is not quite how Gorthendieck formulated it; he formulated it in terms of Sieve.
+
+\begin{definition}
+A \emph{sieve} of an object $X\in\mathcal{C}$ is a subfunctor of the functor $h_X$ representing by $X$.
+\end{definition}
+ 
+How are these related?  To a cover $\{U_i\to X\}$, the associated sieve is
+$R=\cup \text{im}(h_{U_i}\to h_X)\subset h_X$.
+
+More concretely, if $\phi\in h_X(Y)=\Hom(Y,X)$, how can we tell if it's in $R$?  If there exists a factorization of $\phi$ through $U_i$.
+
+COMMUTATIVE DIAGRAM
+
+\begin{definition}
+A functor $F:\mathcal{C}^0\to\text{Sets}$ is a \emph{sheaf} if 
+$$F(X)\stackrel{\sim}\leftarrow \Hom(h_X, F)\to \Hom(R,F)$$ 
+is a bijection for all $R\subset h_X$ coverings.
+\end{definition}
+Here, $\Hom(R,F)$ is sections of $F$ over $U_i$, compatible over $U_i\cap U_j$.
+
+
+EXERCISE: Show this is equivalent to the sheaf condition.
+
+\begin{definition}
+A \emph{groupoid} is a category in which all morphisms are isomorphisms.
+\end{definition}
+
+For stacks we want to think of functors like we did before, except the values will be in groupoids instead of in sets.  Let's try to define this:
+
+\begin{definition}
+A ``functor'' $F:\mathcal{C}^0\to\text{Groupoids}$ is a stack if 
+$$F(X)\stackrel{\sim}\leftarrow \Hom(h_X, F)\to \Hom(R,F)$$
+is an equivalence for any covering sieve $R\subset h_X$.
+\end{definition}
+
+Here ``functor'' means a pseudo-functor, or a fibered category.
+
+
+Let's unpack what this means, to get the more familiar definition of stacks.
+
+If $R$ is associated to a $\{U_i\to X\}$, then $\Hom(R,F)$ means
+\begin{itemize}
+\item $\xi_i\in F(U_i)$
+\item $\xi_i|_{U_i}\stackrel{\phi_{ij}}\to \xi_j|_{U_i}$
+\end{itemize}
+satisfying the cocycle dondition: about restricting $\xi_i$, $\xi_j$ and $\xi_k$ to triple intersections.
+
+\subsection{Examples}
+
+\begin{example}[You'll hate me for this one]
+Let $F(U)=\{text{sheaves of sets on } U\}$.  We could do many other examples of this; for example, vector bundles; really, anything we could glue.
+\end{example}
+
+We need to talk about torsors a little bit before we can see some more examples.
+
+\begin{definition}
+SUppose $G$ is a sheaf of groups on $\mathcal{C}$.  A \emph{$G$-torsor} on $\mathcal{C}$ is a sheaf $X$ of $G$-sets such that:
+\begin{itemize}
+\item $G\times X\stackrel{(g\cdot x, x)}\longrightarrow X\times X$
+is an isomorphism 
+\item $X$ is locally nonempty ($X(U)\neq \emptyset$ for all $U$ in some cover of $\mathcal{C}$)
+\end{itemize}
+\end{definition}
+
+Something satisfying condition 1 only is called a pseudo-torsor.  Giving $(x,y)\in X\times X$ implies there exists a unique $g\in G$ such that $gx=y$.
+
+A torsor is something that locally looks like $G$, representing the $G$ action, but doesn't have a basepoint.
+
+\begin{example}[Cosets]
+
+Consider $0\to G\to H\to H/G\to 0$.
+
+Each section of $H/G$ is a $G$-coset in $H$.  It carries an action of $G$, but it doesn't have a basepoint.
+
+\end{example}
+
+Torsors are classified by $H^1(\mathcal{C}, G)$.  Together with the previous example, we get a map $H^0(C, H/G)\to H^1(C, G)$, sending any section to the corresponding coset.  This is the coboundary map.
+
+
+A torsor is trivial (isomorphic to $G$) if and only if it has a section.  
+
+
+Let $P$ be a torsor.  If $s\in \Gamma(C, P)$, then $G\to P$ sending $g\mapsto gs$ is an isomorphism.
+
+Maps of torsors are always isomorphisms.
+
+So if we write
+
+$$BG(U)=\{\text{$G$-torsors on $U$}\}$$
+this is a stack.
+
+The content of this statement is that torsors can be glued with appropriate data.
+
+Let's talk about $BG$ a little more to get a feeling for how you work with stacks.  How do we construct a sheaf or line bundle on this stack?
+
+We construct data on a stack by constructing data on every $U$ for every map $U\stackrel{xi}\to F$ (meaning $\xi\in F(U)$.
+
+To construct a line bundle on $BG$, we should give a line bundle on $U$ each $U\to BG$.  These need to be compatible with all maps over $BG$.  
+
+In more concrete terms, we have to give $L(U,X)$ for every pair $U\in \mathcal{C}$, and $X$ a $G$-torsor on $U$.
+
+Every time we have a map $f:U\to V$, and an isomorphism between $X_U$ and $f^*(X_V)$, we should get an isomorphism $L(U,X_u)\cong f^* L(V,X_V)$.
+
+That's the definition, how do we unpack what it really means?
+
+To construct $L$, we cnan work locally.  Every $G$-torsor is locally trivial, so we can assume $X_u\cong G_u$, and so give a line bundle $L(U, G_u)$ on $U$.  For compatibility, each element of $g$ gives an isomorphism $g:G_u\to G_u$, which should give an isomorphism $\phi_g:L(U,G_U)\to L(U, G_U)$.
+
+Unpacking what this means, we see that a line bundle on $BG$ is a $G$-equivariant line bundle on $C$.
+
+
+\begin{example}
+If $G$ acts on $X$, can form a stack $[X/G]$ by defining
+$$[X/G](U)=\{(P\to U) G-\text{torsor }, \phi\to X \text{ equivariant}\}$$
+This has a bit more information than the orbit space, as we have a parametrization of each orbit by a $G$-torsor.
+\end{example}
+
+
+\begin{definition}
+A \emph{gerbe} $\mathcal{G}$ on $\mathcal{C}$ is a stack on $\mathcal{C}$ such that
+\begin{enumerate}
+\item $\mathcal{G}(U)\neq\emptyset$ for all $U$ in a cover
+\item For all $\xi, \eta\in\mathcal{G}(U)$, there exists a cover of $U$ by $V$ such that $\xi|_V\cong \eta|_V$
+\end{enumerate}
+
+\end{definition}
+
+
+\begin{example}
+If $G$ is a sheaf of groups on $C$ then $BG$ is a gerbe on $C$.
+\end{example}
+
+\begin{example}
+If $C$ is a scheme and $L$ is a line bundle on $C$, let $\mathcal{G}=L^{1/r}$ be defined by 
+$$\mathcal{G}(U)=\left\{(M,\phi)\Bigg| \begin{array}{l} M \text{ line bundle on $U$} \\ \phi:M^{\otimes}\to L_U
+  \end{array}\right\}$$
+\end{example}
+
+
+\begin{example}
+Let $F(u)$ be the set of isotrovial families of elliptic curves over $U$ with $j=j_0$; this is roughly the fiber of $\M_{1,1}$ over $j_0$.
+\end{example}
+
+IF $F$ is a stack, $F(U)$ is a groupoid.  Let's look at this concretely for the $r$-th root gerbe.
+
+Suppose that $(M,\phi)\in L^{1/r}(U)$.
+Then
+
+$$\Aut(M,\phi)=\left\{u:M\to M| u^r:M^{\otimes r}\to M^{\otimes r} \text{ commutes with $\phi$}\right\}$$
+since $\phi$ is an isomorphism, we see that $u^r=1$, and so $\Aut(M,\phi)$ is canonically isomorphic to $\mu_r$.
+
+This leads to
+\begin{definition}
+A gerbe $\mathcal{G}$ is said to be \emph{banded} by an abelian group $G$ if there are specificed isomorphisms $\Aut_{\mathcal{G}}(\xi)\cong G_U$ for all $\xi\in\mathcal{G}(U)$ in a compatible way, i.e.
+
+COMMUTATIVE DIAGRAM: top and bottom: $\alpha:\xi\to\eta$, left and right vertical arrows multiplication by $g$
+\end{definition}
+
+
+\begin{example}
+$BG$ is banded by $G$, and $L^{1/r}$ is banded by $\mu_r$.
+\end{example}
+
+
+\begin{theorem}[Giraud]
+$G$, abelian.  Gerbes on $C$ banded by $G$ are classified by $H^2(C,G)$.
+
+Sections of a gerbe, if they exist, are a torsor under $H^1(C,G)$, and Automorphisms of a section are $H^0(C,G)$.
+\end{theorem}
+
+
+
+MOTTO (maybe this will be explained when we talk about higher algebra): 
+
+$$\text{Gerbes banded by $G$}=\text{$BG$-torsors}$$
+
+
+\subsection{Algebraic stacks}
+In the functor of points, we want to know which functors can be studied geometrically, and we come up with algebraic spaces.
+
+Similarly, we can ask which stacks $F:\text{Sch}^0\to\text{Sets}$ deserve to be considered algebraically?
+
+Artin/Deligne-Mumford: $X\to_F Y$ is a scheme if $X,Y$ are, and there exists a cover $U\to F$ (smooth/\'etal, depending on Artin/Mumford)  (and a little bit else)
+
+Artin also gives criteria to be algebraic, which may be summarized as having a good infinitesimal theory implies algebraic.  
+
+What we mean by a good infinitesimal theory is roughly having obstruction theory.
+\end{document}
