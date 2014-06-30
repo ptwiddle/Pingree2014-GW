@@ -1,0 +1,276 @@
+\documentclass{amsart}
+\usepackage{tikz}
+\linespread{1.2}
+
+\theoremstyle{definition}
+\newtheorem{dummy}{}[section]
+
+\newtheorem{theorem}[dummy]{Theorem}
+\newtheorem{definition}[dummy]{Definition}
+\newtheorem{example}[dummy]{Example}
+\newtheorem{question}[dummy]{Question}
+\newtheorem{conjecture}[dummy]{Conjecture}
+\newtheorem{lemma}[dummy]{Lemma}
+\newtheorem{proposition}[dummy]{Proposition}
+
+\newcommand{\TT}{\mathbb{T}}
+\newcommand{\Pic}{\text{Pic}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\GIT}{//}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Stab}{\text{Stab}}
+\newcommand{\Spec}{\text{Spec}}
+\newcommand{\aff}{\text{aff}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\Map}{\textrm{Map}}
+\newcommand{\proj}{\mathbb{P}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\sm}{\text{sm}}
+\newcommand{\Mbar}{\overline{\mathcal{M}}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Age}{\text{Age}}
+\newcommand{\Fix}{\text{Fix}}
+\newcommand{\one}{1}
+\newcommand{\st}{\text{st}}
+\newcommand{\ttt}{\mathbb{t}}
+\newcommand{\ev}{\text{ev}}
+\newcommand{\vir}{\text{vir}}
+\newcommand{\Quot}{\text{Quot}}
+\newcommand{\Hom}{\text{Hom}}
+
+
+\newcommand{\Aut}{Aut}
+
+
+
+
+\author{Hiroshi Iritani}
+\title{Toric Mirror Symmetry I}
+
+\begin{document}
+\maketitle
+%Similar talks have been given in Michigan and other places.
+We will be talking about Hodge theoretic mirror symmetry in this course.
+
+Today, we will be focusing on the structure that arise from the genus 0 Gromov-Witten theory on the $A$-side, and Hodge theory on the $B$ side, and how we can compare them, via $\I$ and $\J$ functions, or 
+
+\section{Introduction}
+
+Mirror symmetry compares Symplectic Geometry of $X$, on the $A$-model side, and Complex Geometry of $Y$ on the $B$-model side.
+
+For us, the sympectic geometry will be Gromov-Witten theory, particularly the genus 0, and the complex geometry will be Hodge theory, specifically vartiaion of Hodge structures.
+
+Not that $X$ and $Y$ do not need to be spaces; for instance, Landau-Ginzburg models have both Symplectic and Complex geometry.  But things will be easier if $X$ is a Calabi-Yah manifold; that is, $X$ has trivial canonnical class $K_X=0$.
+
+Mirror to this, will be $Y_\psi$, the mirror family of $CY$-manifolds of the same dimension.  We consider some local deformation family (local Kuranishi family) of $Y$, and $\psi$ is a deformation parameter (that is, a local deformation parameteer).
+
+Correspond to the parameter $\psi$, we will have a complexified Kahler parameter $$\omega\in H^{1,1}(X)\otimes\C$$
+
+Locally, we can identitify
+
+$$
+\omega\mapsto \psi\in H^1(Y, TY)\cong H^{n-1,1}(Y)$$
+where the isomorphism comes from the fact that $Y$ is CY, and hence $T_Y\cong \Omega_Y^{n-1}$.
+
+For the deofrmation parameters to match, we need $h^{1,1}(X)=h^{n-1,1}(Y)$.  More generally, in mirror symmetry we want $h^{p,p}(X)=h^{n-p,p}$.
+
+More specifically, over each moduli space we have a vector space, with fibers equal to $\oplus_{p} H^{p,p}(X)\cong \oplus_{p} H^{n-p,p}(Y_\psi)=h^n(Y_\psi)$.
+
+Note that $H^n(Y_\psi)$ is purely topological, and as the topological type of $Y_\psi$ doesn't change, it has a Guass-Manin connection.
+
+Corresponding to this on the $A$-model side, we have the ``quantum connection''
+
+$$\frac{\partial}{\partial t^i}+(\phi_i\star )$$
+where $t^i$ are coordinates on some basis of cohomology of $X$, and $t_i$ and $\phi_i$ is a dual basis.
+
+The vector spaces on each side are direct sums of smaller vector spaces, but this direct sum structure will not preserved, we need to consider instead filtrations.
+
+On the $B$-side, we have the Hodge filtration:
+
+$$F^p=\bigoplus_{q\leq n-p} H^{n-q,q}(Y_\psi)$$
+
+Griffiths transversality; there is some compatibility between the filtration sutrcture and the Gauss-Manin connection, and so $F_p$ is a holomorphic sub-bundle.
+
+On the $A$-model side, these correspond to the Filtrations
+$$\bigoplus_{q\leq n-p} H^{q,q}(X)$$
+
+Mirror symmetry should identify these filtrations.
+
+We also have pairings on each side:
+
+$$Q_Y(\alpha,\beta)=(-1)^{\frac{n(n-1}{2}}\int_Y\alpha\wedge\beta$$
+and
+$$Q_X(\alpha,\beta)=\int_X (-1)^{\frac{\text{deg}(\alpha)}{2}}\alpha\wedge\beta$$
+
+
+We will also need to consider the conjugate filtration $\overline{F^p}$, with $H^{n-p,p}=F^{n-p}\cap \overline{F^p}$.  So, to recapture this we will need a real structure on $H^n(y;\R)$, and the integral structure $H^n(Y,\Z)$.  
+
+What these are mirror two on the A-model side is more subtle; it turns out for the toric case these will correspond to a $\hat(\Gamma) \Z$-structure; this will be one of our main topics later.
+
+\section{Homological mirror symmetry conjecture}
+Here, the B-model is the category $DCoh(X)$, the derived category of coherent sheaves on $X$, and the $A$-model side is $DFuk(Y)$, the Fukaya-category (an A-brane category, in physics.  Note that we have switched the role of $X$ and $Y$.
+
+HMS should interact with usual mirror symmetry because there should be maps
+
+$$\hat{\Gamma}:Dcoh(X)\to GW(X)$$.
+
+The other one is a bit easier to describe.
+
+Objects of $DFuk(Y)$ are, roughly, Lagrangian submanifolds of $C\subset Y_\psi$.  This will give rise to a period.  Given a holomorphic volume for $\Omega\in H^{n,0}(Y)$, (a flat section of the Gauss-Manin system?) and so
+$$\Omega\mapsto\int_C\Omega$$
+is Gauss-Manin constant.  Note for this to work, we think of $\Omega\in H^n(Y)$.
+
+This Gauss-Manin constant function is called a period, and should be thought of as a dual flat section of the Gauss-Manin connection.
+
+The $\hat{\Gamma}$-structure we define will be mirror to the periods. 
+
+Given a vector bundle $E\to X$, (roughly, an object in $DCoh(X)$), we have the function
+$$\int \J_X(t,-z)\cup\left( \hat{\Gamma}_X\cup (2\pi i)^{\text{deg}/2} ch(E)\right)$$
+where $\hat{\Gamma}_X$ is a characteristic class of $TX$ associated to the $\Gamma$-function.  We will describe this more later, but the Todd class is a characteristic class associated to the function $x/(1-e^x)$, and in the same way the $\Gamma$ function gives rise to $\hat{\Gamma}_X$.
+
+We might call this function the ``quantum period'', and it should make the diagram commute.  This describes the interplay between classical and homological mirror symmetry.
+
+\subsection{Dubrovin's Conjecture}
+
+\begin{conjecture}
+Let $X$ be a Fano manifold. 
+
+Then $QH^*(X)$ is semisimple if and only if $D^\flat Coh(X)$ has a full exception collection.
+\end{conjecture}
+
+From right to left is more likely to be true; it may actually be false in the other direction, but there are no known counterexamples yet.  But that there is a relation between the derived category and quantum cohomology is rather surprising.
+
+Here a full exception collection is a nice set of generators $E_1,\dots, E_N$; in particular, there are no homs backwards among the generators.
+
+Another conjecture related to  Dubrovin's conjecture is as follows. 
+
+\begin{conjecture}[$\Gamma$-conjecture; Galkin-Golyshev-Iritani]
+ One may associated a quantum differential equation, to the A-model.  Then the conjecture is the central connection of the QDE is 
+
+$$\left(\hat{\Gamma}_X (2\pi i)^{\text{deg}/2} ch(E_i)\right)_{i=1,\dots, N}$$
+where $N$ is the dimension of the $K$-group.
+
+\end{conjecture}
+
+It is not quite clear how this conjecture is related to the first $\Gamma$-conjecture.
+
+\section{Analytic Continutation of GW-theory via mirror symmetry}
+
+This is something familiar to physicists, where they consider a global mirror symmetry and consider the (irregular?) points there.
+
+As an example, there is the Crepant resolution conjecture, which we might now call the crepant transformation conjecture.  
+
+Let $X_1, X_2$ be two spaces -- either a crepant resolution, or a flop, or more generally $K$-equivalent: that there is a nice birational equivalence of $X_1$ and $X_2$ that preserves the canonnical class.
+
+Then $GW(X_1)\cong GW(X_2)$, after analytic continuation.
+
+Hodge-theoretic mirror symmetry can be used to study this picture in the following way.
+
+PICTURE:
+
+We have a global mirror family $Y_\psi$.  There are two points in the family, around which the family is mirror to $X_i$.  Then the quantum connection of $X_1$ is analytically continued over the $\psi$ plane to the quantum connection of $X_2$.  
+
+The two special points arise as singular points over the mirror.
+
+\begin{example}[Baby example; Coates-Iritani-Tseng]
+Consider the $A_1$ singularity $\C^2/\Z_2$, with resolution $\OO_\proj^1(-2)$.
+
+In some sense, this exmple is not very interesting because they are Hyper-Kahler and do not have any quantum correction; one way to get an interesting result is to use the equivariant theory.
+
+We will use compactifications; we can compactify the $\C^2/\Z_2$ to $\proj(1,1,2)$ and the other into $\mathbf{F}_2=\proj(\OO\oplus\OO(-2)$.
+
+Both of these are toric stacks, and so may be described by fan diagrams, that are shown below:
+
+\begin{center}
+\begin{tikzpicture}
+\foreach \x in {-1,0,1}{
+    \foreach \y in {-1,,0,1,2}{
+        \filldraw (\x,\y) circle (.05); }}
+
+\draw (0,0)-> (1,0);
+\draw (0,0)-> (0,-1);
+\draw (0,0)->(-1,2);
+\draw (0,-2) node {$\proj(1,1,2)$};
+\begin{scope}[xshift=5cm]
+\foreach \x in {-1,0,1}{
+    \foreach \y in {-1,,0,1,2}{
+        \filldraw (\x,\y) circle (.05); }}
+\draw (0,0)-> (1,0);
+\draw (0,0)-> (0,-1);
+\draw (0,0)->(-1,2);
+\draw (0,0)->(0,2);
+\draw (0,-2) node {$\mathbb{F}_2$};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+The upper-right cone of $\proj(1,1,2)$ is not unimodular; this corresponds to the orbifold point of $\proj(1,1,2)$. 
+
+The fan of $\mathbb{F}_2$ has the vector (0,1) added to make two unimodular cone; this corresponds to blowing up the singularity to get a $\proj^1$.
+
+
+These varities are not Calabi-Yau (in fact, $\proj(1,1,2)$ is close to Fano), and so the mirrors are not just varieties; they have extra structure.
+
+  We will give a recipe for how to cook up the mirror from the fan diagram.
+The mirror of $\proj(1,1,2)$ is
+
+$$f_{\proj(1,1,2)}=c_1x+\frac{c_2}{y}+c_3\frac{y^2}{x}$$
+f is a function from $(\C^*)^2\to\C$; we can reparameterize $x$ and $y$ to kill $c_1$ and $c_2$, and get:
+$$f_{\proj(1,1,2)}=x+\frac{1}{y}+q\frac{y^2}{x}$$
+
+Similarly, the mirror family to $\mathbb{F}_2$ is:
+
+$$f_{\mathbb{F}_2}=x+\frac{1}{y}+q_1q_2^2\frac{y^2}{x}+q_2 y$$
+
+Here $q$ is the Kahler parameter for $H^{1,1}(\proj(1,1,2)$, and 
+$$q_i\sim \exp\left(\int_{C_i} \omega\right)$$
+are two different Kahler parameters.
+
+There is a nontrivial mirror map which is easy to describe in this case but we won't go into it now.
+
+Note that $\mathbb{F}_2\to\proj^1$ is a fibration;
+Here $C_1$ corresponds to the exception curve which is the zero section, and $C_2$ is the fiber.
+
+Note that the dimensions don't match; this is fixed by adding a twisted sector; we will ignore this for now.
+
+The easiest mirror symmetry statement is
+\begin{align*}
+\text{Jac}(f)&=\C[x^\pm, y^\pm]/\langle\partial_xf,\partial_yf\rangle
+&=QH^*(X)
+\end{align*}
+
+Note that the mirros of $\proj(1,1,2)$ and $\mathbb{F}_2$ are closely related; in particular, $f_{\proj(1,1,2)}$ is obtained from $f_{\mathbb{F}_2}$ by fixing $q=q_1q_2^2$ and letting $q_2\to 0$ and hence $q_1\to\infty$.
+
+PICTURE of $q_1,q_2$-plane, with the $q=q_1q_2^2=\text{constant}$ curve drawn.
+
+There is a family of Jacobian rings $\text{Jac}(f)$ over this space that restricts to $QH(\proj(1,1,2))$ or $QH(\mathbb{F}_2)$ in neighborhoods of the points $q_1=q_2=0$ and $q_1=\infty, q_2=0$.
+
+Note that for this to work we have to use the Chen-Ruan cohomology:
+
+$$H_{CR}^*(\proj(1,1,2))=H_{CR}^*(\proj(1,1,2))\oplus\C$$
+
+
+\end{example}
+
+So far, we have only discussed mirror symmetry in this case as an isomorphism between the quantum rings and the Jacobi rings, but we can refine this to an isomorphism between the quantum connection and the Gauss-Manin connection.  The Gauss-Manin connection has a $\Z$-structure,
+
+\begin{conjecture}
+
+
+$D^\flat(X_1)\cong D^\flat(X_2)$, by deried equivalence, and
+$QConn(X_1)\cong Qconn(X_2)$ by analytic continuation, and we have that $\hat{\Gamma}_i$, between these, and the diagram should commute.
+\end{conjecture}
+
+This conjecure has been proven in the toric case, as we will hear in the talk of.
+
+The isomorphism of derived categories at this point is even conjectural; it is conjectured that if $X_1$ and $X_2$ are $K$-equivalent, then they are derived equivalent, but this is not known in general.
+
+Furthermore, the derived equivalence between them will not be unique, and this hsould be a consequence of the global structure of the moduli spaces having multiple paths between the two points, and monodromy between choosing different points.
+
+
+
+
+\end{document}
