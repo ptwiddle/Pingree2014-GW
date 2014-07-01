@@ -1,0 +1,389 @@
+\documentclass{amsart}
+\usepackage{tikz}
+\linespread{1.2}
+
+\theoremstyle{definition}
+\newtheorem{dummy}{}[section]
+\newtheorem{remark}[dummy]{Remark}
+\newtheorem{theorem}[dummy]{Theorem}
+\newtheorem{definition}[dummy]{Definition}
+\newtheorem{example}[dummy]{Example}
+\newtheorem{question}[dummy]{Question}
+\newtheorem{conjecture}[dummy]{Conjecture}
+\newtheorem{lemma}[dummy]{Lemma}
+\newtheorem{proposition}[dummy]{Proposition}
+
+\newcommand{\TT}{\mathbb{T}}
+\newcommand{\Pic}{\text{Pic}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\GIT}{//}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Stab}{\text{Stab}}
+\newcommand{\Spec}{\text{Spec}}
+\newcommand{\aff}{\text{aff}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\Map}{\textrm{Map}}
+\newcommand{\proj}{\mathbb{P}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\sm}{\text{sm}}
+\newcommand{\Mbar}{\overline{\mathcal{M}}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Age}{\text{Age}}
+\newcommand{\Fix}{\text{Fix}}
+\newcommand{\one}{1}
+\newcommand{\st}{\text{st}}
+\newcommand{\ttt}{\mathbb{t}}
+\newcommand{\ev}{\text{ev}}
+\newcommand{\vir}{\text{vir}}
+\newcommand{\Quot}{\text{Quot}}
+\newcommand{\Hom}{\text{Hom}}
+
+
+\newcommand{\Aut}{Aut}
+
+
+
+
+\author{Hiroshi Iritani}
+\title{Toric Mirror Symmetry II}
+
+\begin{document}
+\maketitle
+Yesterday we gave an overview of much of what was going to happen.  Today we will go more into detail of quantum cohomology, the quantum connection, and their relation to Givental's Lagrangian cone.
+
+We will use the following notation for Gromov-Witten invariant.  The descendent invariants
+
+$$\left\langle \alpha_1\psi_1^{k_1},\alpha_2^{k_2},\dots,\alpha_n\psi_n^{k_n}\right\rangle_{g,n,d}=\int_{[\Mbar_{g,n}(X,d)]^\vir}\prod_{i=1}^n \ev_i^*(\alpha_i)\psi_i^{k_i}$$
+
+Where $\alpha_i\in H^*(X)$, $k_i$ are positive integers, and $\psi_i$ are the psi classes.
+
+We have infinitely many numbers here, we will focus on the genus 0 cases, and describe how these infinitely many numbers can be encoded nicely in an infinite dimensional space, Givental's cone.
+
+\subsection{Quantum product}
+The quantum product depends only on the genus 0 primary invariants.
+
+Let $(\alpha, \beta)=\int_X \alpha\cup \beta$ be the standard pairing; we define the quantum product $\star_t$ by
+
+$$(\alpha \star_t\beta,\gamma)=\sum_{\alpha\in H_2(X,\Z)}\sum_{n=0}^\infty \left\langle\alpha,\beta,\gamma,t,\dots,t\right\rangle_{0,n+3,d}\frac{Q^d}{n!}$$
+where $t\in H^*(X)$, and $Q$ and novikov variable.
+
+It is obvious that this is (graded)-commutative; it is nonobvious that this is associative; this follows from the WDVV equation.
+
+This expression may not converge, but we have that $\star_t$ defines a formal family of commutative algebra structures on $H^*(X)\otimes\C[[Q]]$.  If we set $Q=t=0$, we get the usual cup product.
+
+In many situations, for example in the toric case, these power series converge.
+
+
+\subsubsection{Divisor Equation}
+Sometimes we will want to get rid of the Novikov variable $Q$.  Just setting $Q=1$ will not make sense, as we will have an infinite sum over $t$.  The divisor equation will allow a solution.
+
+\begin{theorem}[Divisor Equation]
+Suppose $k\in H^2(X)$ is a divisor, then for $(n,d)\neq (2,0)$, we have
+$$\left\langle \alpha,\beta,\dots,k\right\rangle_{0,n+1,d}=(k\cdot d)\left\langle\alpha,\beta,\dots\right\rangle_{0,n,d}$$
+\end{theorem}
+
+We can apply this to the quantum product.  If $t\in H^2(X)$, we have
+
+\begin{align*}(\alpha \star_t\beta,\gamma)&=
+\sum_{d,n}\left\langle\alpha,\beta,\gamma,\right\rangle_{0,n,d}\frac{(t\cdot d)^n}{n!}Q^d\\
+&=\sum_{d,n}\left\langle\alpha,\beta,\gamma,\right\rangle_{0,n,d}e^{(t\cdot d)}Q^d
+\end{align*}
+
+More generally, if $t=\sigma+t^\prime$, with $\sigma\in H^2(X)$ and $t^\prime\in H^{\neq 2}(X)$, we hav
+
+$$\alpha\star_t\beta\in H^*(X)\otimes\C[[e^\sigma Q,t^\prime]]$$
+and so one can specialize $Q=1$, giving a power series in $e^\sigma$.
+
+We will choose a basis
+$$\phi_1,\dots,\phi_r, \phi_{r+1},\dots,\phi_N$$
+so that the first $r$ are in $H^2$ and nef -- that is, the interection with any effective curve is semipositive.  
+
+Expanding $t$ as
+$$t=\sum_{i=1}^N t^i\phi_i$$
+then
+$$\alpha\star_t\beta|_{Q=1}\in H^*(X)\otimes\C[[q_1,\dots, q_r, t_{r+1},\dots, t_N]]$$
+where $q_i=e^{t^t}, 1\leq i \leq r$.
+If the $\phi_i$ were not nef, we would get negative power of the $q_i$ appearing.
+
+We have that $$\lim_{\substack{q\to 0 \\ t^i\to 0}} \alpha\star_t\beta=\alpha\cup\beta$$
+which is called the large radius limit point.
+
+Computing quantum cohomology in general is quite difficult, we will focus on some of the universal structure it provide.
+
+\section{Quantum Connection (Dubrovin Connection)}
+
+Let $F$ be the bundle $F=H^*(X)\times\left( H^*(X)\times\C\right)$ over $H^*(X)\times\C_z$.
+
+The quantum connection $\nabla$ will be a meromorphic flat connection on $F$.
+
+We use coordinates $(t,z)$ on $H^*(X)\times \C$.
+
+We define $\nabla$ by:
+
+$$
+\left\{\begin{array}{l}
+\nabla_{\frac{\partial}{\partial t^i}}=\frac{\partial}{\partial t^i}+\frac{1}{z}\left(\phi_i\star_t \right) \\
+\nabla_{\frac{\partial}{\partial z}}=z\frac{\partial}{\partial z}-\frac{1}{z}\left(E\star_t \right)+\mu 
+\end{array}\right.
+$$
+
+Here $E$ is the Euler field
+
+$$E=c_1(X)+\sum_{i=1}^N (1-\frac{1}{2}\deg\phi_i)t^i\phi_i$$
+and  $\mu$ is the grading operator:
+$$\mu(\phi_i)=\left(\left(\frac{1}{2}\deg\phi_i\right)-\frac{1}{2}\dim_C X\right)\phi_i$$
+Before specialization, this is formal over the novikov ring, after specialization it is formal in the $q$ and $t$ variables.
+
+\begin{lemma}
+
+\begin{enumerate}
+\item $\nabla$ is flat
+\item $\nabla$ respects the paring
+$$(-)^* F\otimes F\to \OO$$
+where $(-):H^*(X)\times\C\to H^*(X)\times\C)$ sends $(t,z)$ to $(t,-z)$.
+
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+\begin{enumerate}
+We have the equation:
+
+$$\left[\nabla_{\frac{\partial}{\partial t^i}},\nabla_{\frac{\partial}{\partial t^i}}\right]=\frac{1}{z}\left(\frac{\partial(\phi_j\star_t)}{\partial t^i}-\frac{\partial(\phi_i\star_t)}{\partial t^j}\right)+\frac{1}{z^2}[\phi_i\star_t,\phi_j\star_t]$$
+
+Second part vanishes by WDVV equation, the first part vanishes by expanding the definition.
+
+
+The meaning of the $z$ directions comes from the homogeneity; using the dimension of the moduli spaces we see that $\star_t$ is homogenous with respsect to
+
+$$\left\{\begin{array}{rll}
+\deg(e^{\sigma\cdot d}=q)&=c_1(x)\cdot d & \sigma\in H^2(X) \\
+\deg(t^i)&=\left(1-\frac{1}{2}\deg(\phi_i)\right) & i\geq r+1 \\
+\deg(e^{t^i}) & = c_1(X)\cdot\beta_i &
+\end{array}
+\right.$$
+
+The factors of 1/2 come from switching between complex and real degree.
+
+We want everything to be homogeneous; in particular, for
+
+$$\frac{\partial}{\partial t^i} +\frac{1}{Z}\left(\phi_i\star \right)$$ to be homogeneous, we need $\deg z=1$.
+
+Then
+$$\nabla_{\frac{\partial}{\partial z}+E}=z\frac{\partial}{\partial z}+d_E+\mu$$
+is a total grading operator -- the first two terms are the degree of variables, the $\mu$ term is the degree of cohomology classes.
+
+
+\item
+
+  $$\left(\frac{\partial}{\partial t^i}-\frac{1}{z}\phi_i\star)\alpha,\beta\right)+\left(\alpha,(\frac{\partial}{\partial t^i}-\frac{1}{z}\phi_i\star)\beta\right)=\frac{\partial}{\partial t^i}(\alpha,\beta)$$
+
+\end{enumerate}
+\end{proof}
+
+
+Looking at $Q=1$, we have
+
+$$\nabla_{\frac{\partial}{\partial t^i}}=q_i\frac{\partial}{\partial q_i}+\frac{1}{z}(\phi_i\star)$$
+and so $\nabla$ has logarithmic singularities along $\{q_1,\dots, q_r=0\}$.
+
+
+\subsection{Fundamental solution}
+
+Since $\nabla$ is flat, we can construct a fundamental solution to the QDE.  The point is that this has a very explicit formula.
+
+\begin{theorem}[Dijkgraaf-Witten, Dubrovin, Givental]
+
+We define
+$L(t,z)\in\text{End}(H^*(X))\otimes\C[[z^{-1},Q,t]]$
+by
+$$L(t,z)\phi_i=\phi_i+\sum_{d,n}\left\langle\frac{\phi_i}{-z-\psi},t,\dots,t\phi_j   \right\rangle_{0,n+2 ,d}\phi^j\frac{Q^d}{n!}$$
+Then
+$$\nabla_i(L(t,z)\phi_j)=0$$
+for all $i, j$.
+
+Furthermore, $L$ is symplectic:
+
+$$\left( L(t,-z)\phi_i, L(t,z)\phi_j\right)=(\phi_i,\phi_j)$$
+
+
+\end{theorem}
+
+A few remarks:
+
+Here we expand 
+$$\frac{\phi}{(-z-\psi)}=\sum_{n=0}^\infty \frac{\phi(-\psi)^n}{(-z)^{n+1}}$$
+as a geometric series.
+
+Also, $L(t,z)\phi_i$ is NOT flat in the $z$ direction.
+
+Once we know that it is a flat section, the symplectic property comes from the fact that $\nabla$ respects the pairing.  Seeing that it is a flat section is more complicated and involves the WDVV equation.
+
+\begin{remark}
+The specialization $Q=1$, makes sense for $L$, and has the following asymptotics:
+$$L(q_1\dots, q_r, t^{r+1},\dots, t^N,z)\sim \exp(- \sum_{i=1}^r(\phi_i\cup)(\log q_i)/z)\text{id}$$
+as $(q,t)\to 0$.
+
+This is a basic fact of differential equations with logarithmic singularities -- the $\phi_i\cup$ term is occuring as the residue of $\nabla$ already, and in general the fundamental solution will have the form as above.  SOmethin something semiclassical limit?
+
+\end{remark}
+
+
+\begin{definition}[J-funciton]
+$$\J(t,z)=zL(t,z)^{-1}\one=z L(t,-z)^\dagger \one$$
+where $\dagger$ is the adjoint with respect to the poincare pairing.
+\end{definition}
+
+
+More explicitly, we have
+
+\begin{align*}
+\J(t,z)&=z(1+\sum_{n,d,i}\left\langle\frac{\phi_i}{z-\psi},t,\dots,t,\one\right\rangle_{0,n+2,d}\frac{Q^d}{n!} \phi^i \\
+&=z+t+\sum_{n,d}\left\langle\frac{\phi_i}{z-\psi},t,\dots,t\right\rangle_{0,n+1,d}\frac{Q^d}{n!} \phi^i 
+\end{align*}
+
+where the second line comes from the first by using the string equation, witht he $z$ canceling with some factors coming from the first insertion.
+
+\subsection{Meaning of $L$ and $\J$}
+
+We can take $$(F,\nabla_i)\stackrel{L^{-1}\cong}\to \left(H\otimes\OO_{H\times\C^*},\frac{\partial}{\partial t^i}\right)$$
+
+This isomorphism sends the non-flat section $z\one$ to $\J(t,z)$.  
+Hence, the $\J$ function is essentially expressing $\one$ in the basis of flat sections.
+
+More generally, under this map we have
+\begin{align*}
+\nabla_i(z\one)=\phi_i\star\one&\mapsto\frac{\partial\J}{\partial t^i} \\
+z\nabla_j\nabla_i(z\one)=\phi_i\star\phi_j&\mapsto z\frac{\partial}{\partial t^j}\frac{\partial}{\partial t^i}\J \\
+=\sum_k c_{ij}^k\phi_k & \mapsto \sum c^k_{ij} \frac{\partial}{\partial t^k}\J
+\end{align*}
+
+And so the $(c_{ij}^k)$ can be seen from the differential equation of $\J$ and so $\J$ contains the same information as the quantum product.
+\subsection{}
+Taking a component of $J$: 
+
+$$(F,\nabla_i)\stackrel{L^{-1}\cong}\to (H\otimes\OO_{H\times\C^*},d)\to(\OO,d)$$
+with
+$$z\one\mapsto \J\mapsto \int_X\J\cup v$$
+
+Gives a solution of the Quantum connetion.
+This is a $\mathcal{D}$-module map, and this is mirror to the periods.
+
+
+\section{Givental's Lagrangian Cone}
+
+Let $\mathcal{H}=H^*(X)\otimes\C[z,z^{-1}][[Q]]$ which is like loops in $H^*(X)$.
+
+Given $f,g,\in\mathcal{X}$, we define
+
+$$\Omega(f,g)=\text{Res}_{z=0}\left( f(-z),g(z)\right)dz$$
+the sign in $f(-z)$ means switching the roles of $f$ and $g$ gives us a minus sign, and so $\Omega$ is a symplectic form on $\mathcal{H}$.
+
+We have a polarization
+
+$$\mathcal{H}=\mathcal{H}_+\oplus\mathcal{H}_-$$
+with
+\begin{align*}
+\mathcal{H}_+&=H^*(X)\otimes\C[z][[Q]] \\
+\mathcal{H}_-&=H^*(X)\otimes z^{-1}\C[z^{-1}][[Q]]
+\end{align*}
+
+That these are isotropic with respect to $\Omega$ just follows from the fact that we have a residue appearing in the definintion of $\Omega$.
+
+We can find Darboux coordinates on $\mathcal{X}$ by taking $f\in\mathcal{H}$ and writing
+
+$$f=\sum_{n=0}^\infty q_n z^n+\sum_{n=0}^\infty p_n\frac{1}{(-z)^{n+1}}$$
+
+with
+$$\left\{\begin{array}{l} q_n=\sum_i q_n^i\phi_i \\
+p_n=\sum_i p_{n,i}\phi^i 
+\end{array}\right.$$
+give Darboux coordinates.
+
+EXERCISE:
+
+$$\Omega=\sum_{n,i} dp_{n,i}\wedge dq_n^i$$
+
+
+\subsection{}
+
+The generating function $$\mathcal{F}_g:\mathcal{H}_+\to\C[[Q]]$$
+is defined on a formal neighborhood of $-z\one\in\mathcal{H}_+$ as
+$$\mathcal{F}_g(-z\one+tt(z))
+=\sum_{n,d}\left\langle tt(\psi),\dots,tt(\psi)\right\rangle_{g,n,d} \frac{Q^d}{n!}$$
+here $$tt(z)=\sum_{k,i} t^i_k\phi_iz^k$$
+are formal coordinates on $\mathcal{H}_+$.
+
+We will sometimes make the \emph{dilaton shift} and introduce $qq(z)$ by
+$$qq(z)=-z+tt(z)$$
+
+
+
+\subsection{Returning to $g=0$}
+
+Consider $d\mathcal{F}_0\in\Gamma(\mathcal{H}_+,T^*\mathcal{H}_+)$.
+
+We have $T^*(\mathcal{H}_+)\cong \mathcal{H}$.
+
+\begin{definition}[Givental's Lagrangian cone]
+$$\mathcal{L}=\text{Graph}(d\mathcal{F}_0)\in\mathcal{H}$$
+\end{definition}
+We have
+$$\mathcal{L}=\left\{p_{n,i}=\frac{\partial\mathcal{F}_0}{\partial q^i_n}\right\}$$
+
+PICTURE: formal germ of graph of $d\mathcal{F}_0$ in $\mathcal{H}_\pm$-plane.
+
+And
+\begin{align*}
+\left(d\mathcal{F}_0\right)_{-z+tt}&=\underbrace{-z+tt(\psi)}_{\mathcal{H}_+}+\underbrace{\sum_{n\geq 0} \frac{\partial\mathcal{F}_0}{\partial q^i_n}\frac{\phi^i}{(-z)^{n+1}}}_{\mathcal{H}_-}\\
+&=-z+tt(z)+\sum_{n,m,i,d} \left\langle\phi_i\psi^n,tt(\psi),\dots,tt(\psi)\right\rangle_{0,m+1,d}\frac{Q^d}{m!}\frac{\phi^i}{(-z)^{m+1}} \\
+&=-z+tt(z)+\sum_{m,i,d} \left\langle\frac{\phi_i}{-z-\psi},tt(\psi),\dots,tt(\psi)\right\rangle_{0,m+1,d}\frac{Q^d}{m!}\phi^i
+\end{align*}
+
+\begin{remark}
+If we set $tt(z)=t$, then
+$$\left( d\mathcal{F}_0\right)_{-z+t}=\J(t,-z)$$
+\end{remark}
+It turns out that this is a cone, and if we look at the tangent space we have
+
+$$\frac{\partial\J}{\partial t^i}=L^{-1}\phi_i\in T_t=T_{\J(t,-z)}\mathcal{L}$$
+
+Facts:
+
+\begin{enumerate}
+\item $zT_t\subset T_t$ (string equation)
+\item $T_t$ is freely generated by $\frac{\partial\J}{\partial t^i}$ as a $\C[z][[Q,t]]$-module
+\item So $T_t=L(t,-z)^{-1}\mathcal{H}_+$
+\item Dubrovin's reconstruction theorem:
+$$\mathcal{L}=\cup_{t\in H} zT_t$$
+\end{enumerate}
+
+So, $\mathcal{L}$ is nonlinear, but it contains the infinite dimensional vector spaces $zT_t$, moreover it is the union over a finite dimensional family (over $t\in H$ of infinite dimensional vector spaces.  
+
+PICTURE: $\J$-function above $-z$ in $\mathcal{H}_\pm$ pane, ruling with $zT_t$.
+
+If $L(t,-z)|_{Q=1}$ is analytic in $(t,Z)$ then we can make an analytic Lagrangian cone
+
+$$\mathcal{L}^{an}=\cup_{t\in B} zL(t,-z)^{-1}\mathcal{H}^{an}_+$$
+
+\subsection{}
+$$(F,\nabla_i)\stackrel{L^{-1}\cong}\to\left(H\otimes\OO_{H\times\C^*},\frac{\partial}{\partial t^i}\right)$$
+with $\pi:H\times\C\to H$ the projection, then:
+$$(\pi_*F,\nabla_i)\stackrel{L^{-1}}\hookrightarrow\left(H\otimes\pi_*\OO_{H\times\C^*},\frac{\partial}{\partial t^i}\right)$$
+and $\mathcal{L}$ is the image of $z(\pi_* F)$ under $L^{-1}$.
+
+To summarize, we have three equivalent things:
+\begin{enumerate}
+\item Quantum Connection
+\item Lagrangian Cone
+\item $\J$ function
+\end{enumerate}
+
+
+
+
+
+\end{document}
