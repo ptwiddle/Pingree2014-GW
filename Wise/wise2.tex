@@ -1,0 +1,392 @@
+\documentclass{amsart}
+
+
+
+\linespread{1.2}
+
+\theoremstyle{definition}
+\newtheorem{dummy}{}[section]
+\newtheorem{remark}[dummy]{Remark}
+\newtheorem{theorem}[dummy]{Theorem}
+\newtheorem{definition}[dummy]{Definition}
+\newtheorem{example}[dummy]{Example}
+\newtheorem{question}[dummy]{Question}
+\newtheorem{conjecture}[dummy]{Conjecture}
+\newtheorem{lemma}[dummy]{Lemma}
+\newtheorem{proposition}[dummy]{Proposition}
+
+\newcommand{\Def}{\text{Def}}
+\newcommand{\TT}{\mathbb{T}}
+\newcommand{\Pic}{\text{Pic}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\GIT}{//}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Stab}{\text{Stab}}
+\newcommand{\Spec}{\text{Spec}}
+\newcommand{\aff}{\text{aff}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\Map}{\textrm{Map}}
+\newcommand{\proj}{\mathbb{P}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\sm}{\text{sm}}
+\newcommand{\Mbar}{\overline{\mathcal{M}}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Age}{\text{Age}}
+\newcommand{\Fix}{\text{Fix}}
+\newcommand{\one}{1}
+\newcommand{\st}{\text{st}}
+\newcommand{\ttt}{\mathbb{t}}
+\newcommand{\ev}{\text{ev}}
+\newcommand{\vir}{\text{vir}}
+\newcommand{\Quot}{\text{Quot}}
+\newcommand{\Hom}{\text{Hom}}
+
+
+\newcommand{\Aut}{Aut}
+
+
+\author{Jonathan Wise}
+\title{Deformation theory and virtual classes II}
+
+
+\begin{document}
+\maketitle
+
+Today we will discuss deformation theory and higher algebra.
+
+Given a short exact sequence
+
+$$0\to A\to B \stackrel{p}\to C\to 0$$
+we get the map 
+\begin{align*}
+H^0(C)&\to H^1 \\
+c&\mapsto p^{-1}(c) 
+\end{align*}
+and
+
+\begin{align*}
+H^1(C)&\to H^2(A) \\
+p&\mapsto \{\text{$B$-torsors $Q$ inducing $P$}\} \\
+&=\{(Q,\phi)|\cdots\}
+\end{align*}
+
+Exercise: Exactness of first nine terms of the long exact sequence of cohomology.
+
+\section{deformation theory}
+
+
+\begin{definition}
+An \emph{infinitesimal extension} of schemes is a closed embedding $S\subset S^\prime$ such that $J=I_{S/S^{\prime}}$ is nilpotent $(J^n=0)$.
+
+A \emph{square-zero extension} is such that $J^2=0$.
+
+\end{definition}
+
+
+Given any niloptent extension filters as a sequence of square zero extensions.  
+Define $S_i=V(J^i)$; then 
+$$S\subset S_1\subset S_2\subset\cdots\subset S_n=S^\prime$$
+is the filtration we want.
+ i
+
+A deformation problem is, given some data $X$ over $S$, determine the extensions of $X$ to an infitesimal thickening $S^\prime$:
+
+COM DIAG
+
+We always have the trivial square zero extension by a quasi-coherent $J$; what makes it trivial is that it has a contraction.
+
+Define $S[J]=\text{Spec}(\OO_S+\epsilon J)$
+It is $\OO_S\times J$ as a set, with $(a+b\epsilon)(c+d\epsilon)=ac+(ad+bc)\epsilon$.
+
+Note $S\hookrightarrow S^\prime$ has a retraction $S^\prime\to S$ sending $\OO_S\to \OO_S+\J$.
+
+To give a square-zero extension of $S$ by $J$ is the same as giving an extension of sheaves of algebras:
+
+$$0\to J\to\OO_{S^\prime}\to\OO_S\to 0$$
+
+Why do we like square zero extensions?  One reason is the Zariksi tangent space:
+
+COMMUTATIVE DIAGRAM -- $f:S\to X$, over $S[J]$, exists factorization.
+
+$$\Hom(f^*(\Omega_X, J))$$
+$$\Gamma(S, f^* T_X\otimes J)$$
+
+Other motivations for square zero extensions:
+\begin{definition}
+A map $f:X\to Y$ is (formally smooth / \'etale / unramified) if any lifting problem:
+COMMUTATIVE DIAGRAM, $S\to X$ over $S^\prime\to Y$, exists upper right diagonal lift, $S\hookrightarrow S^\prime$.  
+With $S\hookrightarrow S^\prime$ infinitesimal and $S$ affine.
+has (a solution / exactly one solution / at most one solution).
+
+To delete ``formally'', add ``local finite presentaiton''
+\end{definition}
+
+Some intuition for this: saying something is unramified is basically saying that no infintesimal motion is possible in the fibers, and so if we want to extend something infinitesimally, we can do it in at most one way.  
+
+Of course this doesn't rule out that we can at lift in at most one way,
+
+Smooth, says, if we make any infinitesimal motion in $Y$, then there is no obstruction to lifting it to an infinitseimal motion in $X$, and so infintesimally, $X$ looks like a power series ring over $Y$.
+
+
+\subsection{Deformations of sections of line bundles}
+
+Suppose we have $L\to S$ line bundle, with section $\sigma$; and extensions $L^\prime, S^\prime$ of $L\to S$; the question is can we deform $\sigma$, and in how many ways.
+
+
+
+The first observation is that if $L^\prime$ is trivial, then $\sigma^\prime$ exists, but is not necessarily unique.  So let us consider two extensions $\sigma^\prime, \sigma^{\prime\prime}$, and consider their difference $\sigma^\prime-\sigma^{\prime\prime}$
+We have
+
+$$0\to J\otimes L^\prime=J\otimes L\to L^\prime\to L\to 0$$
+
+Something flatness tells us about the kernel.
+
+$\sigma^\prime$ and $\sigma^{\prime\prime}$ both map to $0$, and so their difference is in the kernel.  $J\otimes L$ acts on $\text{Def}(\sigma)$, and we see that $\text{Def}(\sigma$ is a torsor under $J\otimes L$.
+
+Thus, we get a class 
+$$[\text{Def}(\sigma)]\in H^1(S, J\otimes L)$$
+that vanishes if and only if $\sigma^\prime$ exists.  If $\sigma^\prime$ exists, then all deformations of $\sigma$ form a torsor under $H^0(S, J\otimes L)$.
+
+What makes this go is the local natural of the deformations; we know that if locally they exist, we can patch them togther.
+
+\subsection{Deformations of line bundles}
+
+COMMUTATIVE DIAGRAM: $S\hookrightarrow S^\prime$, $L$ over  $S$, want $L^\prime$ and exists of the other tow maps
+
+Locally, trivial line bundles extend.  Any two extensions are locally isomorphic.  So $\Def(L)$ is a gerbe.  If we're lucky, it's a banded gerbe.
+
+What is $\Aut(L^\prime)?$
+
+A morphism from the exact sequence:
+$$0\to J\otimes L\to L^\prime\to L\to 0$$
+to itself, so that 
+maps between $L$ and $J\otimes L$ are the identity map.
+
+If we had such a map $\varphi$, we can take the difference $\varphi-\text{id}$, which would be $0$ between $L$ and $J\otimes L$.  And diagram chase gives $\varphi-\text{id}:L\to J\otimes L$., and so $\varphi-\text{id}\in J$, and we have seen that
+$$\Aut(L^\prime)\cong J$$
+The obstruction $[\Def(L)\in H^2(S, J)$.
+
+Deformations are a torsor under $H^1(S, J)$ if they exist, $\Aut(s)=H^0(S, J)$.
+
+in particular, deformation of line bundles over curves is unobstructed since $H^2=0$; we may use that later.
+\subsection{Deformations of stable maps}
+Deformations of moduli problems.  You usually have a choice of things here, and different choices will result in different results, so the question is what we put as $V$.
+Recall $\M\to V$, squiggly arrow from deformations of moduli problem into $V$.
+
+Recall, we had $\Mbar(X)=\{ C\to S, f:C\to X\}$.
+
+Deformations of $\Mbar(X)$ is the deformations of moduli problem.
+
+The problem is the space $\Mbar(X)$ is so horrible that there's no idea what this problem are.  We are going to be looking for a generic deformation to be able to find the virtual fundamental class, and if we go different directions we might get different answers, because this is so horrible.
+
+Another thing we could try is to just deform $X$; this is a little better, but still pretty horrible.  You wouldn't get a virtual fundamental class in general here, but maybe in some special cases; the examples we saw in the first lectures might be examples of where this strategy actually worked but in general you need something better.
+
+One way to get a clue is to look at:
+
+$$\text{expected dimension} [\Mbar]^\vir=3g-3+\chi(f^*(TX)$$
+and so maybe we should be looking at things on $C$?
+
+
+\subsection{Deformations of maps into smooth schemes}
+We have map $f:C\to X$ with $X$ smooth; let $C^\prime$ be a square zero thickening of $C$ by $J$, and we want to extend it to $X$ (COMMUTATIVE DIAGRAM).
+
+We want to know if such a deformation exists, and if it does exist, how many there are.
+
+The first observation is that if $C$ were affine, existence would be automatic -- $X$ is smooth over a point, and then this becomes the lifting problem of the deformation of smoothness (but this includes the requirement that $C$ is affine -- needed to add that back in earlier?)
+
+How many lifts exist in the case that $C$ is affine -- or, in general, when lifting exists.
+
+Claim: lifts form a torsor under $f^*(TX)\otimes J$.
+
+His notes include 4 proofs, and since this is the fundamental example, we may just do them all, in increasing order of how much Jonathan likes them, but 2+3 are tied.
+
+\subsubsection{Proof 1}
+Suppose that we have two lifts $f^\prime$, $f^{\prime\prime}$. (COM DIAG).
+This yields COM DIAG SQUARE, $f:C\to X$ over $C^\prime\to X\times X$.
+
+Then we have
+
+$$f^*N_{X/X\times X} \to N_{C/C^\prime}$$
+equal to
+$$f^*(\Omega_X)\to J$$
+i.e., $f^*(T_X)\otimes J$.
+
+\subsubsection{Proof 2}
+
+Long exact sequence:
+
+$$0\to J \to \OO_{C^\prime}\to \OO_C\to 0$$
+now we have $f^{-1}(\OO_X)$ over $\OO_C$, and $\varphi^\prime$ and $\varphi^{\prime\prime}$ going to $\OO_{C^\prime}$, and so their difference lifts to a map to $J$
+$$\varphi^{\prime}-\varphi^{\prime\prime}:f^{-1}(\OO_X)\to J$$
+The exercise is that $\varphi^\prime-\varphi^{\prime\prime}$ is a derivation, and so
+$$\varphi^\prime-\varphi^{\prime\prime}\in \text{Der}(f^{-1}(\OO_x\otimes J)=\Hom(f^*\Omega_X,J)=f^*T_X\otimes J$$
+
+
+\subsubsection{Proof 3}
+
+Same long exact sequence and $f^*(\OO_X)$ above $\OO_C$.  We won't look at the difference of the two maps, but pull back the exact sequence to a new exact sequence apping to it
+
+$$0\to J\to A\to f^{-1}(\OO_x)\to 0$$
+and there is a bijection between $g\prime f^{-1}(\OO_x)\to A$ splittings of the top sequence and $f^\prime:f^{-1}(\OO_X)\to \OO_{C^\prime}$.
+
+Thus, we have $\Def(f)$  are the same as these splittings.
+
+But Splittings of $A$ are the same as isomorphisms from $A$ to $f^{-1}(\OO_X)+\epsilon J$.  
+
+The claim is then that $f^{-1}(\OO_X)+\epsilon J$ is a torsor under $f^*T_X\otimes J$
+
+A sketch of the proof is that locally an isomorphisms exists because $A$ is an extension of a smooth algebra $f^{-1}\OO_X)$.
+Thus, we need to compute $\Aut(f^{-1}(\OO_X)+\epsilon J)$ as an extension, and the algebra exercise is that this is $\text{Der}(f^{-1}(\OO_X,J)$.
+
+
+\subsubsection{Slight interlude}
+The idea here is the difference of two deformations is a torsor, this happens over and over.
+
+Since it's a torsor, 
+($$[\Def(f)]\in H^1(C, f^*T_X\otimes J)$$
+and this obstructrs the exists of $f^\prime$, and if $f^\prime$ exists, deformations are a torsor under $H^0(C, f^*T_X\otimes J)$.
+
+To give the last proof, we need to define homogeneity, which is about pushouts of schemes:
+
+Let $f:S\to T$ affine map of schemes, and $S\hookrightarrow S^\prime$ infinitesimal extension, then there is a universal pushout $T^\prime$ that makes the diagram commute.  The construction is that we have a surjection
+$\OO_{S^\prime}\to\OO_S$ that we can pushforward by $S$, and it will remain surjective because $f$ is affine.  
+
+And then we just pullback rings COMMUTATIVE DIAGRAM
+giving
+
+$$\OO_{T^\prime}=\OO_T\times_{f_*\OO_S}f_*\OO_{S^\prime}$$
+
+\begin{remark}
+
+Pushouts give tangent space its additive structure:
+
+\end{remark}
+
+
+\begin{proof}
+Two commutative diagrams: first, $S\to X$ horizontal, $S\to S[J]$ vertical, two lifts.
+
+In second, we replace $S[J]$ with $S[J]\sqcup_S S[J]$ with one map to $X$.
+
+Taking $\OO_{S[J]\sqcup_S S[J]}$ which is
+
+$$\OO_S+\epsilon_1 J+\epsilon_2 J$$ but we have a third map
+
+$\alpha, \beta\in f^* T_X\otimes J$, and these are essentially tangent vectors, and we can combine these two tangent vectors by restricting the ap
+$$S[J]\sqcup_S S[J]\to S[J]$$
+
+
+MISSING A LOT
+
+\end{proof}
+
+
+Artin's criteria: I, n order for a stack to be ``geometric'' (which for some reason is called ``algebraic''), $X$ needs to respect these coproducts.  This is not the whole story, but the start of it.  Thus, we want the tangent spaces to be additive groups.
+
+
+\subsubsection{Proof number 4} 
+Recall we wanted to prove extensions $C\to X$ to $C^\prime$ form a torsor under $f^*T_X\otimes J$.
+
+The two extensions form an extension from $C$ to $C^\prime\sqcup_C C^\prime$ to $X$.
+
+$$\OO_{C^\prime\sqcup_C C^\prime}=\OO_{C^\prime}\times_{\OO_C}\OO_{C^\prime}=\OO_{C^\prime}+\epsilon J$$
+
+$$C^\prime\sqcup_C C^\prime\cong C^\prime \sqcup_C C[J]$$
+
+This gives us a factorization of $C\to X$ through $C^\prime \sqcup_C C[J]$; this gives us two commutative diagrams, one of $C$ factoring through $C^\prime$, one of it factoring through $C[J]$, and so we have
+$$\Def(f)^2=\Def(f)\times f^*T_X\otimes J)$$
+Renzo -- so you're saying if we have a diagonal thing, we can trivialize it in one dimension.  Exactly.
+
+
+\subsection{Deformations of the moduli problem of maps to S}
+
+We had $\Mbar(X)=\{C\to S, f:C\to X\}$.
+
+Recall from proof number three, that we viewed the obstructions as algebra extensions 
+
+$$0\to J\to A\to f^{-1}(\OO_X)\to 0$$
+so we're thinking about deforming $X$ after all; but they aren't deformations to $X$ on $X$; they're deformations of $X$ that are local to $C$.
+
+So, deformations to ``concept of curve on in $X$'' are deformations of $X$ local to $C$.
+
+Stated more precisely, given $\OO_{C^\prime}\to\OO_C$ a deformation of $C$, we produce out of this something in $\text{ExtAlg}(f^{-1}\OO_X, J)$
+and the way we were able to determine if $f^\prime$ an extension of $f$ to $C^\prime$ existed, is whether this extension splits.
+
+
+The extension is $$0\to A\to f^{-1}(\OO_X)\to 0$$
+over
+$$0\to J\to \OO_{C^\prime}\to \OO_C\to 0$$
+
+So, given COM DIAG $S\to \Mbar(X)$, over $S^\prime\to \mathfrak{m}$, want diagonal lift.
+
+
+Gives
+COM DIAG:
+
+$C\to C^\prime$ over $S\to S^\prime$, $C\ to X$ want $C^\prime \to X$, $\pi:C\to S$, then have
+$J=\pi^*(I_{S/S^\prime})$ get obstructions to lifting in
+$H^1(c, f^*T_X\otimes J)$, etc.
+get obstructions to lifting in
+$\text{ExtAlg}(f^{-1}\OO_X, J)$.
+
+
+So, the first order deformations of moduli problem should be
+$\text{ExtAlg}(f^{-1}(\OO_X), J)$.
+
+In symplectic geometry, get virtual fundamental class by deforming what it means to be a curve in $X$; we go to $J$-holomorphic instead of holomorphic; here we do the same thing, we deformt he algebra of ...
+
+
+
+Just knowing this is enough to go through the whole construction, but it would be nice to talk about higher order deformations.
+
+Proposal: Fix $C\to S, f:C\to S$, and $S\hookrightarrow S^\prime$ an infinitesimal extension.
+
+A deformation of ``concept of a curve in $X$'' to $S^\prime$ is a functor $\mathcal{X}:(U, U^\prime)\to\text{Sets}$, with $U\in X$ open, and $U^\prime$ an infitesimal extension of $U$ over $S\hookrightarrow S^\prime$ COM DIAG.
+
+Such that $\mathcal{X}$ is homogenous (respects pushouts) and $\mathcal{X}$ is locally isomorphic to $X$l that is
+$$\mathcal{X}(U, U^\prime)\cong \Hom(U^\prime, X)$$ for $U$ sufficiently small.
+
+Then you can check with this proposal, we have extensions to $S^\prime=S[J]$ are $\text{ExtAlg}(f^{-1}(\OO_X, J)$
+and formally smooth almost by definition.  It has a few nice properties, and maybe it's interesting later, but I don't know a whole lot about this.
+
+\section{Example: deformations of smooth schemes}
+
+The moduli problem here is given a scheme $X\to S$ that's smooth, $S^\prime$ an infinitesimal extension of $S$, can we find an $X^\prime$ making it commute.  COM DIAG.
+
+Can we find an extension of algebras:
+
+$$0\to \pi^*J\dashrightarrow \OO_{X^\prime}\dashrightarrow\OO_X\to 0$$
+with maps from
+$$0\to \pi^{-1} J\to \pi^{-1} (\OO_{S^\prime})\to \pi^{-1}(\OO_S)\to 0$$
+
+Locally in $X$, $X^\prime$ exists because $X$ is smooth; so we can ask how many there are.
+
+Locally if we have two extensions $X\to X^\prime$ and $X^{\prime\prime}$, form commutative diagram with $X^\prime, X^{\prime\prime}$ to $S^\prime$, lift $X^\prime$ to $X^{\prime\prime}$; get isomorphism by formal criterion for smoothness.
+
+Thus, $\Def(X)$ form a gerbe
+
+$$0\to \pi^*J\to \OO_{X^\prime}\to\OO_X\to 0$$
+to
+$$0\to \pi^*J\to \OO_{X^\prime}\to\OO_X\to 0$$
+with equality on left and right, $\varphi$ in the middle.
+
+Thus $\varphi-\text{id}:\OO_X\to \pi^*J$ is a derivation, and so $\Aut(\OO_{X^\prime})=T_{X/S}\otimes\pi^*J$.
+
+And $\Def(X)$ form a gerbe banded by $T_{X/S}\otimes\pi^*J$.
+
+$H^2(X, T_{X/S}\otimes\pi^*J)$ obstructions.
+
+$H^1(X, T_{X/S}\otimes\pi^*J)$ acts on $\Def$, torsor if not empty
+
+$H^0(X, T_{X/S}\otimes\pi^*J)$ automorphisms.
+
+What about nonsmooth?  There's a trick to make the classification of torsors and gerbes still work.  The cotangent complex will be there, but kind of hidden.
+
+Big picture: cohomological obstructions to things always arise from local triviality, the quesiton then is how you find the right local triviality.  The obvious notion of local triviality in the non-smooth case won't work, but there's a more subtle notion that will.
+
+  
+\end{document}
