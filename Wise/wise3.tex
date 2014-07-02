@@ -1,0 +1,403 @@
+\documentclass{amsart}
+
+
+
+\linespread{1.2}
+
+\theoremstyle{definition}
+\newtheorem{dummy}{}[section]
+\newtheorem{remark}[dummy]{Remark}
+\newtheorem{theorem}[dummy]{Theorem}
+\newtheorem{definition}[dummy]{Definition}
+\newtheorem{example}[dummy]{Example}
+\newtheorem{question}[dummy]{Question}
+\newtheorem{conjecture}[dummy]{Conjecture}
+\newtheorem{lemma}[dummy]{Lemma}
+\newtheorem{proposition}[dummy]{Proposition}
+
+\DeclareMathOperator{\ExtAlg}{ExtAlg}
+\DeclareMathOperator{\Der}{Der}
+\DeclareMathOperator{\Sym}{Sym}
+
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\alg}{\text{alg}}
+\newcommand{\Def}{\text{Def}}
+\newcommand{\TT}{\mathbb{T}}
+\newcommand{\Pic}{\text{Pic}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\GIT}{//}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Stab}{\text{Stab}}
+\newcommand{\Spec}{\text{Spec}}
+\newcommand{\aff}{\text{aff}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\Map}{\textrm{Map}}
+\newcommand{\proj}{\mathbb{P}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\sm}{\text{sm}}
+\newcommand{\Mbar}{\overline{\mathcal{M}}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Age}{\text{Age}}
+\newcommand{\Fix}{\text{Fix}}
+\newcommand{\one}{1}
+\newcommand{\st}{\text{st}}
+\newcommand{\ttt}{\mathbb{t}}
+\newcommand{\ev}{\text{ev}}
+\newcommand{\vir}{\text{vir}}
+\newcommand{\Quot}{\text{Quot}}
+\newcommand{\Hom}{\text{Hom}}
+
+
+\newcommand{\Aut}{Aut}
+
+
+\author{Jonathan Wise}
+\title{Deformation theory and virtual classes III}
+
+
+\begin{document}
+\maketitle
+
+
+
+
+We continue with some parts of the last time, which we didn't type get to.
+
+MOTTO/PHILOSOPHY:
+If a deforation problem is locally trivial, then obstructions/deformations/automorphisms have a cohomological explanation by way of torsors and gerbes.
+
+\section{What happens when things aren't locally trivial?}
+
+\begin{example}
+You want to deform $X$ over $S$, but $X/S$ is not smooth (COMDIAG, extensions have primes.
+
+More concretely, let's let
+$$X=\text{spec} \C[x,y]/xy$$
+$S=\text{Spec} \C$, $S^\prime=\Spec \C[\epsilon]/\epsilon^2$.
+
+Then 
+$$X^\prime=\Spec \C[x,y]/(xy-\lambda\epsilon)$$
+and 
+$$\ExtAlg_\C(\OO_X, \OO_X)=\C$$
+which is not a gerbe because uniqueness fails.
+
+No matter how close we look local to the node, these deformations are all going to look different.
+
+\end{example}
+
+
+\begin{example}
+We will work relative to that $X$;
+
+
+$$X=\text{spec} \C[x,y]/xy$$ 
+$$X^\prime=\Spec \C[x,y]/(xy-\lambda\epsilon)$$
+
+and take $Y$ over $X$ to be the node $x=y=0$.
+
+We ask if we can deform $Y$ to $Y^\prime=\Spec\C[\delta]/\delta^2$, and of course we can; we can send $x\mapsto \alpha\delta, y\mapsto \beta\delta$ for any $\alpha, \beta$ we want.
+
+But now we ask if we can go a higher order, and consider
+
+$$X^{\prime\prime}=\Spec[\C[x,y,\epsilon]/(xy, \epsilon^3)$$
+
+and we try sending $x\mapsto \alpha\delta+\alpha^\prime\delta^2$, similarly with $y$, but if $\alpha\beta\neq 0$ this will never be a ring homomorphism, and so our deformations are obstructed.
+
+PICTURE -- node, to first order can move randomly, and dont' have to live on the curve; but if our first order deformation isn't along one of the branches, then we can't extend this deformation.
+\end{example}
+
+There are several ways to work around this.  Let us restrict to $X$-affine so that we can work with algebras, and not have to deal with lots of technicalities.
+
+We have
+
+$0\to J\to A^\prime\to A\to 0$, and we want to extend this to 
+$0\to J\otimes C\to C^\prime\to C\to 0$
+
+The observation is that if $C$ were a polynomial ring over $A$, then $C^\prime$ exists and is unique up to non-unique isomorphism.  
+
+But of course, $C$ isn't a polynomial ring; let's just try to declare that $C$ is locally a polynomial ring.
+
+Define
+
+$$A-\text{alg}/C=\left\{A\to B\to C \text{ commutating with } A\to C\right\}$$
+what quillen did:
+
+declare that $B_i\to B$ is a covering if at least one $B_i$ surjects to $B$.  There are some slight technical reasons why you don't want to do this, but if you're willing to ignore them you can work with them.
+
+A slight correction that works better in the sheaf case is that it's a covering if for any finite set $\Lambda\subset B$ there exists a $B_i\to B$ whose image contains $\Lambda$.
+
+With this definition, we can say that every $A$-algebra is locally a polynomial algebra.
+
+WHy?  Given $B$ take the collection of $A[x_1,\dots, x_n]\to B$.
+
+Note, when you take spec and reverse the arrows, the way you're thinking about this is that you're trying to embedd your non-smooth things into something smooth.  
+
+At this point it's just formal nonsense, but the useful thing is that you can extend the deformation problem we originally started with to a deformation theory here.  We can think of this as a stack on our bizarre topology.
+
+Define $F(B)=\left\{SAME DRAWING \right\}$
+
+$F$ is contravariant in $B$; we could just pull back what we had before.
+You can see that in fact $F$ is a stack.
+
+What this is saying is that if you want to construct an extension of $C$, what you need to do is construct an extension of every polynomial algebra over $C$ that are compatible with each other, i.e., locally, in this topology.
+
+But locally, everything is a polynomial algebra, and there's just one extension, and so $F$ is a Gerbe on $A-\alg/C$.
+
+Moreover, $F$ is banded by $\Der(B,J\otimes C)$.  Define this to be $D(B)$; then what we have is that $F$ is a gerbe banded by $D$.
+
+Then, by our motto, we have that
+\begin{align*} 
+\text{obs} &\in H^2(A-\text{alg}/C, D) \\
+\text{def} &acted on H^2(A-\text{alg}/C, D) \\
+\text{aut} &= H^0(A-\alg/C, D) 
+\end{align*}
+
+This idea was first done by Quillen and Rim around the same time, and has been rediscovered over and over again, for instance by Gaitsgory  and de Jong.
+
+How do you make this work for schemes?  We have to slightly modify the topology by mixing the topology of the ring with that of the space (Wise has a paper about this), but it's rather technical and so we won't do the details.
+
+But one thing we need is a way to calculate and work with these things?
+
+\subsection{Another solution for schemes}
+The first solution was Illusie's cotangent complex.
+
+Illusie works with simplicial sheaves of rings, and winds up with the cotangent complex $L_{C/A}$.
+
+You prove that
+
+$$\text{Ext}^p(L_{C/a}, J\otimes C)=H^p(A-\text{alg}/C, D)$$
+and so the cotangent complex is just some thing that represents this site?
+
+
+Exercise:
+$D$-torsrs on this site = $\text{ExtAlg}_A(C, J\otimes C)=\text{Ext}(L_{C/A}, J\otimes C)$
+
+Note that these things are all categories, because $L_{C/A}$ is a complex...
+
+
+\subsection{}
+Once we have this site, we can wonder about a few things. 
+
+Any $A-\alg B$ forms a sheaf on $A-\alg: C\mapsto \Hom(C,B)$.
+
+So one might ask how can you characterize which functors are representable in this way.
+
+The uninteresting answer is that the functor needs to preserve colimits ;
+
+$$F(\text{lim}_\to C_i)=\text{lim}_{\leftarrow} F(C_i)$$
+
+The interesting answer is that $F$ is a sheaf on 
+$$F(B_1\otimes B_2)\to F(B_1)\times F(B_2)$$
+is an equivalence for $B_1$ and $B_2$ polynomial algebras.
+
+(It is an equivalence for everything, but it's enoiugh to know it for polynomial algebras)
+
+Here's how to recover the ring from this: define $C=F(A[X])$; this is the underlying set of the ring.  To find the multiplication, we have $$C\times C=F(A[x]\otimes_A A[y])=F(A[x,y])$$
+but we have a map $A[x]\to A[x,y]$ sending $x\mapsto xy$, and so we can pullback to this map to get a map to $F(A[X])=C$.
+
+Playing similar games, you can prove associativity, commutativity, distribution, etc.
+
+But you don't have to just do this with rings, you can apply the same definition to stacks, and get what you might call a 2-commutative ring.
+
+\begin{example}
+Fix an $A-\alg C$ and a $C$-module $J$.
+
+Define $F(B)=\{ (\varphi, B^\prime)|\varphi:B\to C, B^\prime\in\text{ExtAlg}_A(B, J_{[\varphi]}\}$
+where $J_{[\varphi]}$ is $J$ with the $B$-mod structure induced from $\varphi$.
+
+Exercise: check that this satisfies that axiom, and hence is a 2-ring.
+
+What is the derived center of this ring?  i.e., the underlying category.
+
+We compute
+
+$$F(A[x])=\{(c=\varphi(x), B^\prime)\}$$
+but there's onyl one extension of a polynomial ring, and hence one choice of $B^\prime$.  THe only interesting question is what its automorphisms is, which we have seen is
+
+$$\Aut(B^\prime)=\Der_A(A[X], J)=J$$
+So if we put this together, we get that
+
+$F(A[X])$ has objects $C$, and each $c\in C$ has automorphism group $J$.
+
+The way we should think about this is that 
+$$F=C+J[1]$$
+where the shift comes because we are not adjoining $J$ as elements but as morphisms.
+
+The point is that if $B\to C$ and we want to lift it to $C+\epsilon J[1]$; if we didn't have the shift this would just be a derivation, but the shift means that lifts are extensions of $B$ by $J$.
+\end{example}
+
+So that's derived/higher rings.
+
+The same idea works for algebraic structures that have free objects, e.g., groups, modules, abelian groups, Lie algebras, ...
+
+
+The point of the abstract nonsense is that we have built a cohomological repository for the deformations live; in some sense, we've linearized the problem.  
+
+We really want local triviality, we'll do anything we can to get it.
+
+\section{Obstruction theories}
+Recall we started with these moduli problems
+$\M_0\into \M$ over $V_o\into V$.
+
+The idea for how to obtain the virtual fundamental class was to look at $\pi^*(N_{V_0/V})$, and inside this the cone $C_{M_0/M}$ being the solutions that survived and could deform.
+
+We saw that $$A_*(M_0)\stackrel{q^*\cong}\to A_*(\pi^* N_{V_0/V}$$
+and $[\M_0]^\vir$ is what corresponds to the cone $[C_{M_0/M}]$.
+
+Now, let's do this with stable mapsl we have $\Mbar(X)$ over $V_0$.  $\Mbar(X)$ doesn't include into anything nice, but it does have a nice map to the Artin stack of curves $\mathfrak{M}$, so we'll have to use that.
+
+But we aren't really sure about $V_0\to V$ should be.  It can't possibly be an embedding since $\Mbar(X)\to\mathfrak{M}$ isn't an embedding.  But nonetheless, we can say what $\pi^* N_{V_0/V}$ is.
+
+
+What we mean by $V_0\to V$ is a notion of what it means to deform the moduli problem; different choices of this will result in different fundamental classes.
+
+
+Normal bundles to non-embeddings (Behrend-Fantechi, but a slightly different version).
+
+Let's start with understanding normal bundles of an embedding $X\into Y$.
+
+$$N_{X/Y}=\Spec_X\Sym^*(I/I^2)$$
+What this means is that if we have a map $f:S\to X$ and we want to lift it to the normal bundle we should give a map $f^*(I/I^2)\to \OO_S$.
+
+So we get an exact sequence
+
+$$0\to g^{-1} \to g^{-1}\OO_Y\to f^{-1} \OO_X\to 0$$
+
+Given the map $f^*I/I^2$ we can push it out and get an exact sequence
+
+$$0\to \OO_S\to A\to f^{-1}\OO_X\to 0$$
+i.e., an extension, and so we get an isomorphism:
+
+$$N_{X/Y}(S)\stackrel{\sim}\to \text{ExtAlg}_{g^{-1}\OO_Y}(f^{-1}\OO_X,\OO_S)$$
+
+and so we get the intrinsic normal cone
+
+$$\mathfrak{N}_{X/Y}(S)=\text{ExtAlg}_{g^{-1}\OO_Y}(f^{-1}\OO_X,\OO_S)$$
+makes sense for any map $X\to Y$ of Deligne-Mumford stacks.
+
+\begin{example}
+If $X\to Y$ is smooth, then the extensions of the smooth algebra by $\OO_S$, are, by the calculation we did the other day, equivalent to torsors on $S$ under $f^*T_{X/Y}$.  Behrend and Fantechi call this the intrinsic normal sheaf (not sure why the call the stack the sheaf). 
+
+\end{example}
+
+He can't say something similar for the instrinsic normal cone -- we'll see more later, but there's no intrinsic definition of the intrinsic normal cone.
+
+\begin{definition}
+$$\mathcal{N}_{X/Y}(S,J)=\text{ExtAlg}_{g^{-1}\OO_Y}(f^{-1}\OO_X, J)$$
+for $S$ a scheme over $X$ and $J\in\text{Qcoh}(S)$
+\end{definition}
+
+This is an obstruction theory.  Which means: an obstruction theory gives a category (2-$\OO_S$-module, actually) $\mathcal{E}(S,J)$ of obstructions, so that given $\Delta$ the diagram: $S$ over $S^\prime$ mapping to $X$ over $Y$, and lifting to $S^\prime$ to $X$ we get a class
+
+$\omega(\Delta)\in\mathcal{E}(S,J)$
+
+so that the set of lifts of $\Delta$ is the isomorphisms $O_{\mathcal{E}(S,J)},\omega(\Delta)$, plus some compatibility conditions.
+
+
+\begin{lemma}
+$\mathcal{N}_{X/Y}(S,J)$ is a realtive obstruction theory for $X\to Y$.
+\end{lemma}
+
+\begin{proof}
+Given a diagram as before, wth $f:S\to X$ and $g:X\to Y$ named, we get the exact sequence
+
+$$0\to J\to \OO_{S^\prime}\to \OO_S\to 0$$
+with $f^{-1}(\OO_X)$ mapping to $\OO_S$, and we want to lift this map to $\OO_{S^\prime}$.
+So we pull it back, and $\omega(\Delta0$ is what goes in the spot over $\OO_{S^\prime}$.
+And so we see 
+$$\omega(\Delta)\in\text{ExtAlg}_{g^{-1}\OO_Y} (f^{-1}\OO_X, J)=\mathcal{N}_{X/Y}(S,j)$$
+and isometries from $0$ to $\omega(\Delta)$ is splittings of $\omega(\Delta)\to f^{-1}\OO_X$ is blue arrows in his drawings is lifts of $\Delta$.
+\end{proof}
+
+This obstruction theory isn't so nice somehow, and not the thing we're going to want to work with.  What do we mean by a nice obstruction theory?
+
+\begin{definition}
+An obstruction theory $\mathcal{E}$ is coherent/perfect if locally $$\mathcal{E}(S,J)\cong \text{Ext}(E_\bullet, J)$$
+where $E_\bullet$ has coherent cohomology / is a perfect of perfect amplitude $[-1,0]$, i.e. $E_\bullet=[E_{-1}\to E_0]$ with $E_i$ coherent sheaves or vector bundles.
+
+\end{definition}
+
+\begin{lemma}
+$\mathcal{N}$ is coherent but not perfect.
+\end{lemma}
+
+\begin{proof}
+
+Can factor $X\to Y$ as $X\to Y^\prime$ closed, $Y^\prime\to Y$ smooth.
+
+Then $E_\bullet=[T_{Y^\prime/Y}\big|_X\to I/I^2]$
+\end{proof}
+
+Perfect obstructions theories lead to virtual fundamental classes.
+
+Given a perfect obstruction theory $\mathcal{E}$ we can form the analog of the normal bundle $\mathfrak{E}$ by defining $$\mathfrak{E}(S)=\mathcal{E}(S, \OO_S)$$
+
+This is a stack over $X$; it's a vector bundle stack if $\mathcal{E}$ is perfect; this is a 2-$\OO_s$-module, and it's locally isomorphic to $[F^1/F^0]$ where $F_i$ are vector bundles.
+
+\begin{theorem}[Kresch]
+With some hypotheses we supress, if $\mathfrak{E}$ is a vector-bundle stack over $X$, then $\pi^*:A_*(X)\stackrel{\cong}\to A_*(\mathfrak{E})$.
+\end{theorem}
+
+Given a cone $\mathfrak{C}\subset\mathfrak{E}$, we get $[X]^\vir\in A_*(X)$ by $(\pi^*)^{-1}([\mathfrak{C}])$
+
+So, given a perfect obstruction theory, we get a virtual fundamental class, but unfortunately the canonnical obstruction theory is usually not perfect.
+
+But if $X\to Y$ is local complete intersection, then $\mathcal{N}_{X/Y}$ is perfect.
+
+\begin{lemma}
+$\mathcal{N}_{X/Y}$ is the initial relative obstruciton theory.
+\end{lemma}
+
+
+If we want our picture to go through, we need the cone $\mathfrak{C}\subset\mathfrak{E}$.  But since $\mathcal{N}_{X/Y}$ is the initial obstruction theory, we have $\mathfrak{N}\subset \mathfrak{E}$ for any obstruction theory, and so it is sufficient to construct $\mathfrak{C}\subset\mathfrak{N}$ to get $\mathfrak{C}\subset\mathfrak{E}$.
+
+
+To build $\mathfrak{C}$ it suffices to work locally in $X$, and so we can assume there is a factorization $g:X\to Y$ factors through $Y^\prime$ with $i:X\to Y^\prime$ a closed embedding and $Y^\prime\to Y$ smooth.
+
+
+We saw before that the complex that corresponds to 
+
+is
+
+$$E_\bullet=[I/I^2\to i^*\Omega_{Y^\prime/Y}]$$
+If we dualize we get:
+
+$$\mathfrak{N}=[N_{X/Y}/i^*T_{Y^\prime/Y}]$$
+(we wrote something before incorrectly
+
+So to get $\mathfrak{C}\subset\mathfrak{N}$, it is enough to get $C\subset N_{X/Y}$ that is equivariant with respect to $i^*(T_{Y^\prime/Y})$.
+
+(the way you do anything in stacks is construct it on a cover and hope it descends)
+
+
+We get a commutative diagram of $C_{X/Y^\prime}$ over $\mathfrak{C}$ mapping to $N_{X/Y^\prime}$ over $\mathfrak{N}_{X/Y}$.  and the $\mathfrak{C}$ part is what we want.
+
+
+\begin{lemma}[Behrend-Fantechi]
+$C_{X/Y^\prime}\subset N_{X/Y^\prime}$ is equivariant with respect to $i^*T_{Y^\prime/Y}$, and hence descends to $\mathfrak{C}_{X/Y}$. Called the intrinsic normal cone.
+\end{lemma}
+
+
+
+So we have
+$$\mathfrak{C}_{X/Y}\subset\mathfrak{N}_{X/Y}\subset\mathfrak{E}_{X/Y}$$
+
+and $A_*(\mathfrak{E}_{X/Y})\cong A_*(X)$ by Kresch, and the virtual fundamental class is where $[\mathfrak{C}_{X/Y}]$ goes.
+
+We didn't write down the axioms an obstruction theory $\mathcal{E}(S, J)$ satisfies; in his extended notes there were 7.
+
+But what these axioms are describing is that $\mathcal{E}$ is the datum necessary to extend $X$ to a ``functor'' defined on $S$ over $(S,\OO_S+\epsilon J[1])$, this later mapping by $0$ to $Y$, and $S\to X\to Y$, and so we want to lift from the bottom left corner to $X$.  That is, we're doing some very slight derived structure here.
+
+This needs to satisfy homogeneity and being a stack.
+
+So what the higher algebraic geometers do is define a family of curves over one of these derived stacks and a map into the target, and this is the derived moduli problem, and this particular obstruction theory will fall out naturally as the first order tangent space of our moduli problem.
+
+Lurie, instead of calling it coherent, would say that it has a cotangent complex. $X$ is algebraic if and only if it is homogeneous and has a coherent obstruction theory, (and a few more axioms, local presentation and algebraization that aren't relevant to us now).
+
+But the point is that you can make the definition of these obstruction theories before you know you're representatable by the algebraic stack.  But the Behrend-Fantechi definition we need a cotangent complex, and hence need to know we're an algebraic stack....and this one reason to do things the way we have, the other is that he doesn't want to have to define the cotangent complex.
+
+\end{document}

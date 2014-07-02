@@ -1,0 +1,362 @@
+\documentclass{amsart}
+\usepackage{tikz}
+\linespread{1.2}
+
+\theoremstyle{definition}
+\newtheorem{dummy}{}[section]
+\newtheorem{remark}[dummy]{Remark}
+\newtheorem{theorem}[dummy]{Theorem}
+\newtheorem{definition}[dummy]{Definition}
+\newtheorem{example}[dummy]{Example}
+\newtheorem{question}[dummy]{Question}
+\newtheorem{conjecture}[dummy]{Conjecture}
+\newtheorem{lemma}[dummy]{Lemma}
+\newtheorem{proposition}[dummy]{Proposition}
+\newtheorem{corollary}[dummy]{Corollary}
+\newcommand{\TT}{\mathbb{T}}
+\newcommand{\Pic}{\text{Pic}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\GIT}{//}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Stab}{\text{Stab}}
+\newcommand{\Spec}{\text{Spec}}
+\newcommand{\aff}{\text{aff}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\Map}{\textrm{Map}}
+\newcommand{\proj}{\mathbb{P}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\sm}{\text{sm}}
+\newcommand{\Mbar}{\overline{\mathcal{M}}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Age}{\text{Age}}
+\newcommand{\Fix}{\text{Fix}}
+\newcommand{\one}{1}
+\newcommand{\st}{\text{st}}
+\newcommand{\ttt}{\mathbb{t}}
+\newcommand{\ev}{\text{ev}}
+\newcommand{\vir}{\text{vir}}
+\newcommand{\Quot}{\text{Quot}}
+\newcommand{\Hom}{\text{Hom}}
+
+
+\newcommand{\Aut}{Aut}
+
+
+
+
+\author{Hiroshi Iritani}
+\title{Toric Mirror Symmetry III}
+
+
+\begin{document}
+
+\maketitle
+
+Last time we discussed the relation between quantum cohomology, the quantum differential equation, and the lagrangian cone, which was all very abstract.
+
+Today we will move to mirror symmetry on toric stacks, which should hopefully be more concrete.
+
+
+\section{B-model}
+
+
+\subsection{Toric stacks}
+Consider a toric stack $X$; we assume $X$ to be compact.  Borisov-Chen-Smith described how the commbinatorial data of a stacky fan encodes $X$.  
+
+Begin with
+\begin{itemize}
+\item  $N$ a finitely generated abelian group
+\item $\Sigma$ a simplicial fan in $N\otimes\R$
+\item $\beta:\Z^{m^\prime}\to N$, so that $\beta(e_1),\dots,\beta(e_{m^\prime})$ are distinct generators that generate all one dimensional cones; they need not be primitive.
+\end{itemize}
+
+We will assume that following:
+\begin{itemize}
+\item $N=\Z^n$ has no torsion; this is only to make the descriptions less technical
+\item The support of $\Sigma=N\otimes\R$; so $X$ is compact
+\item $\sigma$ admits a strictly convex piecewise linear function:
+$$\eta:N\otimes\R\to\R$$
+this gives an ample line bunle, making $X$ projective
+\item Let 
+$$\Delta=\text{Conv}\left(\beta(e_1),\dots,\beta(e_{m^\prime})\right)$$
+ be the fan polytope, we assume that $\beta(e_i)\in\partial\Delta$; this means that $c_1(X)\geq 0$.  Mirror symmetry can be stated without this condition, but it becomes more complicated.
+\end{itemize}
+\subsection{The mirror of $X$}
+
+Let 
+$$\Delta\cap N=\{b_1,\dots,b_m\}$$
+So $m\geq m^\prime$ the number of generators.
+
+We define
+$$f_c(x)=\sum_{i=1}^m c_ix^{\vec{b}_i}$$
+with
+$$x^{\vec{b}_1}=x_1^{b_{i_1}}\cdots x_n^{b_{i_n}}$$
+Let
+$$\tilde{\M}=\left\{(c_1,\dots, c_m)|c_i\neq 0 \text{ if $b_i$ is a vertex}\right\}$$
+The condition here guarantees that the newton polytope of $c$ is always $\Delta$.
+
+We have a torus $(\C^*)^n$ acting on $\tilde{\M}$ by scaling the $x$ variables; the resulting quotient $\M=\tilde{\M}/(\C^*)^n$ will be our mirror manifold.
+
+\subsection{Oscillating integrals}
+The mirror will be
+
+$$\int_{\substack{\text{noncompact}\\ \text{cycle}}} e^{f_c(x)/z}\frac{dx_1}{x_1}\dots\frac{dx_n}{x_n}$$
+
+this will correspond to the $\J$ function of quantum cohomology
+
+\begin{remark}
+If $X_1, X_2$ have the same fan polytope $\Delta_1=\Delta_2$, we see that $X_1$ and $X_2$ have the same mirror.  
+
+Geometrically, having the same fan polytope implies that $X_1$ and $X_2$ are related by a crepant tranformation.
+\end{remark}
+
+\subsection{Gauss-Manin system of $f_c(x)$}
+We will give two different descriptions of the Gauss-Manin section.
+
+A topological description will give it a $\Z$ structure and make it easy to describe the paring.
+
+An algebraic description will make it easy to see the differential equations (which in this case will be a GKZ system), and also (this is a little technical) describe the extension to $z=0$ explicitly.
+
+\subsubsection{Topological description}
+
+
+Here we don't just consider the fibers of $f_c$, we consider some relative (co)homology groups.  
+
+Define.
+$$R^\vee_{c,z}=H_n\Big((\C^*)^n,\big\{x\big|\text{Re}(f_c(x)/z)\leq -M\big\}\Big)$$
+For $M>>0$, this group will not depend on $M$.
+
+For generic $c$, this spaces are nice, but for some few bad values of $c$ the homology will not be nice.
+
+\begin{definition}
+We say $f_c(x)$ is \emph{nondegenerate} if for any face $F$ of $\Delta, (0\leq \dim F < b)$, then
+$$f_{F,c}(x)=\sum_{b_i\in F}c_i x^{\vec{b}_i}$$
+has no critical points on $(\C^*)^n$. 
+\end{definition}
+
+DRAWING OF POLYTOPE FROM THE F condition -- coefficient 1 on each vertex, coefficient 0 on the $b_1$ in the middle of the edge.
+
+If we restrict to the face with the extra point on it, we get the polynomial
+$$x+cy+\frac{y^2}{x}$$ which we see has no critical points as long as $c\neq \pm 2$, in which case we have a square.
+
+In general, if we have the $A_n$ resolution, then we get a similar description; with there not being critical points unless the $c_i$ are the correct binomial coefficients.
+
+We may view the polynomials $f_{F,c}(x)$ as being the polynomials at infinity on the boundary, and so we are saying that there are no critical values at infinity.
+
+\begin{theorem}[Kouchnirenko]
+\begin{enumerate}
+\item $\{c|f_c \text{ is nondegenerate}\}$ is a non-empty open set
+\item If $f_c$ is nondegenerate, then the critical points of $f_c$ are isolated and $\dim \text{Jac}(f_c)=\text{vol}(\Delta)$, where we have normalized so that the volume of the standard $n$-simplex is equal to one.
+\end{enumerate}
+
+\end{theorem}
+Here, $\text{Jac}(f_c)$ is the Jacobian ring; its dimension is the number of critical points counted with multiplicity.
+
+\begin{example}
+The ongoing example of the resolution of $\proj(1,1,2)$ has volume 4, as each of the four top dimensional cones in the fan is a standard simplex.
+\end{example}
+
+
+\subsubsection{Morse theory for non-degenerate $f_c$}
+
+Using Morse theory on the non-degenerate values, we see that our homology groups will be generated by Lefschetz thimbles:
+$$R^\vee_{c,z}\cong\bigoplus_{i=1}^N \C \Gamma_i$$
+
+BIG PICTURE:
+
+
+At bottom, have $\C$-plane, the image of $f_c(x)/z$; above it, we have $(\C^*)^n$.  We have the critical values in the $\C$-plane marked; above them, we have just a simple cone singularity.  Taking a a line from the critical values to $\text{Re}(z)<<0$, we can take deform the critical point away along this line; it will be an $S^{n-1}$ over most points (the vanishing cycle), and so the give us a Lefschetz thimble $G_i\cong \R^n$.
+
+Straight from the definition of $R^\vee_{c,z}$ as a homology group, we get a Gauss-Manin connection, and so $\cup_{c,z} R^\vee_{(c,z)}$ form a local system over
+$\tilde{M}^0\times\C^*\subset \tilde{M}\times\C^*$
+
+
+\subsubsection{Pairing}
+
+To describe the pairing, we construct the dual basis by, in our picture, taking the lines from the critial points to the direction where $\Re(z)$ is very large.
+
+In other words, rather than:
+$$H_n\Big((\C^*)^n,\big\{x\big|\text{Re}(f_c(x)/z)<<0\big\}\Big)$$
+we work with
+$$H_n\Big((\C^*)^n,\big\{x\big|\text{Re}(f_c(x)/z)>>0 \big\}\Big)$$
+The dual Lefschetz thimble $\Gamma^\vee_i$ intersects $\Gamma_i$ exactly at the critical point.
+
+The pairing 
+$$I:R^\vee_{c,-z}\otimes R^\vee_{c,z}\to\C$$
+and similarly, without the  $\vee$.  
+
+Then it is immediate from the definition and the above discussion that
+\begin{itemize}
+\item $I$ is perfect over $\Z$
+\item $I$ is flat
+\end{itemize}
+
+\subsection{Algebraic description}
+This description is due to Dwonk, K. Saito, Sabbah,
+
+We consider
+$$\phi(x)e^{f_c(x)/z}\frac{dx}{x}$$
+for $\phi\in\C[x_1^\pm,\dots, x_n^\pm]$
+which gives a section of $R\otimes_\C\OO$ via integration over $\Gamma_i$.
+
+Note that $\Gamma_i$ is noncompact, but the exponential factor means the integrand decays exponentially as we tend toward infinity.
+
+We want to work modulo exact forms.
+
+\subsubsection{Exact forms}
+An elementary calculation gives:
+$$d\left[g(x)e^{f_c(x)/z}\frac{dx_1}{x_1}\cdots\hat{\frac{dx_i}{x_i}}\cdots\frac{dx_n}{x_n}\right]
+=\left(x_i\frac{\partial g}{\partial x_i}+\frac{1}{z} g(x) x_i\frac{\partial f_c}{\partial x_i}\right)e^{f_c/z}\frac{dx}{x}
+$$
+
+We define $$R^{(0)}=\OO_{\tilde{\M}}[z][x_1^\pm,\dots,x_n^\pm]\Big/ \left\langle 
+zx_i\frac{\partial g}{\partial x_i}+g x_i\frac{\partial f_c}{\partial x_i} \Big| g\in\OO_{\tilde{\M}}[z][x^\pm], 1\leq i \leq n\right\rangle$$
+
+The zero here means that we have done the extension to $z=0$; topologically, this was not well defined, but algebraically it makes sense.
+
+
+At $z=0$, we have
+$$R^{(0)}\big|_{z=0}=\cup_c \text{Jac}(f_c)$$
+and, by the description of this as integrals over Lefschetz thimbles, we see that
+
+$$R^{(0)}\big|_{\tilde{\M}^0\times\C^*}\cong R\quad\leftarrow\quad\text{topological}$$
+
+Also, the Gauss-Manin connection has formula
+
+\begin{align*}
+\nabla_{\frac{\partial}{\partial c_i}}\left[\phi e^{f_c/z}\frac{dx}{x}\right]&=
+\left[\left(\frac{\partial\phi}{\partial c_i}+\frac{1}{z}x^{b_i}\phi\right)e^{f_c/z}\frac{dx}{x}\right] \\
+\nabla_{z\frac{\partial}{\partial z}}\left[\phi e^{f_c/z}\frac{dx}{x}\right]&=
+\left[\left(z\frac{\partial\phi}{\partial z}+\frac{1}{z}\phi\right)e^{f_c/z}\frac{dx}{x}\right] 
+\end{align*}
+
+\subsubsection{GKZ system}
+This gives the better behaved GKZ system of Borisov-Horja.
+
+Let
+
+$$\varphi_e=\left[x^e e^{f_c/z}\frac{dx}{x}\right]$$
+for $e=(e_1,\dots, e_n\in\Z^n$.
+We see
+\begin{align*}
+z\nabla_{\frac{\partial}{\partial c_i}}\varphi_e&=\varphi_{e+b_i} \\
+\sum_{i=1}^m b_{ij}\nabla_{c_i\frac{\partial}{\partial c_i}}\varphi_e&=e_j\varphi_{e}
+\end{align*}
+which imply that the Gauss-Manin connection descends to $\tilde{\M}/(\C^*)^n$.
+
+
+\begin{itemize}
+\item $R^{(0)}\Big|_{\tilde{\M}^0\times\C}$ is locally free of rank $\text{vol}(\Delta)=\dim H_{CR}^*(X)$
+\item The pairing on $R$ extends to $z=0$:
+$$( - )^* R^{(0)}\otimes R^{(0)}\to\OO$$
+with
+\begin{align*}
+(-):\tilde{\M}^0\times\C &\to \tilde{\M}^0\times\C \\
+(c,z)&\mapsto (c,-z)
+\end{align*}
+\end{itemize}
+
+The pairing is defined by
+
+$$I\left(\left[\phi_1e^{-f_c/z}\frac{dx}{x}\right], \left[\phi_2e^{f_c/z}\frac{dx}{x}\right]\right)
+=\sum_{i=1}^N\left(\int_{\Gamma_i^\vee} \phi_1e^{-f_c/z}\frac{dx}{x}\right)\left(\int_{\Gamma_i^\vee} \phi_2e^{f_c/z}\frac{dx}{x}\right)$$
+and, taking the stationary phase asymptotic, (i.e., taking $z\to 0$ with $\text{arg}(z)$ fixed we have that this is equal to
+$$
+=\sum_{i=1}^N (2\pi i z)^n (-1)^{\frac{n(n-1)}{2}}\left(\frac{\phi_1(cr_i)\phi_2(cr_i)}{\text{Hess}(f_c)(cr_i)}+O(z)\right)$$
+where the $cr_i$ are the $i$ critical points.
+
+Here $$\frac{\phi_1(cr_i)\phi_2(cr_i)}{\text{Hess}(f_c)(cr_i)}$$ is the residue pairing in the Jacobi ring.
+
+This follows from
+
+$$\int_{\Gamma_i} \phi e^{f_c(x)/z}\frac{dx}{x}\sim (-2\pi z)^{n/2} e^{f_c(cr_i)/z} \frac{\phi(cr_i)}{\sqrt{\text{Hess}(f_c)(cr_i)}}+\cdots$$
+and playing around with signs and whatnot.  
+
+Define $Q_B=\frac{1}{(2\pi i z)^n} I$ extends to $z=0$ and is non-dgenerate there.
+
+We define
+$$\nabla=\nabla^{GM}-\frac{n}{2}\frac{dz}{z}$$ 
+so that that the modified pairing $Q_B$ will be flat with this modified connection.
+
+These modifications have something to do with $\mu=\frac{1}{2}\text{deg}-\frac{n}{2}$
+
+
+\section{Summary}
+\begin{itemize}
+\item $R^{(0)}$ locally free on $\M^0\times\C$.
+\item A flat connection with a pole along $z=0$
+$$\nabla:R^{(0)}\to R^{(0)}(\M^0\times\{0\}) \otimes \left(\pi^*\Omega^1_{\M^0}\oplus\OO_{\M^0\times\C}\frac{dz}{z}\right)$$
+here $\pi$ is the projection $\pi:\M^v\times\C\to\M^0$.
+\item $Q_B:(-)^*R^{(0)}\otimes R^{(0)}\to\OO$
+\item $R_\Z\subset R^{\nabla}$ relative cohomology with $\Z$ coefficients shifted by $z^{-n/2}$.
+\end{itemize}
+We might call this 4-tuple a TE$\Z$P, structure, after Hertling's TERP structure, where $R$ was real, and $P$ was pairing, and TE was twistor something?
+
+There is also a noncommutative hodge structure (Katzarkov-Kontsevich-Pantev)
+
+\subsection{Mirror symmetry isomorphism}
+
+Take $X$ a toric stack as above; there exist a ``large radius neighborhood'' $U_X\subset\M^0$, and a mirror map
+$$\tau_X:U_X\to H^{\leq2}_{CR}(X)$$
+(technically, we need to take the universal cover of $U_x$). 
+
+The semi-positive condition ensures that everything is analytic, otherwise we must work formally.
+
+We have $(F,\nabla, Q_A)$ the quantum connection of $X$ ($Q_a$ is the Poincare pairing).
+
+\begin{theorem}[Givental, Coates-Corti-Iritani-Tseng, Cheong-Ciocan-Fontanine-Kim, Iritani, Reichel-Sovenheck]
+\begin{align*}
+\tau_X^*(F,\nabla,Q_A)&\cong (R^{(0)},\nabla,Q_B)\big|_{U_X\times\C}\\
+\one &\mapsto\varphi_0=\left[e^{f_c(x)/z}\frac{dx}{x}\right]
+\end{align*}
+\end{theorem}
+
+\begin{corollary}
+If $X_1, x_@$ have the same $\Delta$, then the Quantum connection of $X_1$ is isomorphic to that of $X_2$ analytically continued along $\M^0$.
+
+Another way of saying this is that there exists a symplectic transformation 
+$$\mathbb{U}:\mathcal{H}_1\stackrel{\cong}\to\mathcal{H}_2$$
+with
+v$$\mathbb{U}(\mathcal{L}^{an}_1)=\mathcal{L}_2^{an}$$
+
+
+\end{corollary}
+
+We will explain how the lagrangian cone is the same as the quantum connection, and can be viewed as the image of the fundamental solution under the quantum connection.
+
+
+We have $(\pi_* R^{(0)}, \nabla)$ contained in $\mathcal{H}_1$ over $U_i$ via $L_i^{-1}$, and these inclusions form a commutative diagram with $\mathbb{U}$, which is analytic continuation of flat sections.
+
+\subsection{Proofs}
+An important ingredient is:
+
+\begin{theorem}[Mirror Theroem]
+$$\I(y)=\J(\tau(y))$$
+where $\I$ is an explicit cohomology-valued function on $U_x\subset \M^0$.
+\end{theorem}
+
+The mirror theorem was proven a long time ago by Givental, and Cheong-Cican-Fontaninte-Kim generalized to toric stacks; then the
+bbGKZ maps both to $(R^{(0)},\nabla)$ and $\tau^*(F,\nabla)$.  The I function $\I$ is a complete set of solutions to the GKZ system, and we show that each of these maps are isomorphisms.
+
+The matching of the pairing $Q_A=Q_B$ is a more subtle problem, but essentially there is some uniqueness of the pairing compatible with the monodromy around $q_i$ axis.  $U_X$ is the complement of normal crossing divisors, and the quantum connection has logarithmic singularities on these divisors.  It turns out there is a unique metric, up to a constant, around each of these points that is compatible with the corresponding monodromy, and so you only need to check one value of the pairings match.
+
+Another way to prove this is to use some equivariant versions of these, and then use stationary phase asymptotics on the $B$-model side will match with the localization calculation
+
+\subsubsection{}
+
+COMMUTATIVE DIAGRAM: $\Theta(y,z)$ isomorphism betwee $(F_i, \nabla_i, Q_i)$, which each map to $\mathcal{H}_i$ via $L_i^{-1}$, and $\mathbb{U}(z)$ is an isomorphism between the $\mathcal{H}_i$.
+
+So,
+$$L_2^{-1}(y,z)\Theta(y,z)=\mathbb{U}(z)L_1^{-1}(y,z)$$
+note that $\Theta$ depends on $y$ by $\mathbb{U}$ does not.
+
+The left hand side can be viewed as a Birkhoff factorization of the right hand side because $L_2^{-1}$ is regular on $z\in\proj^1\setminus\{0\}$, and $\Theta$ is regular for $z\in \C$.
+
+In general, you can show that $\mathbb{U}(z)$ does not contain positive powers of $z$ then $\Theta$ is constant, and this shows the isomorphism of Frobenius manifolds.  
+
+
+\end{document}
