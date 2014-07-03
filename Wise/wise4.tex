@@ -1,0 +1,391 @@
+\documentclass{amsart}
+
+
+
+\linespread{1.2}
+
+\theoremstyle{definition}
+\newtheorem{dummy}{}[section]
+\newtheorem{remark}[dummy]{Remark}
+\newtheorem{theorem}[dummy]{Theorem}
+\newtheorem{definition}[dummy]{Definition}
+\newtheorem{example}[dummy]{Example}
+\newtheorem{question}[dummy]{Question}
+\newtheorem{conjecture}[dummy]{Conjecture}
+\newtheorem{lemma}[dummy]{Lemma}
+\newtheorem{proposition}[dummy]{Proposition}
+
+\DeclareMathOperator{\ExtAlg}{ExtAlg}
+\DeclareMathOperator{\Der}{Der}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Ext}{Ext}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\alg}{\text{alg}}
+\newcommand{\Def}{\text{Def}}
+\newcommand{\TT}{\mathbb{T}}
+\newcommand{\Pic}{\text{Pic}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\GIT}{//}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Stab}{\text{Stab}}
+\newcommand{\Spec}{\text{Spec}}
+\newcommand{\aff}{\text{aff}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\Map}{\textrm{Map}}
+\newcommand{\proj}{\mathbb{P}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\sm}{\text{sm}}
+\newcommand{\Mbar}{\overline{\mathcal{M}}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Age}{\text{Age}}
+\newcommand{\Fix}{\text{Fix}}
+\newcommand{\one}{1}
+\newcommand{\st}{\text{st}}
+\newcommand{\ttt}{\mathbb{t}}
+\newcommand{\ev}{\text{ev}}
+\newcommand{\vir}{\text{vir}}
+\newcommand{\Quot}{\text{Quot}}
+\newcommand{\Hom}{\text{Hom}}
+
+
+\newcommand{\Aut}{Aut}
+
+
+\author{Jonathan Wise}
+\title{Deformation theory and virtual classes IV}
+
+
+\begin{document}
+\maketitle
+Today we want to do some examples of explicitly manipulating obstruction theories.
+
+
+\section{Obstruction theories}
+Last time we were really just using one axiom of obstruction theories.
+
+\begin{definition}
+An \emph{obstruction theory} $\mathcal{E}$ for $f:X\to Y$ gives, for all $S\to X$, and $J\in \text{QCoh}(S)$, a category $\mathcal{E}(S,J)$ that behaves like the relative tangent bundle.
+
+More precisely:
+\begin{enumerate}
+\item Contravariant in $S$ and an \'etale stack
+\item Covariant in $S$ for affine morphisms
+\item Covariant, additive, and left exact in $J$.
+\item For any deformation situation, $\Delta=S\to X$ over $S^\prime\to Y$, want to lift to $S^\prime$ to $X$, we get a class $\omega(\Delta)\in \mathcal{E}(S,J)$, and we have
+$$\text{Isom}(0, \omega(\Delta))\cong \text{Lifts}(\Delta)$$
+\item $\omega$ is natural with respect to \'etale pullback, affine pushout, and in $J$.
+\end{enumerate}
+
+\end{definition}
+\begin{remark}
+Property (2) is essentially the homogeneity we were talking about before; you should be able to pushout obstructions.
+
+Property (3), addditive means:
+
+$$\mathcal{E}(S, J\times J^\prime)\to \mathcal{E}(S, J)\times \mathcal{E}(S, J^\prime$$
+is an equivalence.  This endows $\mathcal{E}(S, J)$ with an $\OO_S$-module structure, in a way similar to how we encoded the ring structure.
+
+This is concise way of packaging this structure comes from Grothendieck's cotangent complex book ``cat\'egories cofibr\'ees...'' 
+
+Left exactness here means:
+$$0\to J^\prime\to J \to J^{\prime\prime}\to 0$$
+is exact, then
+$$0\to \mathcal{E}(S, J^\prime)\to\mathcal{E}(S, J) \stackrel{p}\to \mathcal{E}(S,J^{\prime\prime})\to 0$$
+i.e.
+
+$$\mathcal{E}(S, J^\prime)\cong\left\{ (x,\phi)\Big | x\in\mathcal{E}(S, J), \varphi:p(x)\cong 0\right\}$$
+exactness on the right means $p$ is essentially surjective.  
+\end{remark}
+
+\begin{definition}
+A deformation theory $\mathcal{E}$ is perfect if locally there exists a two term complex of vector bundles $E_\bullet$ so that $\Ext(E_\bullet, J)\cong\mathcal{E}(S, J)$.
+\end{definition}
+If $\mathcal{E}$ is perfect, then $\mathfrak{E}=\mathcal{E}(S, \OO_S)$ is a vector bundle stack, containing $\mathfrak{C}\subset\mathfrak{E}$, and we get a virtual fundamental class by ``intersection with the zero section'' (this is a lie, but we say it in analogy with the vector bundle situation) i.e., $(\pi^*)^{-1}([\mathfrak{C}])$.
+
+Note that $\dim \mathfrak{C}_{X/Y}=\dim Y$ if $Y$ is pure dimensional.  
+So
+\begin{align*}
+\dim [X/Y]^\vir&=\dim\mathfrak{C}-\text{rank}\mathfrak{E} \\
+&= \dim Y-\text{rank}\mathfrak{E}
+\end{align*}
+
+\section{Examples}
+We want to do the moduli of maps twice.  
+
+\subsection{Moduli of curves}
+Let
+$$\Mbar(X)=\{C\to S, f:C\to X | C \text{ curve}\}$$
+and
+$$\mathfrak{M}=\{C\to S \ C \text{ curve}\}$$
+
+Our deformation problem $\Delta$ is $S\to\Mbar(X)$ over $S^\prime\to\mathfrak{M}$.
+
+Which is equivalent to factoring $f:C\to X$ through $C\to C^\prime$; we call $f:C^\prime\to X$ the map we want to make.
+
+We studied this problem already, and saw that the obstruction lies in
+$$\ExtAlg(f^{-1}\OO_X,\pi^*J)$$ or
+$B(T_X\otimes\pi^*J)$, the stack of torsors on $C$ under $T_X\otimes\pi^*J$.
+
+These are stacks that give us obstructions over $C$; we want them on $S$, and so we push them forward to $S$ via $\pi_*$.
+
+Recall that we built $\omega(\Delta)$ by pulling back
+
+$$0\to\pi^*J\to\OO_{S^\prime}\to\OO_S\to 0$$ under $f^{-1}(\OO_X)\to \OO_S$, and $\omega(\Delta)$ was the central term.
+
+What does it mean to give an isomorphism between $0$ and $\omega(\Delta)$?  the 0 object here is the trivial extension, and so this is the same thing as splittings:
+
+\begin{align*}
+\text{Isom}(0,\omega(\Delta))&=\text{Isom}(f^{-1}\OO_X+\epsilon\pi^*J,\omega(\Delta) \\
+&= \text{ splittings } f^{-1}\OO_X\to \omega(\Delta) \\
+&= \text{ lifts } f^{-1}\OO_X\to \OO_{S^\prime} \\
+&= \text{lift}(\Delta)
+\end{align*}
+
+
+This works (i.e., yields a perfect obstruction theory) for any family of curves, essentially because when we take $\pi_*$ we have vanishing of $H^2$ as our fibers are curves, and so we only get a two term complex.  For high dimensional families, we won't get a two term complex.
+
+So we get virtual fundamental classes on ``stable maps'' from alternate compactifications or birational models of $\M_g$, e.g. coming from the minimal model program for $\M$.  What can be said about these virtual fundamental classes?
+
+\subsection{Absolute obstruction theory}
+Here, the lifting problem is
+
+$S\to S^\prime, S\to \Mbar(X)$, want to lift to $S^\prime \to \Mbar(X)$.
+
+Which is equivalent to finding $C\to \C^\prime \to S^\prime$, and $f^\prime:S^\prime \to X$.
+
+Here, it is important that $\Mbar(X)$ is just nodal curves, or at least lci.
+
+We will try to solve locally and glue.  Around a smooth point of $C$, smoothness of $C$ and $X$ gives a lift.
+
+Around a node, $\OO_C=\OO_S[x,y]/(xy-t), t\in\OO_S$.  We can get one deformation of $C$ by lifting $t$ to $\OO_{S^\prime}$.  The smoothness of $X$ allows lifting of map $f$ to $f^\prime:C^\prime\to X$.
+
+Thus, the problem is locally obstructed in $C$.
+
+The question is, how are we going to do this, is it a gerbe or is it at torsor? 
+
+ It can't be a torsor because our curves can have automorphisms.
+
+It can't be a gerbe because deformations are not unique.
+
+What will we do?
+
+We should think of a gerbe as a particular torsor under a 2-group, where locally its isomorphism classes are 0.  So maybe we should hope for a more general torsor under a 2-group, and that is indeed what happens.
+
+Let $\Def_{S/S^\prime}(C,f)$ be the lifts of this problem.
+
+Suppose we had two lfits $C^\prime, C^{\prime\prime}$; we get the diagram $C\to C^\prime\sqcup_C C^{\prime\prime}\to X$ over $S\to S^\prime\sqcup_SS^{\prime\prime}=S^\prime\sqcup_S S[J]$.
+
+Let
+$$C^{\prime\prime\prime}=(C^\prime\sqcup_C C^{\prime\prime}\times_{S^\prime\sqcup_S S^\prime[J]} S^\prime[J]$$
+
+MISSING A PICTURE AND SOME FAST DISCUSSION....
+
+which gives us something in
+$$\Def_{S/S^\prime}(C,f)\times\Def_{S/S[J]}(C,f)$$
+and this first term is a torsor under the second term, and so we get obstructions in
+$$H^1(C, \Def_{S/S[J]}(C,f))$$, and $H^0$ acts on deformations.
+
+
+\begin{remark}
+For any reasonable moduli problem $\Def_{S/S^\prime}$ will be a pseudo-torsor under $\Def_{S/S[J]}$.
+\end{remark}
+
+\section{Properties of the virtual fundamental class}
+We'd like to eventually compare these two virtual fundamental classes and see that they give us the same thing; first we'll do some properties of the virtual fundamental class, that were all written up nicely by Manolache, though they were previewed somewhat in the literature before hand.
+
+
+The point is that we should think about the virtual fundamental class as a Gysin pullback, or in Fulton's language a bivariant intersection class.
+
+The idea is that given $X^\prime\to X$ over $Y^\prime\to Y$, $g:X\to Y$ the map and $\mathcal{E}$ a perfect relative obstruction theory for $X/Y$, we can pull it back, by defining
+
+$$f^*\mathcal{E}(S\to X^\prime, J)=\mathcal{E}(S\to\X^\prime\to X, J)$$
+giving a relative obstruction theory for $X^\prime/Y^\prime$.
+
+This gives us a  map:
+$$A_*(Y)\stackrel{g^!}\to A_*(X)$$
+that depends on $\mathcal{E}$.
+
+\begin{theorem}[Manolache]
+$g^!$ behaves ``just like'' Gysin pullback from Fulton.  In other words, it commute with flat pullback, proper pushforward, and ordinary Gysin pullbacks.
+
+It also respects composition: 
+$$(gf)^!=f^!g^!$$
+if the obstruction theories for $f, g$ and $gf$ are compatible.
+\end{theorem}
+
+\begin{definition}
+Consider $$X\stackrel{f}\to Y\stackrel{g}\to Z$$
+with obstruction theories $\mathcal{E}_f, \mathcal{E}_g, \mathcal{E}_{gf}$ relative obstruction theories.  
+
+Then compatibility means we have exact sequences
+$$0\to \mathcal{E}_f(S, J)\to \mathcal{E}_{gf}(S, F)\to \mathcal{E}_{g}(S, J)\to 0$$
+which commute with obstruction maps $\omega$, and where this is an exct sequence of 2-modules.
+
+\end{definition}
+
+\section{The two virtual fundamental classes on $\Mbar(X)$ coincide}
+
+We will look at the sequence of maps
+
+$$\Mbar(X)\stackrel{p}\to \mathfrak{M}\stackrel{q}\to\text{pt}$$
+and we want to compare the obstruction theories.
+
+So, we have $f:C\to X$ over $S\to \Mbar(X)$.  
+
+How do we think about our two obstruction theories?
+
+For $\mathcal{E}_p(S,J)$ easier to think about it as $G^\prime$-torsors, where $G^\prime$ is the set of lifts of $C\to X$ to $C[\pi^* J]\to X$, which is $f^*T_X\otimes\pi^* J=\Def_{S/S[J]}(f)$
+
+And $\mathcal{E}_{qp}(S,J)$ is $G$ torsors for $G$ (DRAWING)=$\Def_{S/S[J]}(C,f)$.
+
+We have a map $G^\prime\to G$, giving a map $\mathcal{E}_p(S,J)\to\mathcal{E}_{qp}(S,J)$.
+
+What does the cokernel look like?  We expect it to be $G^{\prime\prime}$ torsors, where $G^{\prime\prime}$ is just extension of curves $C\to S$ to $C^\prime\to S^\prime$.
+
+So we have a map of groups
+$$0\to G^\prime\to G \to G^{\prime\prime}\to 0$$
+on $C$, which gives us
+
+$$0\to \pi_*BG^\prime \to \pi_*BG\to \pi_*BG^{\prime\prime}$$
+which is equal to 
+$$0\to \mathcal{E}_p(S,J)\to \mathcal{E}_{qp}(S,J)\to \mathcal{E}_q(S,J)$$
+
+The only hard part of this to see is right exactness.
+
+To prove this, we will use the fact that locally on $S$ there is a unique (up to isomorphism) $G^{\prime\prime}$-torsor on $C$; that is, locally, $\pi_*BG^{\prime\prime}$ is just one point, and so has to be surjective.
+
+To compute $BG^{\prime\prime}$, we will filter it into two pieces:
+
+$$0\to G^{\prime\prime}_0\to G^{\prime\prime}\to \overline{G^{\prime\prime}}\to0$$
+
+Here $\overline{G^{\prime\prime}}$ is the sheaf of the stack $G^{\prime\prime}$; that is, the sheaf of isomorphism classes.
+
+And $G^{\prime\prime}_0$ is the locally trivial deformations.  
+
+We can be a little more explicit; since $C$ is smooth away from most points, so $\overline{G^{\prime\prime}}$ is trivial on the smooth locus, and hence supported on the nodes.
+
+$G^{\prime\prime}_0$ is a little funnier, but since locally trivial things exist, we have $G^{\prime\prime}=BT_{C/S}$ as a two group; as a complex it is $T_{C/S}[1]$.
+
+THus we have a long exact sequence, containing in part
+
+$$H^1(C, G^{\prime\prime}_0)\to H^1(C,G^{\prime\prime})\to H^1(C, \overline{G^{\prime\prime}})$$
+
+But the last term is zero since $\overline{G^{\prime\prime}}$ is supported on nodes, and $H^1$ of skyscraper sheaves vanish.
+
+The first tem vanishe since it is $H^1(C, BT_{C/S})=H^2(C, T_{C/S})=0$ also for dimensional reasons.  
+
+So, the obstruction theories are compatible, and by Manolache's theorem we have that the two virtual classes agree.
+
+\section{Other basic results in Gromov-Witten theory in these terms}
+
+\subsection{WDVV} 
+GIANT DIAGRAM
+
+left column $\Mbar(X)\to \mathfrak{M}$ 
+
+Middle column $$\Mbar_{\{a\}}(X)\times_X\Mbar_{\{b\}}(X)\to \Mbar_{\{a\}}(X)\times\Mbar_{\{b\}}(X)\to \mathfrak{M}_{\{a\}}\times\mathfrak{M}_{\{b\}}$$
+
+Third colum $\Delta:X\to X\times X$.
+
+$p:\mathfrak{M}_{\{a\}}\times\mathfrak{M}_{\{b\}}\to\mathfrak{M}$.
+
+The point is
+
+$$\rho^![\Mbar(X)]^\vir=\Delta^!([\Mbar_{\{a\}}(X)]\times[\Mbar_{\{b\}}(X)])$$
+
+And a big diagram chase
+
+\begin{align*}
+p^![\Mbar(X)]^\vir &= p^!q^![\mathfrak{M}] \\
+&=r^!s^!p^![\mathfrak{M}]\\
+&=r^!s^!([\mathfrak{M}_{\{a\}}]\times [\mathfrak{M}_{\{b\}}]) \\
+&=\Delta^!s^!([\mathfrak{M}_{\{a\}}]\times [\mathfrak{M}_{\{b\}}]) \\
+&=\Delta^!([\Mbar_{\{a\}}(X)]^\vir\times [\Mbar_{\{b\}}(X)]^\vir) 
+\end{align*}
+
+Main point is $\Delta^!=r^!$.
+
+
+\subsection{Invariance of Log GW under log modifications}
+
+A log structure on a scheme $X$ is an \'etale sheaf of monoids $M$, a map $\text{exp} M\to \OO_X$ such that $\text{exp}^{-1}(\OO_X^*)\cong \OO_X^*$.
+
+
+
+You should think of this as being a system of divisors on $X$ indexed by $M$.
+if $\overline{M}=M/\OO_X^*$, for each section $x$ of $\overline{M}$, we get a line bundle $L_X$ with a map to $\OO$.
+
+\begin{example}
+
+ Nodal curve; we have an $\N$ worth of divisors at a generic point, but at the node we have $\N^2$.
+
+\end{example}
+
+
+Why an etale sheaf?  You should have a sheaf of divisors, but at the node the $\N^2$ specializing to the $\N$ on the generic point on each branch only makes sense etale locally.
+
+
+A log curve is something that etale locally looks like $C\to S$, where $M_S\to M_C$ at nodes maps $\N\to N^2$ by the diagonal map $\Delta$; these correspond to the smoothing of the nodes.
+
+If $X$ is a log scheme, then $\Mbar(X)=\{C\to S, C\to X\}$ so that $C\to S$ is a log curve, and $C\to X$ is a map of log schemes.
+
+Chen, Abramovich-Chen, Gross-Siebert, have been constructed with various restrictions; for general $X$ this will be work of Abramovich-Chen-Marcus-Wise.
+
+The notions of log smooth / log unramified / log\'etale are the same as for schemes using (something) criteria + log structure.
+
+
+Some things are weird about the log world:
+All nodal curves are log smooth.
+
+Log blowups are log \'etale and injective
+
+So log modifications are proper, log \'etale injections, and surjective on schematic points.
+
+So, from the log point of view, these modifications are essentially the same thing, and it shouldn't be surprising the GW invariants agree.  This is also why log stuff should be thought of as being related to the GW of the open structure, because the precise compactification we choose isn't so important.
+
+To construct the virtual fundamental class on $\Mbar(X)$, you need to work relative to something.  You can't really work relative to $\mathfrak{M}$ because we're taking about maps into something log smooth, and not actually smooth, and you need to get the log structure involved somehow.  
+
+So instead, we work relative to $\text{Log}(\mathfrak{M})$ which parameterizes $C\to S$ together with log structures on the base.
+
+But once you have this, you use the same general constructions to get the virtual fundamental class.
+
+Why is the virtual fundamental class invariant under log modification?
+
+The idea is that we want to use the commutativity.
+
+Supose that $Y\to X$ is a log modification (i.e., proper, birational and log `'etale).  We woud like to use the Costello diagram:
+$f:\Mbar(Y)\to \Mbar(X)$ over two mysterious things $f:W\to Z$ beneath a cartesian diagram, and we'd like to arrange it so that $W\to Z$ are birational and ideally very nice.
+
+We want $[\Mbar(X)]^\vir=[\Mbar(X)|Z]^\vir$, and similarly $[\Mbar(Y)]^\vir=[\Mbar(Y)|W]^\vir$
+and then we'd have $f_*g^!=h^!f_*$, and applying this to $[W]$ would give
+
+$$f_*[\Mbar(Y)]^\vir=[\Mbar(X)]^\vir$$
+
+
+This is all formal stuff with virtual classes; the geometric input needed are $W$ and $Z$.
+
+The way they do this is prove a structure theorem for log modifications; give $Y\to X$ they make $\mathcal{Y}\to\mathcal{X}$ called Artin fans (or maybe it should have been called Illusie fans.
+
+$\mathcal{X}$ and $\mathcal{Y}$ are locally modelled on $[V/T]$ where $V$ is a toric variety and $T$ is the torus, which are what Illusie calls ``toric stacks''
+
+If we say how to glue the fans of the local pictures together, that is nearly enough to say how to describe $\mathcal{Y}$ and $\mathcal{X}$, and these are substitutes for fans of toric varieties.
+
+The nice thing about these are that $\mathcal{Y},\mathcal{X}$ are etale over Log; and so we had that the virtual classes satisfied the resulting thing:
+
+$$[\Mbar(Y)]^\vir=[\Mbar(Y)/\mathfrak{M}(\mathcal{Y})]^\vir$$
+and similarly with $X$.
+
+So we have the diagram we need, but it's not cartesian, or evne commutative, but there is some etale little fix to this, that turns out to be what Behrend did earlier in proving the product formula.
+
+
+
+
+
+\end{document}
+ 
