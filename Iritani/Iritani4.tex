@@ -1,0 +1,351 @@
+\documentclass{amsart}
+\usepackage{tikz}
+\linespread{1.2}
+
+\theoremstyle{definition}
+\newtheorem{dummy}{}[section]
+\newtheorem{remark}[dummy]{Remark}
+\newtheorem{theorem}[dummy]{Theorem}
+\newtheorem{definition}[dummy]{Definition}
+\newtheorem{example}[dummy]{Example}
+\newtheorem{question}[dummy]{Question}
+\newtheorem{conjecture}[dummy]{Conjecture}
+\newtheorem{lemma}[dummy]{Lemma}
+\newtheorem{proposition}[dummy]{Proposition}
+\newtheorem{corollary}[dummy]{Corollary}
+
+
+\newcommand{\into}{\hookrightarrow}
+\DeclareMathOperator{\Ext}{Ext}
+\newcommand{\TT}{\mathbb{T}}
+\newcommand{\Pic}{\text{Pic}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\GIT}{//}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Stab}{\text{Stab}}
+\newcommand{\Spec}{\text{Spec}}
+\newcommand{\aff}{\text{aff}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\Map}{\textrm{Map}}
+\newcommand{\proj}{\mathbb{P}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\sm}{\text{sm}}
+\newcommand{\Mbar}{\overline{\mathcal{M}}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Age}{\text{Age}}
+\newcommand{\Fix}{\text{Fix}}
+\newcommand{\one}{1}
+\newcommand{\st}{\text{st}}
+\newcommand{\ttt}{\mathbb{t}}
+\newcommand{\ev}{\text{ev}}
+\newcommand{\vir}{\text{vir}}
+\newcommand{\Quot}{\text{Quot}}
+\newcommand{\Hom}{\text{Hom}}
+
+
+\newcommand{\Aut}{Aut}
+
+
+
+
+\author{Hiroshi Iritani}
+\title{Toric Mirror Symmetry IV}
+
+
+\begin{document}
+
+\maketitle
+
+Recall we had the mirror isomorphism: 
+$$\tau^*(F, \nabla, Q_A)\cong(R^{(0)},\nabla, Q_B)$$
+where the $A$-model structure was over $H\times\C$ and the $B$-model structure was over $\M^0\times \C$.
+
+On the $B$-model side, we had an extra piece of data: the integral structure 
+$$R_\Z\subset \left(R^{(0)}|_{M^0\times\C}\right)$$ coming from the Lefschetz thimbles.
+
+Today, we would like to describe what this integral structure corresponds to on the A-model side.
+
+\section{Gamma class}
+
+Let $X$ a complex or symplectic manifolds.
+
+Factor the total chern class of $TX$ into its chern roots $\delta_i$:
+
+$$c(TX)=(1+\delta_1)\cdots (1+\delta_n)$$
+
+The $\delta_i$ are not cohomology by ``virtual cohomology classes'' so that any symmetric function of the $\delta_i$ \emph{is} a cohomology class.
+
+\begin{definition}
+$$\widehat{\Gamma}_X=\widehat{\Gamma}(TX_=\prod_{i=1}^n)\gamma(1+\delta_i)$$
+where
+$$\Gamma(x)=\int_0^\infty e^{-t} t^x\frac{dt}{t}$$
+is Euler's gamma function.  This is regular at 1, and so may be expanded as a pwoer series; since the cohomology of $X$ is nilpotent this will eventually just give us a finite sum for $\widehat{\Gamma}_X$.
+
+
+
+
+
+\end{definition}
+Using expansions, we have
+\begin{align*}
+\widehat{\Gamma}_X&=\prod_{i=1}^n\exp\left(-\gamma\delta_i+\sum_{k=2}^\infty \frac{\zeta}{k}(-1)^{k-1}\delta_i^k\right)\\
+&= \exp\left(-\gamma c_1(X)+\sum_{k=2}^\infty\frac{\zeta}{k}(-1)^{k-1}k!\text{ch}_k(X)\right)
+\end{align*}
+where $\gamma$ is Euler's constant and $\zeta(k)$ is Riemann's zeta function.  This appeared in earlier work in mirror symmetry (Klemm, etc...) and the definition of the inverse $\Gamma$ function maybe first appeared in work of Libgober; so it'd definitely been around in the literature.
+
+\subsection{Givental's Heuristic}
+One way to motivate the Gamma class is through Givental's heuristic.
+
+Let $X$ be simply connected, and $\mathcal{L}X$ be the free loop space.  The action functional $\mathcal{A}$ is defined on the universal cover $\widetilde{\mathcal{L}X}$:
+
+\begin{align*}
+\mathcal{A}:\widetilde{\mathcal{L}X}&\to\R \\
+\gamma&\mapsto \int_D g^*\omega
+\end{align*}
+where $D$ is the disk bounding $\gamma$ that describes the fibers of the universal cover of $\mathcal{L}X$.
+
+This is a standard construction in symplectic Floer theory?
+There is a symplectic form $\Omega$ on $\widetilde{\mathcal{L}}X$, which amkes $\mathcal{A}$ the moment map for the obvious $S^1$ action on $\widetilde{\mathcal{L}X}$ that rotates the loops.
+
+Let $z\in H^2_{S^1}(\text{pt})$; then $$\Omega+z\mathcal{A}$$ is an equivariant closed form on $\widetilde{\mathcal{L}X}$.
+
+
+
+We have $X\subset \mathcal{L}X$ as the space of constant loops; above this in $ \widetilde{\mathcal{L}X}$ we will have infinitely many copies of $X$, acted on by deck transformations by $H_2(X)$; we will call these copies $X_d$.
+
+Let $\Delta$ be the stable manifold of $X\subset \widetilde{\mathcal{L}X}$, we have
+$$\Delta=\left\{\gamma\in\widetilde{\mathcal{L}X}|\gamma \text{ bounds stable hol disc}\right\}$$
+
+PICTURE OF THE $X_d$ in $\widetilde{\mathcal{L}X}$, with flow in the $\mathcal{A}$ direction.
+
+Somehow, we should have $\one\in QH(X)$ to correspond to $\Delta$, and the $\J$ function should correspond to
+
+$$\int_\Delta e^{(\Omega+z\mathcal{A})/z}=\sum_{d\in H_2(X;\Z)}\int_{\Delta\cap X_d}\frac{1}{e_{S^1}(N_{\delta\cap X_d/\Delta})}$$
+from naively applying Atiyah-Bott localization in this infinite dimensional setting.
+
+What is this euler bundle?  HDon't completely understand this, but we would get a degree $d$ curve, with points labelled $X_0$ to $X_d$, and a node starting to build a new loop from the $X_d$, and so we get
+
+$$=\sum_{d\in H_2(x;\Z)}\int_X \pi_*\left(\frac{1}{z(z-\psi)}\right)\frac{1}{e_{S^1}(N^+)}$$
+
+what Givental did is replace this loop space with some polynomial part of the loop space and this first $\pi_*$ term here gives $\J_d$.  The second factor, which is independent of $d$ and is somehow the factor coming from the new bubble starting off.  This term is somewhat ignored in the original work.
+
+We have
+$$N_{x/\mathcal{L}}=N^+\oplus N^-$$
+the splitting of the normal bundle into positive and negative parts, and
+
+$$N^+=\bigoplus_{k=1}^\infty (TX)\otimes L^k$$
+where $L$ is the $S^1$ representation of weight 1, and so naively we should have
+
+$$\frac{1}{e(N^+)}=\prod_{k=1}^\infty\frac{1}{(\delta_1+kz)\cdots(\delta_n+kz)}$$
+Rongmin Lu showed that, using $\zeta$ function regularization of this infinite product, one gets
+
+$$z^{-\mu}z^\rho \widehat{\Gamma}_X$$
+where $\rho=c_1(X)$ and $\mu=\frac{1}{2}\deg-\frac{n}{2}$ as before.
+
+The term $z^{-\mu}z^\rho$ turns up as the fundamental solution of the quantum connection, as we will shortly explain.
+
+Thus, our working sum we've been dealing with will be
+
+$$\int\J\cup z^{-\mu}z^\rho \widehat{\Gamma}_X$$
+
+Fact: Fundamnetal solution for ``fully flat'' (in the $z$ direction as well, not just the $t$ directions as considered before) is $L(t,z)z^{-\mu}z^\rho$
+where
+\begin{align*}
+z^\rho&=\exp(\rho\log z) \\
+z^{-\mu}&=\exp(-\mu\log z)
+\end{align*}
+\begin{definition}
+Let $E\in K^0(X)$; then
+$$S_E(t,z)=\frac{1}{(2\pi)^{n/2}}L(t,z)z^{-\mu}z^\rho \widehat{\Gamma}_X (2\pi i)^{\deg /2} \text{ch}(E)$$
+
+\end{definition}
+Then $\{S_E(t,z)\}$ for $E\in K^0(X)$ will span a $\Z$-structure $F_\Z\subset\left( F|_{H\times\C^*}\right)^\nabla$
+
+
+Here sare some properties:
+\begin{enumerate}
+\item $$\left( s_E(t, e^{-\pi i}z, s_F(t,z)\right)=\chi(E,F)=\sum (-1)^i\dim \Ext^i(E,F)$$
+\item $S_E(t+2\pi ic_1(L),z)=s_{E\otimes L^{-1}}(t,z)$
+\item $S_E(t, e^{-2\pi iz})=s_{E\otimes\omega[n]}(t,z)$
+\end{enumerate}
+
+Some discusion of property one will be enlightening.
+
+The subtle sign in the first insertion gives 
+$$\widehat{\Gamma}^*_X\cup \widehat{\Gamma}_X=e^{-\pi \rho}(2\pi i)^{\deg/2}\text{Td}_X$$
+and now result 1 follows from Hirzebruch-Riemann-Roch.
+
+The identity for $\widehat{\Gamma}$ classes follows from the
+ $\Gamma$ functional identity:
+$$\Gamma(1-z)\Gamma(1+z)=\frac{\pi z}{\sin \pi z}=\frac{2\pi i z}{1-e^{-2\pi i z}} e^{-\pi iz}$$
+which is also related in the following heuristic from the loop space:
+
+$$\frac{1}{e_{S^1}(N_-)}\frac{1}{e_{S^1}(N_+)}=\widehat{A}_X$$
+
+The other equations are not as hard?  The second one is mostly the divisor equation, The last one shows that the thing is actually well defined on $\C^*$ as we wanted.
+
+
+\begin{theorem}[Iritani]
+The $\Z$-structure match iunder toric mirror symmetry.
+\end{theorem}
+
+\begin{proof}
+First, we claim that 
+$$\left(\bullet,s_\OO(t,z)\right):F_{(t,-z)}\to \C$$
+corresponds to
+$$\frac{1}{(2\pi z)^{n/2}}\int_{(\R>0)^n}\bullet:R^{(0)}_{(t,-z)}\to\C$$
+
+Here $\OO\in K^0$ is the structure sheaf, and the integrand $(\R_{>0})^n$ is a particular Lefschetz theorem.
+
+The general theory will follow from this claim, because in the toric case line bundles generate $K^0$ and we have the monodromy properties for the corresponding sections, and hence we get everything.
+
+To prove the claim, it sufficies to show
+
+$$\left(\one,s_\OO(t,z)\right)=\frac{1}{(2\pi z)^{n/2}}\int_{(\R>0)^n}e^{-f_c/z}\frac{dx}{x}$$
+
+We illustrate this identity for $\proj^2$.
+The left hand side is
+$$C\int\J(t,-z)\cup z^{-\mu}z^\rho \widehat{\Gamma}_X$$
+where $C$ is some function.  We know the $\J$ function is the $\I$ function, so
+$$=\frac{1}{(2\pi z)^{3/2}}\int \sum_{d=0}^\infty \left(\frac{q}{z^3}\right)^{-p+d}\frac{1}{\prod_{m=1}^d (p-m)^3}$$
+
+On the right hand side, we have
+$$f_q(x)=x_1+x_2+\frac{q}{x_1x_2}$$
+and plugging this and using Mellin and inverse Mellin transformations (as used in Katzarkov-Kontsevich-Pantev), one sees the right hand side is
+
+$$\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\Gamma(s)^3 z^{3s}q^{-q}ds$$
+and this has poles at negative integers, and so may be written as sum of residues, which exactly reproduces the formula we have on the left hand side
+
+
+\end{proof}
+
+
+More generally, for $X=\proj^n$, the critical values of $f_c$ are 
+$$\left\{(n+1)e^{\frac{2\pi i}{n+1} j}q^{1/n+1}| j=0,\dots, n\right\}$$
+
+The Lefschetz thimble corresponding to $j=0$ is $\OO$.
+By our monodromy conditions, the Lefschetz thimble corresponding to $j$ is $\OO(-j)$, and we get an exceptional collection for $\proj^n$.  
+
+Our thimbles are really curved, and if we want to straighten these paths this corresponds to mutations of our exceptional collection.
+
+\section{Gamma Conjecture}
+This phenomenon may be formulated without reference to the mirror:
+
+
+Let $X$ be Fano; then the mirror conjecture implies the critical values of $f$ will be eigenvalues of $c_1X\star_0$, where $0$ means $t=0$ and $q=1$.
+
+The Lefschetz thimbles corresponding to the critical value $u_i$ should correspond to a flat section with exponential asymptotics $\sim e^{-u_i/z}$ .
+
+The right hand side here makes sense without reference to the mirror.
+\begin{conjecture}[Galkin-Golyshev-Iritani]
+Let 
+$$T=\max\{ |u|: u \text{is an eigenvalue for } c_1(X)\otimes_0\}$$
+Then 
+\begin{enumerate}
+
+\item $T$ is an eigenvalue of multiplicity 0
+\item $S_\OO\sim e^{-T/z}$ as $z\to_{+} 0$
+\item When $c_1X\star_0$ is semisimple, there exists an exceptional collection $E_i$ with 
+$$S_{E_i}\sim e^{-u_i/z}$$
+\end{enumerate}
+\end{conjecture}
+More precisely, we need to specificy some sector of the $s_{E_i}$ for the asymptotics.
+
+This is almost true for Fano toric, or toric complete intersections, but there is some subtle point:
+
+Question: Let $X$ be Fano toric manifold; is part (1) of the conjecture true?
+
+If it is, then the rest follows.
+
+For any explicit $X$, we can compute everything using the mirror and it seems to work.
+
+This is really a question about Laurent Polynomials coming from toric fano polytope; put one on each vertex, and it suggests the maximal critical value occurs with multiplicity one.
+
+We know this for toric and for grassmannians, and 1+2 for rank 1 Fano three folds.
+
+\section{Real structure}
+
+We now turn to some aspects of the real structure given by the $\widehat{\Gamma}_X$ class.  This should be very interesting and related to $tt^*$-geometry, but the analysis involved is somehow harder.
+
+We get $F_\R=F_\Z\otimes\R$ a real flat subbundle of $F|_{H\times\C^*}$.  
+
+We get a real involution $\kappa$ on $H^0(\{t\}\times\C^*, F)$.  
+
+Hertling describes the following structure of $\kappa$ in more detail:
+\begin{itemize}
+\item $\kappa(f)|_{S^1}=\overline{f|_{s^1}}$\
+\item $\kappa(zf)=z^{-1}\kappa(z)$
+\item $\kappa(\alpha f)=\overline{\alpha}\kappa(f)$ for $\alpha\in \C$
+\end{itemize}
+
+\subsection{Induced involution on $\mathcal{H}$}
+Recall that we have
+\begin{align*}
+L:\mathcal{H}&\stackrel{\cong}\to H^0(\{t\}\times\C^*, F) \\
+T_t&\stackrel{\cong} H^0(\{t\}\times\C, F) 
+\end{align*}
+This induces an action of $\kappa$ on $\mathcal{H}$.
+
+We expect that
+\begin{enumerate}
+\item Hodge Decomposition:
+$$T_t\oplus z^{-1}\kappa(T_t)=\mathcal{H}$$
+\item Positivity: 
+
+The Hermitian metric on $T_t\cap \kappa(T_t)$ defined by 
+$$h(\alpha,\beta)=\left(\kappa(\alpha)(-z),\beta(z)\right)$$
+is positive definite.
+\end{enumerate}
+
+\begin{theorem}[Sabbah]
+For tame functions, properties (1) and (2) hold.
+\end{theorem}
+Analogs of these properties were known for compact Kahler manifolds; tame functions are somehow the analog of compact Kahler manifolds in singularity theory.  Tame here is involved, but means critical points do not happen at infinity, and in terms of Laurent polynomials it corresponds to nondegenerate.
+
+\begin{theorem}[Iritani]
+Propert (1) and (2) hold in the A-model on $\oplus_p H^{p,p}$ and for $t$ sufficiently close to the large radius limit.
+\end{theorem}
+
+\section{Higher genus}
+In the toric situation, Givental-Teleman reconstructs the higher genus from genus 0, but there are still some interesting questions.
+
+Joint with Tom Coates, 
+
+Applying Givental-Teleman to $(R^{(0)},\nabla, Q_B)$ to get the global GW-potential, which is a section of a Fock sheaf, constructed as follows:
+
+\begin{itemize}
+\item Take a miniversal unfolding of $(R^{(0)}, \nabla, Q)$ (extending $M^0\subset M^{ext}$
+\item On simpy connected $U\subset M^{ext}$, let $\mathcal{L}$ be the totaly space of $z(\pi_* R^{(0)}$, which recall was Givental's cone
+\item Then $\mathcal{L}|_U\subset \mathcal{H}_U$ as a Lagrangian submanifold.
+\item $\cup_\alpha U_\alpha=M^{ext}$,
+\item  $\mathcal{L}|_{U_\alpha}\into \mathcal{H}_\alpha$
+\item Choose Lagrangian subspace $P_\alpha$ transverse to $\mathcal{L}|_{U_\alpha}$
+\end{itemize}
+Then we define
+$$\text{Fock}(U_\alpha:P_\alpha)=\left\{ \exp\left((F_1+F_2\hbar+F_3\hbar^2+\cdots\right):F_g:\mathcal{L}|_{U_\alpha}\to\C\right\}$$
+
+And we glue the local Fock spaces
+$$\text{Fock}(U_\alpha\cap U_\beta:P_\alpha)\stackrel{\cong}\to \text{Fock}(U_\alpha\cap U_\beta:P_\beta)$$
+by quantizations of Givental's transformations.
+
+This is complicated Feynman diagram expansion.
+
+This gives a sheaf over $M^{ext}$.
+Givental's formula gives a section $\mathcal{D}$ of the Fock sheaf, given by
+\begin{align*}
+\text{Fock}(U_\alpha:P_{ss})&\stackrel{\cong}\to \text{Fock}(U_\alpha:P_\alpha) \\
+\mathcal{D}_{N\text{ pts}}&\mapsto \mathcal{D}_\alpha
+\end{align*}
+Where $P_{ss}$ is the semisimple polarization.
+
+Can use $\overline{T}_t=z^{-1}\kappa(T_t)$ for polarization $P_\alpha$, which yields to a single-valued potential satisfying the holomorphic anomaly equation.
+
+Another question of interest is to study the singularities of $\mathcal{D}$ along $\overline{M}\setminus M^0$; for instance, what is the behavior of $\mathcal{D}$ at the conifold point -- it seems to match the conifold gap predicted by physics.
+
+For the quintic, the construction of the Fock sheaf still makes sense, and the Gromov-Witten potential is a local section around the large radius point, but since it is not semisimple, Givental quntization breaks down and we do not know if this section extends to a gloabl single-valued section or not.
+
+\end{document}
